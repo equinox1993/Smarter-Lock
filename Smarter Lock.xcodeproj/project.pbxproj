@@ -15,7 +15,14 @@
 		402F64BF1AE0540400B6FAC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402F64BE1AE0540400B6FAC3 /* Images.xcassets */; };
 		402F64C21AE0540400B6FAC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402F64C01AE0540400B6FAC3 /* LaunchScreen.xib */; };
 		402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */; };
-		402F64D81AE0557900B6FAC3 /* QR in Resources */ = {isa = PBXBuildFile; fileRef = 402F64D71AE0557900B6FAC3 /* QR */; };
+		E89199071AE078E5009048E5 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F71AE078E5009048E5 /* bitstream.c */; };
+		E89199081AE078E5009048E5 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F91AE078E5009048E5 /* mask.c */; };
+		E89199091AE078E5009048E5 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198FB1AE078E5009048E5 /* qrencode.c */; };
+		E891990A1AE078E5009048E5 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198FD1AE078E5009048E5 /* qrinput.c */; };
+		E891990B1AE078E5009048E5 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198FF1AE078E5009048E5 /* qrspec.c */; };
+		E891990C1AE078E5009048E5 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = E89199011AE078E5009048E5 /* rscode.c */; };
+		E891990D1AE078E5009048E5 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = E89199031AE078E5009048E5 /* split.c */; };
+		E891990E1AE078E5009048E5 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +51,22 @@
 		402F64C71AE0540400B6FAC3 /* Smarter LockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smarter LockTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		402F64CC1AE0540400B6FAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smarter_LockTests.m; sourceTree = "<group>"; };
-		402F64D71AE0557900B6FAC3 /* QR */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QR; sourceTree = "<group>"; };
+		E89198F71AE078E5009048E5 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		E89198F81AE078E5009048E5 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		E89198F91AE078E5009048E5 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		E89198FA1AE078E5009048E5 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		E89198FB1AE078E5009048E5 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		E89198FC1AE078E5009048E5 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		E89198FD1AE078E5009048E5 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		E89198FE1AE078E5009048E5 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		E89198FF1AE078E5009048E5 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		E89199001AE078E5009048E5 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		E89199011AE078E5009048E5 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		E89199021AE078E5009048E5 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		E89199031AE078E5009048E5 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		E89199041AE078E5009048E5 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		E89199051AE078E5009048E5 /* UIImage+MDQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MDQRCode.h"; sourceTree = "<group>"; };
+		E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MDQRCode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +108,7 @@
 		402F64AD1AE0540400B6FAC3 /* Smarter Lock */ = {
 			isa = PBXGroup;
 			children = (
-				402F64D71AE0557900B6FAC3 /* QR */,
+				E89198F51AE078E5009048E5 /* QR */,
 				402F64B21AE0540400B6FAC3 /* AppDelegate.h */,
 				402F64B31AE0540400B6FAC3 /* AppDelegate.m */,
 				402F64B51AE0540400B6FAC3 /* FirstViewController.h */,
@@ -125,6 +147,37 @@
 				402F64CC1AE0540400B6FAC3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E89198F51AE078E5009048E5 /* QR */ = {
+			isa = PBXGroup;
+			children = (
+				E89198F61AE078E5009048E5 /* libqrencode */,
+				E89199051AE078E5009048E5 /* UIImage+MDQRCode.h */,
+				E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */,
+			);
+			path = QR;
+			sourceTree = "<group>";
+		};
+		E89198F61AE078E5009048E5 /* libqrencode */ = {
+			isa = PBXGroup;
+			children = (
+				E89198F71AE078E5009048E5 /* bitstream.c */,
+				E89198F81AE078E5009048E5 /* bitstream.h */,
+				E89198F91AE078E5009048E5 /* mask.c */,
+				E89198FA1AE078E5009048E5 /* mask.h */,
+				E89198FB1AE078E5009048E5 /* qrencode.c */,
+				E89198FC1AE078E5009048E5 /* qrencode.h */,
+				E89198FD1AE078E5009048E5 /* qrinput.c */,
+				E89198FE1AE078E5009048E5 /* qrinput.h */,
+				E89198FF1AE078E5009048E5 /* qrspec.c */,
+				E89199001AE078E5009048E5 /* qrspec.h */,
+				E89199011AE078E5009048E5 /* rscode.c */,
+				E89199021AE078E5009048E5 /* rscode.h */,
+				E89199031AE078E5009048E5 /* split.c */,
+				E89199041AE078E5009048E5 /* split.h */,
+			);
+			path = libqrencode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +261,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				402F64BD1AE0540400B6FAC3 /* Main.storyboard in Resources */,
-				402F64D81AE0557900B6FAC3 /* QR in Resources */,
 				402F64C21AE0540400B6FAC3 /* LaunchScreen.xib in Resources */,
 				402F64BF1AE0540400B6FAC3 /* Images.xcassets in Resources */,
 			);
@@ -228,8 +280,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E891990E1AE078E5009048E5 /* UIImage+MDQRCode.m in Sources */,
 				402F64BA1AE0540400B6FAC3 /* SecondViewController.m in Sources */,
+				E891990B1AE078E5009048E5 /* qrspec.c in Sources */,
+				E89199071AE078E5009048E5 /* bitstream.c in Sources */,
+				E891990C1AE078E5009048E5 /* rscode.c in Sources */,
 				402F64B41AE0540400B6FAC3 /* AppDelegate.m in Sources */,
+				E89199081AE078E5009048E5 /* mask.c in Sources */,
+				E89199091AE078E5009048E5 /* qrencode.c in Sources */,
+				E891990A1AE078E5009048E5 /* qrinput.c in Sources */,
+				E891990D1AE078E5009048E5 /* split.c in Sources */,
 				402F64B71AE0540400B6FAC3 /* FirstViewController.m in Sources */,
 				402F64B11AE0540400B6FAC3 /* main.m in Sources */,
 			);
@@ -428,6 +488,7 @@
 				402F64D31AE0540400B6FAC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		402F64D41AE0540400B6FAC3 /* Build configuration list for PBXNativeTarget "Smarter LockTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +497,7 @@
 				402F64D61AE0540400B6FAC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
