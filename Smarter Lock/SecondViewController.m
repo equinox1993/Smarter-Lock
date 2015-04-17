@@ -7,7 +7,6 @@
 //
 
 #import "SecondViewController.h"
-
 #import "QR/UIImage+MDQRCode.h"
 
 @interface SecondViewController ()
@@ -20,8 +19,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"%f",self.imageView.bounds.size.width);
-//    self.imageView.image = [UIImage mdQRCodeForString:@"Hello World 233333!" size:self.imageView.bounds.size.width];
+	[self changeQR:@"Hello World 233333!"];
+}
+
+- (void)changeQR:(NSString*)str {
+	UIImage* qrImg = [UIImage mdQRCodeForString:str size:self.imageView.bounds.size.width];
+    self.imageView.image = qrImg;
 }
 
 - (void)didReceiveMemoryWarning {
