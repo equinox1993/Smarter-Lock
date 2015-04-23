@@ -15,6 +15,10 @@
 		402F64BF1AE0540400B6FAC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 402F64BE1AE0540400B6FAC3 /* Images.xcassets */; };
 		402F64C21AE0540400B6FAC3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402F64C01AE0540400B6FAC3 /* LaunchScreen.xib */; };
 		402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */; };
+		40585B2D1AE86180009D5C51 /* Communicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 40585B2C1AE86180009D5C51 /* Communicator.m */; };
+		40585B371AE879FA009D5C51 /* UnlockPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 40585B361AE879FA009D5C51 /* UnlockPayload.m */; };
+		40585B391AE87CA0009D5C51 /* CommunicatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 40585B381AE87CA0009D5C51 /* CommunicatorTest.m */; };
+		40585B3C1AE88104009D5C51 /* PasscodePayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 40585B3B1AE88104009D5C51 /* PasscodePayload.m */; };
 		E89199071AE078E5009048E5 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F71AE078E5009048E5 /* bitstream.c */; };
 		E89199081AE078E5009048E5 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F91AE078E5009048E5 /* mask.c */; };
 		E89199091AE078E5009048E5 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198FB1AE078E5009048E5 /* qrencode.c */; };
@@ -51,6 +55,14 @@
 		402F64C71AE0540400B6FAC3 /* Smarter LockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smarter LockTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		402F64CC1AE0540400B6FAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Smarter_LockTests.m; sourceTree = "<group>"; };
+		40585B2B1AE86180009D5C51 /* Communicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
+		40585B2C1AE86180009D5C51 /* Communicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Communicator.m; sourceTree = "<group>"; };
+		40585B321AE871BB009D5C51 /* Payload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Payload.h; sourceTree = "<group>"; };
+		40585B351AE879FA009D5C51 /* UnlockPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockPayload.h; sourceTree = "<group>"; };
+		40585B361AE879FA009D5C51 /* UnlockPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockPayload.m; sourceTree = "<group>"; };
+		40585B381AE87CA0009D5C51 /* CommunicatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicatorTest.m; sourceTree = "<group>"; };
+		40585B3A1AE88104009D5C51 /* PasscodePayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasscodePayload.h; sourceTree = "<group>"; };
+		40585B3B1AE88104009D5C51 /* PasscodePayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasscodePayload.m; sourceTree = "<group>"; };
 		E89198F71AE078E5009048E5 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
 		E89198F81AE078E5009048E5 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
 		E89198F91AE078E5009048E5 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
@@ -108,6 +120,7 @@
 		402F64AD1AE0540400B6FAC3 /* Smarter Lock */ = {
 			isa = PBXGroup;
 			children = (
+				40585B311AE870F1009D5C51 /* Payload */,
 				E89198F51AE078E5009048E5 /* QR */,
 				402F64B21AE0540400B6FAC3 /* AppDelegate.h */,
 				402F64B31AE0540400B6FAC3 /* AppDelegate.m */,
@@ -119,6 +132,8 @@
 				402F64BE1AE0540400B6FAC3 /* Images.xcassets */,
 				402F64C01AE0540400B6FAC3 /* LaunchScreen.xib */,
 				402F64AE1AE0540400B6FAC3 /* Supporting Files */,
+				40585B2B1AE86180009D5C51 /* Communicator.h */,
+				40585B2C1AE86180009D5C51 /* Communicator.m */,
 			);
 			path = "Smarter Lock";
 			sourceTree = "<group>";
@@ -137,6 +152,7 @@
 			children = (
 				402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */,
 				402F64CB1AE0540400B6FAC3 /* Supporting Files */,
+				40585B381AE87CA0009D5C51 /* CommunicatorTest.m */,
 			);
 			path = "Smarter LockTests";
 			sourceTree = "<group>";
@@ -147,6 +163,18 @@
 				402F64CC1AE0540400B6FAC3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40585B311AE870F1009D5C51 /* Payload */ = {
+			isa = PBXGroup;
+			children = (
+				40585B321AE871BB009D5C51 /* Payload.h */,
+				40585B351AE879FA009D5C51 /* UnlockPayload.h */,
+				40585B361AE879FA009D5C51 /* UnlockPayload.m */,
+				40585B3A1AE88104009D5C51 /* PasscodePayload.h */,
+				40585B3B1AE88104009D5C51 /* PasscodePayload.m */,
+			);
+			name = Payload;
 			sourceTree = "<group>";
 		};
 		E89198F51AE078E5009048E5 /* QR */ = {
@@ -281,12 +309,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E891990E1AE078E5009048E5 /* UIImage+MDQRCode.m in Sources */,
+				40585B2D1AE86180009D5C51 /* Communicator.m in Sources */,
 				402F64BA1AE0540400B6FAC3 /* SecondViewController.m in Sources */,
 				E891990B1AE078E5009048E5 /* qrspec.c in Sources */,
 				E89199071AE078E5009048E5 /* bitstream.c in Sources */,
 				E891990C1AE078E5009048E5 /* rscode.c in Sources */,
+				40585B371AE879FA009D5C51 /* UnlockPayload.m in Sources */,
 				402F64B41AE0540400B6FAC3 /* AppDelegate.m in Sources */,
 				E89199081AE078E5009048E5 /* mask.c in Sources */,
+				40585B3C1AE88104009D5C51 /* PasscodePayload.m in Sources */,
 				E89199091AE078E5009048E5 /* qrencode.c in Sources */,
 				E891990A1AE078E5009048E5 /* qrinput.c in Sources */,
 				E891990D1AE078E5009048E5 /* split.c in Sources */,
@@ -299,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40585B391AE87CA0009D5C51 /* CommunicatorTest.m in Sources */,
 				402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

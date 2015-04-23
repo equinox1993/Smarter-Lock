@@ -12,6 +12,7 @@
 
 @property (nonatomic) IBOutlet UIImageView* imageView;
 
+-(IBAction)unlock:(id)sender;
 
 @end
 

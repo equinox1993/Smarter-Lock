@@ -8,6 +8,8 @@
 
 #import "SecondViewController.h"
 #import "QR/UIImage+MDQRCode.h"
+#import "Communicator.h"
+#import "UnlockPayload.h"
 
 @interface SecondViewController ()
 
@@ -20,6 +22,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
 	[self changeQR:@"Hello World 233333!"];
+    
 }
 
 - (void)changeQR:(NSString*)str {
@@ -30,6 +33,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Actions
+-(IBAction)unlock:(id)sender {
+    [[Communicator defaultCommunicator] writePayload: [UnlockPayload defaultPayload]];
 }
 
 @end

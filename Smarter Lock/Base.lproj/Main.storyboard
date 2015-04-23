@@ -22,13 +22,13 @@
                                 <rect key="frame" x="221" y="279" width="158" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by FirstViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
                                 <rect key="frame" x="203" y="329" width="195" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -59,17 +59,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1c-zB-vnJ">
-                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <rect key="frame" x="150" y="100" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="height" multiplier="1:1" id="0bJ-jV-Lfe"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEj-Ni-jY4">
+                                <rect key="frame" x="276" y="410" width="48" height="30"/>
+                                <state key="normal" title="Unlock">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unlock:" destination="8rJ-Kc-sve" eventType="touchDown" id="Q9L-KV-Kkz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="J1c-zB-vnJ" secondAttribute="centerY" id="lYb-Vy-AzY"/>
+                            <constraint firstItem="NEj-Ni-jY4" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="10" id="hOp-O7-6cy"/>
+                            <constraint firstAttribute="centerY" secondItem="J1c-zB-vnJ" secondAttribute="centerY" multiplier="1.2" id="lYb-Vy-AzY"/>
                             <constraint firstAttribute="centerX" secondItem="J1c-zB-vnJ" secondAttribute="centerX" id="n5K-PL-dEl"/>
                             <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="width" multiplier="2:1" id="slv-Xu-FSH"/>
+                            <constraint firstAttribute="centerX" secondItem="NEj-Ni-jY4" secondAttribute="centerX" id="y14-6x-akl"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Unlock" image="second" id="cPa-gy-q4n"/>
@@ -79,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="738" y="380"/>
+            <point key="canvasLocation" x="684" y="322"/>
         </scene>
         <!--Settings-->
         <scene sceneID="XFV-Z7-xez">
@@ -119,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rct-JA-tzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="416" y="665"/>
+            <point key="canvasLocation" x="420" y="770"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
