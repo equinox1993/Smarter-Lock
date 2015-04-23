@@ -179,7 +179,7 @@
 				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
 				E84168D61AE8B65E00BB1897 /* PacketAssembler.h */,
 			);
-			name = Payload;
+			path = Payload;
 			sourceTree = "<group>";
 		};
 		E89198F51AE078E5009048E5 /* QR */ = {
