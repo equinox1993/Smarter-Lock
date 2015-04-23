@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-#include "PasscodePayload.h"
+#include "PasscodePacket.h"
 #include <arpa/inet.h>
 #include <cstring>
 
-int PasscodePayload::serialize(uint8_t* output) const {
+int PasscodePacket::serialize(uint8_t* output) const {
     uint64_t ndate = htonll(date);
 	
 	memcpy(output, passcode.c_str(), 16);
@@ -19,20 +19,20 @@ int PasscodePayload::serialize(uint8_t* output) const {
 	return 24;
 }
 
-uint32_t PasscodePayload::length() const {
+uint32_t PasscodePacket::length() const {
     return 24;
 }
 
-uint32_t PasscodePayload::type() const {
+uint32_t PasscodePacket::type() const {
     return Type::PASSCODE;
 }
 
-PasscodePayload::PasscodePayload(const char* psc, uint64_t dt) {
+PasscodePacket::PasscodePacket(const char* psc, uint64_t dt) {
 	passcode = psc;
 	date = dt;
 }
 
-PasscodePayload::PasscodePayload(const uint8_t* serial) {
+PasscodePacket::PasscodePacket(const uint8_t* serial) {
 	char tpsc[17];
 	uint64_t ndate;
 	

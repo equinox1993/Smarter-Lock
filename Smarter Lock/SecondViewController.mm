@@ -9,7 +9,7 @@
 #import "SecondViewController.h"
 #import "QR/UIImage+MDQRCode.h"
 #import "Communicator.h"
-#import "UnlockPayload.h"
+#import "IntPacket.h"
 
 @interface SecondViewController ()
 
@@ -37,7 +37,9 @@
 
 // Actions
 -(IBAction)unlock:(id)sender {
-    [[Communicator defaultCommunicator] writePayload: UnlockPayload::DefaultPayload()];
+	IntPacket* UnlockPacket = new IntPacket(Type::UNLOCK, rand());
+    [[Communicator defaultCommunicator] writePacket: UnlockPacket];
+	delete UnlockPacket;
 }
 
 @end

@@ -10,18 +10,16 @@
 #ifndef __Smarter_Lock__PacketAssembler__
 #define __Smarter_Lock__PacketAssembler__
 
-#include "Payload.h"
+#include "Packet.h"
 
 class PacketAssembler {
 	public:
 	
 	 // !!! return pointers need to be DELETED by yourself !!!
 	
-	static uint8_t* Assemble(const Payload* payload);
-	static uint8_t* Assemble(const Payload* payload, int& totalLength);
-	static Payload* Disassemble(const uint8_t* input);
-	static Payload* ConstructPayload(const uint8_t* pldata, uint32_t plen, uint32_t ptype);
-	
+	static uint8_t* Assemble(const Packet* packet);
+	static uint8_t* Assemble(const Packet* packet, int& totalLength);
+	static Packet* Disassemble(const uint8_t* input);
 };
 
 #endif /* defined(__Smarter_Lock__PacketAssembler__) */

@@ -20,7 +20,10 @@
 
 +(id)defaultCommunicator;
 -(id)initWithHost:(NSString*)host port:(int)port;
+
 -(void)writeString:(NSString*)str;
--(void)writePayload:(Payload*)pl;
+-(void)writePacket:(Packet*)pl;
 -(void)writeCString:(const u_int8_t*)str length:(unsigned int)len;
+
+
 @end

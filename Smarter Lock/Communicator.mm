@@ -64,7 +64,7 @@ static Communicator* DefaultComm = nil;
     [self writeCString:(const u_int8_t*)[str UTF8String] length:[str length]];
 }
 
--(void)writePayload:(Payload*)pl {
+-(void)writePacket:(Packet*)pl {
 	int totalLen;
 	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
     [self writeCString: packetBytes length: totalLen];

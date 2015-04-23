@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-#ifndef __Smarter_Lock__PasscodePayload__
-#define __Smarter_Lock__PasscodePayload__
+#ifndef __Smarter_Lock__PasscodePacket__
+#define __Smarter_Lock__PasscodePacket__
 
-#include "Payload.h"
+#include "Packet.h"
 #include <string>
 
 /* 
@@ -18,18 +18,18 @@
  total length = 16 + 8 = 24
  */
 
-class PasscodePayload : public Payload {
+class PasscodePacket : public Packet {
 	public:
 	
 	std::string passcode; // to retain reference
 	uint64_t date;
 	
-	PasscodePayload(const char* passcode, uint64_t date);
-	PasscodePayload(const uint8_t* serial); // reads 24 bytes from serialized data
+	PasscodePacket(const char* passcode, uint64_t date);
+	PasscodePacket(const uint8_t* serial); // reads 24 bytes from serialized data
 	
 	virtual int serialize(uint8_t* output) const;
 	virtual uint32_t length() const;
 	virtual uint32_t type() const;
 };
 
-#endif /* defined(__Smarter_Lock__PasscodePayload__) */
+#endif /* defined(__Smarter_Lock__PasscodePacket__) */

@@ -10,7 +10,7 @@
 #import <XCTest/XCTest.h>
 
 #import "Communicator.h"
-#import "UnlockPayload.h"
+#import "IntPacket.h"
 
 @interface CommunicatorTest : XCTestCase
 
@@ -31,7 +31,8 @@ Communicator* comm = nil;
 }
 
 - (void)testWriteUnlock {
-    [comm writePayload:UnlockPayload::DefaultPayload()];
+	
+//    [comm writePayload: ];
     XCTAssert(YES, @"Pass Unlock Send");
 }
 
