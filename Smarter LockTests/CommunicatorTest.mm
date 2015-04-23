@@ -31,7 +31,7 @@ Communicator* comm = nil;
 }
 
 - (void)testWriteUnlock {
-    [comm writePayload:[UnlockPayload defaultPayload]];
+    [comm writePayload:UnlockPayload::DefaultPayload()];
     XCTAssert(YES, @"Pass Unlock Send");
 }
 

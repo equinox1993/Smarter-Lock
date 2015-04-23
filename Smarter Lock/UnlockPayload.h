@@ -6,14 +6,23 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Payload.h"
+#ifndef __Smarter_Lock__UnlockPayload__
+#define __Smarter_Lock__UnlockPayload__
+
+#include "Payload.h"
 
 /*
     PLEN = 0
-    TYPE = 1
  */
 
-@interface UnlockPayload : NSObject <Payload>
-+(id)defaultPayload;
-@end
+class UnlockPayload : public Payload {
+	public:
+	
+	static Payload* DefaultPayload();
+	
+	virtual int serialize(uint8_t* output) const;
+	virtual uint32_t length() const;
+	virtual uint32_t type() const;
+};
+
+#endif /* defined(__Smarter_Lock__UnlockPayload__) */

@@ -37,7 +37,7 @@
 
 // Actions
 -(IBAction)unlock:(id)sender {
-    [[Communicator defaultCommunicator] writePayload: [UnlockPayload defaultPayload]];
+    [[Communicator defaultCommunicator] writePayload: UnlockPayload::DefaultPayload()];
 }
 
 @end

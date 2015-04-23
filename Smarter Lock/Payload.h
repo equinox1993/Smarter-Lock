@@ -21,19 +21,25 @@
  
     Payload is just Payload
  
- 
- ------------------------------------------------
- 
-Type:
-    1   - UNLOCK
-    2   - PASSCODE
  */
 
-#import <Foundation/Foundation.h>
+#ifndef __Smarter_Lock__Payload__
+#define __Smarter_Lock__Payload__
 
-@protocol Payload
+#include <stdint.h>
 
--(const char*)serialize;
--(u_int32_t)length;
--(u_int32_t)type;
-@end
+class Payload {
+	public:
+	
+	virtual int serialize(uint8_t* output) const = 0; // output must be allocated
+	virtual uint32_t length() const = 0;
+	virtual uint32_t type() const = 0;
+};
+
+enum Type {
+	UNLOCK = 1,
+	PASSCODE = 2
+};
+// TODO: add case to PacketAssembler::ConstructPayload when adding new payload type.
+
+#endif /* defined(__Smarter_Lock__Payload__) */

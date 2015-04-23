@@ -64,18 +64,11 @@ static Communicator* DefaultComm = nil;
     [self writeCString:(const u_int8_t*)[str UTF8String] length:[str length]];
 }
 
--(void)writePayload:(id<Payload>)pl {
-    u_int32_t plen = CFSwapInt32HostToBig([pl length]);
-    u_int32_t ptype = CFSwapInt32HostToBig([pl type]);
-    const u_int8_t* pserialized = (const u_int8_t*)[pl serialize];
-    
-    NSMutableData* packet = [NSMutableData dataWithCapacity:4+4+plen];
-    [packet appendData: [NSData dataWithBytes:&plen length:4]];
-    [packet appendData: [NSData dataWithBytes:&ptype length:4]];
-    [packet appendData: [NSData dataWithBytes: pserialized length:plen]];
-    
-    const u_int8_t* packetBytes = (const u_int8_t*)[packet bytes];
-    [self writeCString: packetBytes length: 4+4+plen];
+-(void)writePayload:(Payload*)pl {
+	int totalLen;
+	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
+    [self writeCString: packetBytes length: totalLen];
+	delete packetBytes;
 }
 
 @end
