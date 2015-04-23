@@ -46,6 +46,36 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
+        <!--Monitor-->
+        <scene sceneID="cdH-KL-1bF">
+            <objects>
+                <viewController id="8oc-7I-geC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a9D-3g-3QN"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZN6-yY-JCz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hve-jj-NfL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Kj-tp-CvE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="4Kj-tp-CvE" secondAttribute="bottom" id="BzS-RH-lnf"/>
+                            <constraint firstAttribute="trailing" secondItem="4Kj-tp-CvE" secondAttribute="trailing" id="C0a-4a-BOd"/>
+                            <constraint firstItem="4Kj-tp-CvE" firstAttribute="top" secondItem="Hve-jj-NfL" secondAttribute="top" id="Rpc-Q1-DCs"/>
+                            <constraint firstItem="4Kj-tp-CvE" firstAttribute="leading" secondItem="Hve-jj-NfL" secondAttribute="leading" id="qAc-Q4-4xr"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Monitor" id="rVY-X3-dw5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYa-Ol-krT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="358" y="853"/>
+        </scene>
         <!--Unlock-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
@@ -59,13 +89,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1c-zB-vnJ">
-                                <rect key="frame" x="150" y="100" width="300" height="300"/>
+                                <rect key="frame" x="86" y="36" width="428" height="428"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="height" multiplier="1:1" id="0bJ-jV-Lfe"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEj-Ni-jY4">
-                                <rect key="frame" x="276" y="410" width="48" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEj-Ni-jY4">
+                                <rect key="frame" x="277" y="489" width="48" height="30"/>
                                 <state key="normal" title="Unlock">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -73,13 +103,21 @@
                                     <action selector="unlock:" destination="8rJ-Kc-sve" eventType="touchDown" id="Q9L-KV-Kkz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expire in: 233333" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrd-Q4-ufi">
+                                <rect key="frame" x="234" y="474" width="133" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NEj-Ni-jY4" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="10" id="hOp-O7-6cy"/>
+                            <constraint firstAttribute="centerX" secondItem="Rrd-Q4-ufi" secondAttribute="centerX" constant="-0.5" id="3hm-H0-fWx"/>
+                            <constraint firstItem="NEj-Ni-jY4" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="25" id="hOp-O7-6cy"/>
+                            <constraint firstItem="Rrd-Q4-ufi" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="10" id="k0y-te-USv"/>
                             <constraint firstAttribute="centerY" secondItem="J1c-zB-vnJ" secondAttribute="centerY" multiplier="1.2" id="lYb-Vy-AzY"/>
                             <constraint firstAttribute="centerX" secondItem="J1c-zB-vnJ" secondAttribute="centerX" id="n5K-PL-dEl"/>
-                            <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="width" multiplier="2:1" id="slv-Xu-FSH"/>
+                            <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="width" multiplier="1.4:1" id="slv-Xu-FSH"/>
                             <constraint firstAttribute="centerX" secondItem="NEj-Ni-jY4" secondAttribute="centerX" id="y14-6x-akl"/>
                         </constraints>
                     </view>
@@ -90,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="684" y="322"/>
+            <point key="canvasLocation" x="972" y="51"/>
         </scene>
         <!--Settings-->
         <scene sceneID="XFV-Z7-xez">
@@ -130,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rct-JA-tzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="420" y="770"/>
+            <point key="canvasLocation" x="-542" y="730"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -145,6 +183,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="8oc-7I-geC" kind="relationship" relationship="viewControllers" id="03E-7o-Ebu"/>
                         <segue destination="ZGs-XA-lY4" kind="relationship" relationship="viewControllers" id="EeB-qS-Q78"/>
                     </connections>
                 </tabBarController>

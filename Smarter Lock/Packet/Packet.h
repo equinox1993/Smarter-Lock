@@ -35,10 +35,15 @@ class Packet {
 };
 
 enum Type {
-	ACCEPTED = 1,
-	REJECTED = 2,
+	ACCEPT = 1,
+	REJECT = 2,
+	
 	UNLOCK = 8,
-	PASSCODE = 9
+	REQUEST_PASSCODE = 9,
+	REQUEST_LOG = 10,
+	REQUEST_MONITOR = 11,
+	
+	PASSCODE = 16
 };
 // TODO: add case to PacketAssembler::Disassemble when adding new payload type.
 
