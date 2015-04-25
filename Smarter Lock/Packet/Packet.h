@@ -32,6 +32,7 @@ class Packet {
 	virtual int serialize(uint8_t* output) const = 0; // serialized payload, output must be allocated
 	virtual uint32_t length() const = 0;
 	virtual uint32_t type() const = 0;
+	virtual ~Packet() {};
 };
 
 enum Type {
