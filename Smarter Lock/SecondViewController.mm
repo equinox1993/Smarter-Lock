@@ -8,8 +8,7 @@
 
 #import "SecondViewController.h"
 #import "QR/UIImage+MDQRCode.h"
-#import "Communicator.h"
-#import "IntPacket.h"
+#import "CommandPacket.h"
 
 @interface SecondViewController ()
 
@@ -22,6 +21,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
 	[self changeQR:@"Hello World 233333!"];
+	
+	comm = [Communicator defaultCommunicator];
     
 }
 
@@ -37,9 +38,34 @@
 
 // Actions
 -(IBAction)unlock:(id)sender {
-	IntPacket* UnlockPacket = new IntPacket(Type::UNLOCK, rand());
-    [[Communicator defaultCommunicator] writePacket: UnlockPacket];
-	delete UnlockPacket;
+	CommandPacket* unlockPacket = new CommandPacket(Type::UNLOCK);
+	
+	[comm writePacket:unlockPacket delegate:self userInfo:@"Unlock"];
+	
+	delete unlockPacket;
+}
+
+-(void)communicator:(id)comm receivedPacket:(Packet*)response userInfo:(id)info {
+	if (response == nil) {
+		UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Failed to unlock"
+     	message:@"No response from the server."
+          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[myAlert show];
+		return;
+	}
+	
+	if (response->type() != Type::ACCEPT) {
+		UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Failed to unlock"
+     	message:@"Request not accepted."
+          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[myAlert show];
+		return;
+	}
+	
+	UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Successfully unlocked"
+		message:@"The door is successfully unlocked."
+		delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[myAlert show];
 }
 
 @end

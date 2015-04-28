@@ -10,19 +10,19 @@
 #import <XCTest/XCTest.h>
 
 #import "Communicator.h"
-#import "IntPacket.h"
+//#import "Packet.h"
 
 @interface CommunicatorTest : XCTestCase
 
 @end
 
 @implementation CommunicatorTest
-Communicator* comm = nil;
+//Communicator* comm = nil;
 
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    comm = [Communicator defaultCommunicator];
+//    comm = [Communicator defaultCommunicator];
 }
 
 - (void)tearDown {

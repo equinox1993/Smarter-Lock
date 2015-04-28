@@ -15,8 +15,9 @@
 class PacketAssembler {
 	public:
 	
-	 // !!! return pointers need to be DELETED by yourself !!!
+	static uint32_t GetLength(const uint8_t* input, uint32_t maxLen);  // returns length of the TOTAL packet. 0 if error
 	
+	 // !!! returned pointers need to be DELETED by yourself !!!
 	static uint8_t* Assemble(const Packet* packet);
 	static uint8_t* Assemble(const Packet* packet, int& totalLength);
 	static Packet* Disassemble(const uint8_t* input);

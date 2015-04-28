@@ -17,7 +17,7 @@
 		402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */; };
 		40585B2D1AE86180009D5C51 /* Communicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40585B2C1AE86180009D5C51 /* Communicator.mm */; };
 		40585B391AE87CA0009D5C51 /* CommunicatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */; };
-		E84168CE1AE8A40700BB1897 /* IntPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CC1AE8A40700BB1897 /* IntPacket.cpp */; };
+		E84168CE1AE8A40700BB1897 /* CommandPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */; };
 		E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */; };
 		E84168D71AE8B65E00BB1897 /* PacketAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */; };
 		E89199071AE078E5009048E5 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F71AE078E5009048E5 /* bitstream.c */; };
@@ -60,8 +60,8 @@
 		40585B2C1AE86180009D5C51 /* Communicator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Communicator.mm; sourceTree = "<group>"; };
 		40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CommunicatorTest.mm; sourceTree = "<group>"; };
 		E84168CA1AE8A38800BB1897 /* Packet.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Packet.h; sourceTree = "<group>"; };
-		E84168CC1AE8A40700BB1897 /* IntPacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IntPacket.cpp; sourceTree = "<group>"; };
-		E84168CD1AE8A40700BB1897 /* IntPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntPacket.h; sourceTree = "<group>"; };
+		E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandPacket.cpp; sourceTree = "<group>"; };
+		E84168CD1AE8A40700BB1897 /* CommandPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandPacket.h; sourceTree = "<group>"; };
 		E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PasscodePacket.cpp; sourceTree = "<group>"; };
 		E84168D01AE8A64B00BB1897 /* PasscodePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasscodePacket.h; sourceTree = "<group>"; };
 		E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketAssembler.cpp; sourceTree = "<group>"; };
@@ -172,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				E84168CA1AE8A38800BB1897 /* Packet.h */,
-				E84168CC1AE8A40700BB1897 /* IntPacket.cpp */,
-				E84168CD1AE8A40700BB1897 /* IntPacket.h */,
+				E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */,
+				E84168CD1AE8A40700BB1897 /* CommandPacket.h */,
 				E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */,
 				E84168D01AE8A64B00BB1897 /* PasscodePacket.h */,
 				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
@@ -324,7 +324,7 @@
 				E89199081AE078E5009048E5 /* mask.c in Sources */,
 				E89199091AE078E5009048E5 /* qrencode.c in Sources */,
 				E84168D71AE8B65E00BB1897 /* PacketAssembler.cpp in Sources */,
-				E84168CE1AE8A40700BB1897 /* IntPacket.cpp in Sources */,
+				E84168CE1AE8A40700BB1897 /* CommandPacket.cpp in Sources */,
 				E891990A1AE078E5009048E5 /* qrinput.c in Sources */,
 				E891990D1AE078E5009048E5 /* split.c in Sources */,
 				402F64B71AE0540400B6FAC3 /* FirstViewController.m in Sources */,

@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Communicator.h"
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController <CommunicatorDelegate> {
+	Communicator* comm;
+}
 
 @property (nonatomic) IBOutlet UIImageView* imageView;
 

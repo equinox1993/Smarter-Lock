@@ -11,9 +11,11 @@
  
     +----------+
     |   TYPE   |  -> type of payload (4 bytes)
+	+----------+
+	|  SEQNUM  |  -> Sequence number (4 bytes)
     +----------+
     |   PLEN   |  -> len of payload (4 bytes)
-    +----------+
+	+----------+
     | Payload  |  -> payload (length of PLEN)
     +----------+
  
@@ -28,6 +30,8 @@
 
 class Packet {
 	public:
+	
+	uint32_t sequenceNumber;
 	
 	virtual int serialize(uint8_t* output) const = 0; // serialized payload, output must be allocated
 	virtual uint32_t length() const = 0;
