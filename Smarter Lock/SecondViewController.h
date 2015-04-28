@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Communicator.h"
 
-@interface SecondViewController : UIViewController <CommunicatorDelegate> {
+@interface SecondViewController : UIViewController {
 	Communicator* comm;
 }
 

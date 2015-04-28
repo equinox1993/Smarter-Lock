@@ -40,12 +40,13 @@
 -(IBAction)unlock:(id)sender {
 	CommandPacket* unlockPacket = new CommandPacket(Type::UNLOCK);
 	
-	[comm writePacket:unlockPacket delegate:self userInfo:@"Unlock"];
+	[comm writePacket:unlockPacket target:self withSelector:@selector(unlockReceivePacket:)];
 	
 	delete unlockPacket;
 }
 
--(void)communicator:(id)comm receivedPacket:(Packet*)response userInfo:(id)info {
+-(void)unlockReceivePacket:(NSValue*)responsePtr {
+	Packet* response = (Packet*)[responsePtr pointerValue];
 	if (response == nil) {
 		UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Failed to unlock"
      	message:@"No response from the server."

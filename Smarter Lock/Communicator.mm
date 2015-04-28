@@ -44,8 +44,8 @@ static NSTimeInterval DefaultTimeout = 60;
 	
 	self.timeout = DefaultTimeout;
 	curSeq = 1;
-	delegates = [[NSMutableDictionary alloc] init];
-	userInfos = [[NSMutableDictionary alloc] init];
+	targets = [[NSMutableDictionary alloc] init];
+	selectors = [[NSMutableDictionary alloc] init];
 	connected = false;
 	
 	[self touch];
@@ -94,8 +94,8 @@ static NSTimeInterval DefaultTimeout = 60;
     ostream = nil;
     istream = nil;
 	
-	[delegates removeAllObjects];
-	[userInfos removeAllObjects];
+	[targets removeAllObjects];
+	[selectors removeAllObjects];
 	
 	connected = false;
 }
@@ -122,7 +122,7 @@ static NSTimeInterval DefaultTimeout = 60;
 	delete packetBytes;
 }
 
--(void)writePacket:(Packet*)pl delegate:(id<CommunicatorDelegate>)del userInfo:(id)info {
+-(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel {
 	pl->sequenceNumber = curSeq;
 	
 	int totalLen;
@@ -131,8 +131,8 @@ static NSTimeInterval DefaultTimeout = 60;
 	[self connect];
 	
     [ostream write:packetBytes maxLength:totalLen];
-	[delegates setObject:del forKey:[NSNumber numberWithInt:curSeq]];
-	[userInfos setObject:info forKey:[NSNumber numberWithInt:curSeq]];
+	[targets setObject:target forKey:[NSNumber numberWithInt:curSeq]];
+	[selectors setObject:NSStringFromSelector(sel) forKey:[NSNumber numberWithInt:curSeq]];
 	curSeq++;
 	[self touch];
 	
@@ -171,12 +171,15 @@ static NSTimeInterval DefaultTimeout = 60;
 			if (packetLen > 0) { // a full packet
 				Packet* p = PacketAssembler::Disassemble((const uint8_t*)[readbuf bytes]);
 				uint32_t seq = p->sequenceNumber;
-				id<CommunicatorDelegate> delegate = [delegates objectForKey:[NSNumber numberWithInt:seq]];
-				id info = [userInfos objectForKey:[NSNumber numberWithInt:seq]];
-				if (delegate)
-					[delegate communicator:self receivedPacket:p userInfo:info];
+				id target = [targets objectForKey:[NSNumber numberWithInt:seq]];
+				SEL selector = NSSelectorFromString([selectors objectForKey:[NSNumber numberWithInt:seq]]);
+				if (target)
+					[target performSelector: selector withObject: [NSValue valueWithPointer: p]];
 				if (p!=nil)
 					delete p;
+				
+				[targets removeObjectForKey:[NSNumber numberWithInt:seq]];
+				[selectors removeObjectForKey:[NSNumber numberWithInt:seq]];
 				
 				[readbuf replaceBytesInRange:NSMakeRange(0, packetLen) withBytes:NULL length:0]; // remove from buffer
 			}
