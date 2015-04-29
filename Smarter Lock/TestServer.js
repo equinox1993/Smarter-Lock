@@ -19,16 +19,16 @@ var server = net.createServer(function(socket) {
         console.log('chunk');
         console.log(chunk);
 
-        switch (chunk[3]) {
-            case 8:
-                chunk[3] = 1;
+        switch (chunk[3]) { // switch type
+            case 8: // UNLOCK
+                chunk[3] = 1; // ACCEPT
                 console.log('Response: ');
                 console.log(chunk);
                 socket.write(chunk);
                 break;
-            case 9:
-                chunk[3] = 16;
-                chunk[11] = 24;
+            case 9: // REQUEST_PASSCODE
+                chunk[3] = 16; // PASSCODE
+                chunk[11] = 24; // length 24
                 passcode = randSeq();
                 console.log("Passcode: "+passcode);
                 pcBuf = new Buffer(passcode.split('').map(function (e) {
