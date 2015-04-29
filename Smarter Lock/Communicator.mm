@@ -16,7 +16,7 @@
 static NSString* DefaultHost = @"localhost";
 static unsigned int DefaultPort = 2333;
 static Communicator* DefaultComm = nil;
-static NSTimeInterval DefaultTimeout = 60;
+static NSTimeInterval DefaultTimeout = 20;
 
 +(void)setDefaultHost:(NSString*)h {DefaultHost = h;}
 +(void)setDefaultPort:(unsigned int)p {DefaultPort = p;}

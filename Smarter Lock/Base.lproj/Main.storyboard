@@ -106,13 +106,24 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expire in: 233333" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrd-Q4-ufi">
                                 <rect key="frame" x="234" y="474" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v14-VM-8na">
+                                <rect key="frame" x="275" y="508" width="53" height="30"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshQR:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KSc-q3-fcm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Rrd-Q4-ufi" secondAttribute="centerX" constant="-0.5" id="3hm-H0-fWx"/>
+                            <constraint firstAttribute="centerX" secondItem="v14-VM-8na" secondAttribute="centerX" id="Cxr-zY-gLb"/>
+                            <constraint firstItem="v14-VM-8na" firstAttribute="top" secondItem="NEj-Ni-jY4" secondAttribute="bottom" constant="2" id="aJA-cQ-rSq"/>
                             <constraint firstItem="NEj-Ni-jY4" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="25" id="hOp-O7-6cy"/>
                             <constraint firstItem="Rrd-Q4-ufi" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="10" id="k0y-te-USv"/>
                             <constraint firstAttribute="centerY" secondItem="J1c-zB-vnJ" secondAttribute="centerY" multiplier="1.2" id="lYb-Vy-AzY"/>

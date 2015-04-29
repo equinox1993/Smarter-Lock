@@ -86,10 +86,14 @@ Packet* PacketAssembler::Disassemble(const uint8_t* input) {
 	int plen;
 	GetPayloadData(input, pldata, plen);
 
+    Packet* ret = nullptr;
 	switch (ptype) {
 		case Type::PASSCODE:
-			return new PasscodePacket(pldata, pseq);
+            ret = PasscodePacket::ParsePacket(pldata, pseq);
+            break;
 		default:
-			return new CommandPacket(ptype, pseq);
+			ret = new CommandPacket(ptype, pseq);
 	}
+    
+    return ret;
 }

@@ -33,7 +33,7 @@ PasscodePacket::PasscodePacket(const char* psc, uint64_t dt, uint32_t seqNum) {
 	sequenceNumber = seqNum;
 }
 
-PasscodePacket::PasscodePacket(const uint8_t* serial, uint32_t seqNum) {
+PasscodePacket* PasscodePacket::ParsePacket(const uint8_t* serial, uint32_t seqNum) {
 	char tpsc[17];
 	uint64_t ndate;
 	
@@ -42,5 +42,5 @@ PasscodePacket::PasscodePacket(const uint8_t* serial, uint32_t seqNum) {
 	
 	memcpy(&ndate, serial+16, 8);
 	
-	PasscodePacket(tpsc, ntohll(ndate), seqNum);
+	return new PasscodePacket(tpsc, ntohll(ndate), seqNum);
 }

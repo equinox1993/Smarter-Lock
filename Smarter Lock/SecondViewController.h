@@ -15,6 +15,7 @@
 
 @property (nonatomic) IBOutlet UIImageView* imageView;
 
+-(IBAction)refreshQR:(id)sender;
 -(IBAction)unlock:(id)sender;
 
 @end
