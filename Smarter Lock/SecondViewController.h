@@ -13,6 +13,7 @@
 	Communicator* comm;
 }
 
+@property (nonatomic) IBOutlet UILabel* expLabel;
 @property (nonatomic) IBOutlet UIImageView* imageView;
 
 -(IBAction)refreshQR:(id)sender;

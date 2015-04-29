@@ -53,8 +53,10 @@
     PasscodePacket* pcPacket = (PasscodePacket*)res;
     
     NSString* passcode = [NSString stringWithUTF8String: pcPacket->passcode.c_str()];
-//    NSDate* expiration = [NSDate dateWithTimeIntervalSince1970:pcPacket->date];
-    
+    NSDate* expiration = [NSDate dateWithTimeIntervalSince1970:pcPacket->date];
+	
+	self.expLabel.text = [expiration description];
+	
     [self changeQR:passcode];
 }
 

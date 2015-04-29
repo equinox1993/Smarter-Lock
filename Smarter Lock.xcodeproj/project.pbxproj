@@ -20,6 +20,7 @@
 		E84168CE1AE8A40700BB1897 /* CommandPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */; };
 		E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */; };
 		E84168D71AE8B65E00BB1897 /* PacketAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */; };
+		E85EE39E1AF0877400966C1A /* SettingsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E85EE39D1AF0877400966C1A /* SettingsController.mm */; };
 		E89199071AE078E5009048E5 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F71AE078E5009048E5 /* bitstream.c */; };
 		E89199081AE078E5009048E5 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F91AE078E5009048E5 /* mask.c */; };
 		E89199091AE078E5009048E5 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198FB1AE078E5009048E5 /* qrencode.c */; };
@@ -66,6 +67,8 @@
 		E84168D01AE8A64B00BB1897 /* PasscodePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasscodePacket.h; sourceTree = "<group>"; };
 		E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketAssembler.cpp; sourceTree = "<group>"; };
 		E84168D61AE8B65E00BB1897 /* PacketAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketAssembler.h; sourceTree = "<group>"; };
+		E85EE39C1AF0877400966C1A /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		E85EE39D1AF0877400966C1A /* SettingsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsController.mm; sourceTree = "<group>"; };
 		E89198F71AE078E5009048E5 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
 		E89198F81AE078E5009048E5 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
 		E89198F91AE078E5009048E5 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				402F64AE1AE0540400B6FAC3 /* Supporting Files */,
 				40585B2B1AE86180009D5C51 /* Communicator.h */,
 				40585B2C1AE86180009D5C51 /* Communicator.mm */,
+				E85EE39C1AF0877400966C1A /* SettingsController.h */,
+				E85EE39D1AF0877400966C1A /* SettingsController.mm */,
 			);
 			path = "Smarter Lock";
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				TargetAttributes = {
 					402F64AA1AE0540400B6FAC3 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = RLGE6CQ5H4;
 					};
 					402F64C61AE0540400B6FAC3 = {
 						CreatedOnToolsVersion = 6.3;
@@ -317,6 +323,7 @@
 				40585B2D1AE86180009D5C51 /* Communicator.mm in Sources */,
 				402F64BA1AE0540400B6FAC3 /* SecondViewController.mm in Sources */,
 				E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */,
+				E85EE39E1AF0877400966C1A /* SettingsController.mm in Sources */,
 				E891990B1AE078E5009048E5 /* qrspec.c in Sources */,
 				E89199071AE078E5009048E5 /* bitstream.c in Sources */,
 				E891990C1AE078E5009048E5 /* rscode.c in Sources */,
@@ -457,9 +464,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Smarter Lock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -467,9 +477,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Smarter Lock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

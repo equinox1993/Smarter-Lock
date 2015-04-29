@@ -1,4 +1,15 @@
 var net = require('net');
+
+function randSeq() {
+    var set = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var str = '';
+    for (var i = 0; i < 16; i++) {
+        var rand = Math.floor(Math.random() * set.length);
+        str += set[rand];
+    };
+
+    return str;
+}
  
 var server = net.createServer(function(socket) {
     console.log("Connected");
@@ -18,12 +29,13 @@ var server = net.createServer(function(socket) {
             case 9:
                 chunk[3] = 16;
                 chunk[11] = 24;
-                passcode = "HELLO WORLD 2333";
+                passcode = randSeq();
+                console.log("Passcode: "+passcode);
                 pcBuf = new Buffer(passcode.split('').map(function (e) {
                     return e.charCodeAt(0);
                 }));
                 // date = (new Date()).getTime();
-                dateBuf = new Buffer(8);
+                dateBuf = new Buffer([0,0,0,0,0,7,0,0]);
                 // dateBuf.writeInt32BE(0);
                 // dateBuf.writeInt32BE(date, 4);
                 
