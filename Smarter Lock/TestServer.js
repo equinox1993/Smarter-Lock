@@ -21,6 +21,8 @@ var server = net.createServer(function(socket) {
 
         switch (chunk[3]) { // switch type
             case 8: // UNLOCK
+            case 11:
+            case 12:
                 chunk[3] = 1; // ACCEPT
                 console.log('Response: ');
                 console.log(chunk);
@@ -45,6 +47,7 @@ var server = net.createServer(function(socket) {
                 console.log('Response: ');
                 console.log(buf);
                 socket.write(buf);
+                break;
         }
     });
 }).listen(2333);
