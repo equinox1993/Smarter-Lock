@@ -8,7 +8,6 @@
 
 #import "CommandPacket.h"
 #include <cstring>
-#include <arpa/inet.h>
 
 int CommandPacket::serialize(uint8_t* output) const {
 	return 0;

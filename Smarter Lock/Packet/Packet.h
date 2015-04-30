@@ -9,17 +9,20 @@
 /*
     Numbers are all big-endian
  
+ 	+----------+
+	|   SIGN   |  -> packet signature for error detection (4 bytes)
     +----------+
     |   TYPE   |  -> type of payload (4 bytes)
 	+----------+
-	|  SEQNUM  |  -> Sequence number (4 bytes)
+	|  SEQNUM  |  -> sequence number (4 bytes)
     +----------+
     |   PLEN   |  -> len of payload (4 bytes)
 	+----------+
     | Payload  |  -> payload (length of PLEN)
     +----------+
  
-    Total packet length = 4 + 4 + PLEN
+ 	Total head length = 4 * 4 = 16
+    Total packet length = Total head length + PLEN
  
  */
 
@@ -27,6 +30,17 @@
 #define __Smarter_Lock__Packet__
 
 #include <stdint.h>
+#include <arpa/inet.h>
+
+#define PACKET_HEAD_LENGTH 16
+
+#define PACKET_OFFSET_SIGN 0
+#define PACKET_OFFSET_TYPE 4
+#define PACKET_OFFSET_SEQNUM 8
+#define PACKET_OFFSET_PLEN 12
+#define PACKET_OFFSET_PAYLOAD 16
+
+static uint32_t PACKET_SIGNATURE = htonl(0xC5E48101); // CSE 481 L =_=, big endian
 
 class Packet {
 	public:

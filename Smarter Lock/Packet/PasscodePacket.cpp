@@ -7,7 +7,6 @@
 //
 
 #include "PasscodePacket.h"
-#include <arpa/inet.h>
 #include <cstring>
 
 int PasscodePacket::serialize(uint8_t* output) const {

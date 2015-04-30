@@ -85,6 +85,8 @@ static NSTimeInterval DefaultTimeout = 20;
 }
 
 -(void)close {
+	readbuf = nil;
+	
     [ostream close];
     [istream close];
 	
@@ -166,7 +168,7 @@ static NSTimeInterval DefaultTimeout = 20;
 				[readbuf appendBytes:buf length:len];
 			}
 			
-			uint32_t packetLen = PacketAssembler::GetLength((const uint8_t*)[readbuf bytes], [readbuf length]);
+			int32_t packetLen = PacketAssembler::GetLength((const uint8_t*)[readbuf bytes], [readbuf length]);
 			
 			if (packetLen > 0) { // a full packet
 				Packet* p = PacketAssembler::Disassemble((const uint8_t*)[readbuf bytes]);
@@ -182,6 +184,8 @@ static NSTimeInterval DefaultTimeout = 20;
 				[selectors removeObjectForKey:[NSNumber numberWithInt:seq]];
 				
 				[readbuf replaceBytesInRange:NSMakeRange(0, packetLen) withBytes:NULL length:0]; // remove from buffer
+			} else if (packetLen < 0) { // error occurs
+				[self close];
 			}
 			
 		} break;
@@ -192,8 +196,6 @@ static NSTimeInterval DefaultTimeout = 20;
 		
 		case NSStreamEventErrorOccurred: {
 			[self close];
-			
-			readbuf = nil;
 		} break;
 	}
 	
