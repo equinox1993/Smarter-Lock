@@ -17,6 +17,7 @@
 		402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */; };
 		40585B2D1AE86180009D5C51 /* Communicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40585B2C1AE86180009D5C51 /* Communicator.mm */; };
 		40585B391AE87CA0009D5C51 /* CommunicatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */; };
+		40585B3F1AF2CB40009D5C51 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 40585B3E1AF2CB40009D5C51 /* Authenticator.m */; };
 		E82837D81AF1E00E00F22F2F /* MonitorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E82837D71AF1E00E00F22F2F /* MonitorController.mm */; };
 		E84168CE1AE8A40700BB1897 /* CommandPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */; };
 		E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */; };
@@ -61,8 +62,10 @@
 		40585B2B1AE86180009D5C51 /* Communicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
 		40585B2C1AE86180009D5C51 /* Communicator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Communicator.mm; sourceTree = "<group>"; };
 		40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CommunicatorTest.mm; sourceTree = "<group>"; };
-		E82837D61AF1E00E00F22F2F /* MonitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MonitorController.h; path = "Smarter Lock/MonitorController.h"; sourceTree = "<group>"; };
-		E82837D71AF1E00E00F22F2F /* MonitorController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MonitorController.mm; path = "Smarter Lock/MonitorController.mm"; sourceTree = "<group>"; };
+		40585B3D1AF2CB40009D5C51 /* Authenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authenticator.h; sourceTree = "<group>"; };
+		40585B3E1AF2CB40009D5C51 /* Authenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authenticator.m; sourceTree = "<group>"; };
+		E82837D61AF1E00E00F22F2F /* MonitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorController.h; sourceTree = "<group>"; };
+		E82837D71AF1E00E00F22F2F /* MonitorController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonitorController.mm; sourceTree = "<group>"; };
 		E84168CA1AE8A38800BB1897 /* Packet.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Packet.h; sourceTree = "<group>"; };
 		E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandPacket.cpp; sourceTree = "<group>"; };
 		E84168CD1AE8A40700BB1897 /* CommandPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandPacket.h; sourceTree = "<group>"; };
@@ -111,8 +114,6 @@
 		402F64A21AE0540400B6FAC3 = {
 			isa = PBXGroup;
 			children = (
-				E82837D61AF1E00E00F22F2F /* MonitorController.h */,
-				E82837D71AF1E00E00F22F2F /* MonitorController.mm */,
 				402F64AD1AE0540400B6FAC3 /* Smarter Lock */,
 				402F64CA1AE0540400B6FAC3 /* Smarter LockTests */,
 				402F64AC1AE0540400B6FAC3 /* Products */,
@@ -147,6 +148,10 @@
 				40585B2C1AE86180009D5C51 /* Communicator.mm */,
 				E85EE39C1AF0877400966C1A /* SettingsController.h */,
 				E85EE39D1AF0877400966C1A /* SettingsController.mm */,
+				40585B3D1AF2CB40009D5C51 /* Authenticator.h */,
+				40585B3E1AF2CB40009D5C51 /* Authenticator.m */,
+				E82837D61AF1E00E00F22F2F /* MonitorController.h */,
+				E82837D71AF1E00E00F22F2F /* MonitorController.mm */,
 			);
 			path = "Smarter Lock";
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				E891990A1AE078E5009048E5 /* qrinput.c in Sources */,
 				E891990D1AE078E5009048E5 /* split.c in Sources */,
 				402F64B71AE0540400B6FAC3 /* FirstViewController.m in Sources */,
+				40585B3F1AF2CB40009D5C51 /* Authenticator.m in Sources */,
 				402F64B11AE0540400B6FAC3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
