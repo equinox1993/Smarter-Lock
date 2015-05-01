@@ -15,6 +15,7 @@
 	[super viewDidLoad];
 	
 	comm = [Communicator defaultCommunicator];
+	
 }
 
 -(void)viewDidAppear:(BOOL)animated {

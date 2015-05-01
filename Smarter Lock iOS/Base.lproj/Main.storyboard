@@ -41,13 +41,13 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Status" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="Speedometer-50" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-310"/>
         </scene>
-        <!--Monitor-->
+        <!--Peephole-->
         <scene sceneID="cdH-KL-1bF">
             <objects>
                 <viewController id="8oc-7I-geC" customClass="MonitorController" sceneMemberID="viewController">
@@ -71,7 +71,7 @@
                             <constraint firstItem="4Kj-tp-CvE" firstAttribute="leading" secondItem="Hve-jj-NfL" secondAttribute="leading" id="qAc-Q4-4xr"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Monitor" id="rVY-X3-dw5"/>
+                    <tabBarItem key="tabBarItem" title="Peephole" image="Bullet Camera-50" id="rVY-X3-dw5"/>
                     <connections>
                         <outlet property="imageView" destination="4Kj-tp-CvE" id="Fv2-fb-jij"/>
                     </connections>
@@ -148,7 +148,7 @@
                             <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="width" multiplier="1.4:1" id="slv-Xu-FSH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Unlock" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Unlock" image="Unlock-50" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="expLabel" destination="C1Q-XA-cO5" id="DFA-iY-dxi"/>
                         <outlet property="imageView" destination="J1c-zB-vnJ" id="0JO-wb-6c5"/>
@@ -243,7 +243,7 @@
                             <constraint firstAttribute="centerY" secondItem="ADd-xG-RuA" secondAttribute="centerY" constant="50" id="qht-UD-clh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="ZKr-WG-8jD"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings-50" id="ZKr-WG-8jD"/>
                     <connections>
                         <outlet property="fpSwitch" destination="5Fs-0p-Q03" id="Zjq-5Q-mco"/>
                         <outlet property="hostField" destination="IVo-qi-LMx" id="LH5-Dm-aKK"/>
@@ -277,7 +277,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="Bullet Camera-50" width="25" height="25"/>
+        <image name="Settings-50" width="25" height="25"/>
+        <image name="Speedometer-50" width="25" height="25"/>
+        <image name="Unlock-50" width="25" height="25"/>
     </resources>
 </document>

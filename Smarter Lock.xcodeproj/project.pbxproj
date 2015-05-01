@@ -114,7 +114,8 @@
 		402F64A21AE0540400B6FAC3 = {
 			isa = PBXGroup;
 			children = (
-				402F64AD1AE0540400B6FAC3 /* Smarter Lock */,
+				E8608DBB1AF3391900CF2D9A /* Webcam Publisher */,
+				402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */,
 				402F64CA1AE0540400B6FAC3 /* Smarter LockTests */,
 				402F64AC1AE0540400B6FAC3 /* Products */,
 			);
@@ -129,7 +130,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		402F64AD1AE0540400B6FAC3 /* Smarter Lock */ = {
+		402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */ = {
 			isa = PBXGroup;
 			children = (
 				40585B311AE870F1009D5C51 /* Packet */,
@@ -153,7 +154,7 @@
 				E82837D61AF1E00E00F22F2F /* MonitorController.h */,
 				E82837D71AF1E00E00F22F2F /* MonitorController.mm */,
 			);
-			path = "Smarter Lock";
+			path = "Smarter Lock iOS";
 			sourceTree = "<group>";
 		};
 		402F64AE1AE0540400B6FAC3 /* Supporting Files */ = {
@@ -194,7 +195,15 @@
 				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
 				E84168D61AE8B65E00BB1897 /* PacketAssembler.h */,
 			);
-			path = Packet;
+			name = Packet;
+			path = ../Packet;
+			sourceTree = "<group>";
+		};
+		E8608DBB1AF3391900CF2D9A /* Webcam Publisher */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Webcam Publisher";
 			sourceTree = "<group>";
 		};
 		E89198F51AE078E5009048E5 /* QR */ = {
