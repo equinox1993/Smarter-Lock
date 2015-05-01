@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -169,42 +170,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADd-xG-RuA">
-                                <rect key="frame" x="146" y="189" width="309" height="128"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADd-xG-RuA">
+                                <rect key="frame" x="146" y="189" width="309" height="142"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogQ-0d-zGC">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Server:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogQ-0d-zGC">
                                         <rect key="frame" x="8" y="12" width="55" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KGK-y8-QCg">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KGK-y8-QCg">
                                         <rect key="frame" x="71" y="46" width="230" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Port:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNZ-FU-GQA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Port:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNZ-FU-GQA">
                                         <rect key="frame" x="8" y="50" width="37" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iw3-0p-SSL">
-                                        <rect key="frame" x="131" y="84" width="47" height="34"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IVo-qi-LMx">
+                                        <rect key="frame" x="71" y="8" width="230" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Fs-0p-Q03">
+                                        <rect key="frame" x="252" y="84" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Fingerprint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNj-Mr-9cn">
+                                        <rect key="frame" x="71" y="89" width="130" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iw3-0p-SSL">
+                                        <rect key="frame" x="131" y="108" width="47" height="34"/>
                                         <state key="normal" title="Apply"/>
                                         <connections>
                                             <action selector="applyChanges:" destination="ZGs-XA-lY4" eventType="touchDown" id="fhX-i5-drN"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IVo-qi-LMx">
-                                        <rect key="frame" x="71" y="8" width="230" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="Iw3-0p-SSL" secondAttribute="centerX" id="VLw-3a-BgG"/>
+                                    <constraint firstItem="zNZ-FU-GQA" firstAttribute="leading" secondItem="ADd-xG-RuA" secondAttribute="leadingMargin" id="0Yx-1O-q58"/>
+                                    <constraint firstItem="5Fs-0p-Q03" firstAttribute="leading" secondItem="eNj-Mr-9cn" secondAttribute="trailing" constant="51" id="3bz-lf-BJF"/>
+                                    <constraint firstItem="eNj-Mr-9cn" firstAttribute="leading" secondItem="KGK-y8-QCg" secondAttribute="leading" id="96Y-Xm-8wX"/>
+                                    <constraint firstItem="KGK-y8-QCg" firstAttribute="top" secondItem="IVo-qi-LMx" secondAttribute="bottom" constant="8" symbolic="YES" id="AjK-9R-bFD"/>
+                                    <constraint firstItem="ogQ-0d-zGC" firstAttribute="leading" secondItem="zNZ-FU-GQA" secondAttribute="leading" id="D6z-MM-Jo1"/>
+                                    <constraint firstItem="IVo-qi-LMx" firstAttribute="leading" secondItem="KGK-y8-QCg" secondAttribute="leading" id="DFg-a9-Tpu"/>
+                                    <constraint firstItem="IVo-qi-LMx" firstAttribute="trailing" secondItem="KGK-y8-QCg" secondAttribute="trailing" id="MoR-uP-0lK"/>
+                                    <constraint firstItem="IVo-qi-LMx" firstAttribute="leading" secondItem="ogQ-0d-zGC" secondAttribute="trailing" constant="8" symbolic="YES" id="N3t-jw-6YV"/>
+                                    <constraint firstItem="IVo-qi-LMx" firstAttribute="trailing" secondItem="ADd-xG-RuA" secondAttribute="trailingMargin" id="TQ5-c9-yoe"/>
+                                    <constraint firstItem="Iw3-0p-SSL" firstAttribute="centerX" secondItem="ADd-xG-RuA" secondAttribute="centerX" id="Yc5-sa-xYZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iw3-0p-SSL" secondAttribute="bottom" id="a7h-aE-Dpv"/>
+                                    <constraint firstItem="ogQ-0d-zGC" firstAttribute="top" secondItem="ADd-xG-RuA" secondAttribute="top" constant="12" id="bpl-xt-NDb"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Fs-0p-Q03" secondAttribute="bottom" constant="27" id="iSP-RR-cjU"/>
+                                    <constraint firstItem="Iw3-0p-SSL" firstAttribute="top" secondItem="KGK-y8-QCg" secondAttribute="bottom" constant="32" id="m7P-fk-oSk"/>
+                                    <constraint firstItem="5Fs-0p-Q03" firstAttribute="trailing" secondItem="KGK-y8-QCg" secondAttribute="trailing" id="mKI-N5-H2i"/>
+                                    <constraint firstItem="IVo-qi-LMx" firstAttribute="top" secondItem="ADd-xG-RuA" secondAttribute="topMargin" id="nNh-qK-h0n"/>
+                                    <constraint firstItem="zNZ-FU-GQA" firstAttribute="top" secondItem="ogQ-0d-zGC" secondAttribute="bottom" constant="17" id="pOL-7x-h0g"/>
+                                    <constraint firstItem="eNj-Mr-9cn" firstAttribute="centerY" secondItem="5Fs-0p-Q03" secondAttribute="centerY" id="rrZ-PB-Dnz"/>
+                                    <constraint firstItem="5Fs-0p-Q03" firstAttribute="top" secondItem="KGK-y8-QCg" secondAttribute="bottom" constant="8" symbolic="YES" id="z0i-K3-lcn"/>
+                                    <constraint firstItem="5Fs-0p-Q03" firstAttribute="leading" secondItem="Iw3-0p-SSL" secondAttribute="trailing" constant="74" id="zlr-SA-Nen"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -216,6 +245,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="ZKr-WG-8jD"/>
                     <connections>
+                        <outlet property="fpSwitch" destination="5Fs-0p-Q03" id="Zjq-5Q-mco"/>
                         <outlet property="hostField" destination="IVo-qi-LMx" id="LH5-Dm-aKK"/>
                         <outlet property="portField" destination="KGK-y8-QCg" id="FIY-Kf-CBe"/>
                     </connections>

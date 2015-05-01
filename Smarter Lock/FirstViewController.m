@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "Authenticator.h"
 
 @interface FirstViewController ()
 
@@ -16,7 +17,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Authenticator authenticate];
+	
+	NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+	
+	if ([ud boolForKey: @"auth"]) {
+		[Authenticator authenticate:^(bool success) {
+			if (success) {
+				NSLog(@"Success");
+			} else {
+				UIAlertView* uiv = [[UIAlertView alloc] initWithTitle:@"Failed to authenticate." message:@"Failed to pass authentication" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+				[uiv show];
+				exit(1);
+			}
+		}];
+	}
+	
     // Do any additional setup after loading the view, typically from a nib.
 }
 

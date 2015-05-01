@@ -12,6 +12,6 @@
 
 }
 
-+(void)authenticate;
++(void)authenticate: (void (^)(bool))cb;
 
 @end

@@ -13,23 +13,19 @@
 
 static LAContext* context = nil;
 
-+(void)authenticate {
++(void)authenticate: (void (^)(bool))cb {
     if (!context) {
         context = [[LAContext alloc] init];
     }
     
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil]) {
-        NSLog(@"Has Bio");
-        
-        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"Authentication for server login" reply:^(BOOL success, NSError* err) {
-            if (success) {
-                NSLog(@"Success");
-            } else {
-                NSLog(@"Failed");
-            }
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"Authenticate to log into Smarter Lock" reply:^(BOOL success, NSError* err) {
+            cb(success);
             
         }];
-    } else
+    } else {
         NSLog(@"No Bio");
+		cb(true);
+	}
 }
 @end

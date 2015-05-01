@@ -11,9 +11,11 @@
 
 @interface SettingsController : UIViewController {
 	Communicator* comm;
+	NSUserDefaults* userDefaults;
 }
 
 @property (nonatomic) IBOutlet UITextField *hostField, *portField;
+@property (nonatomic) IBOutlet UISwitch *fpSwitch;
 
 -(IBAction)applyChanges:(id)sender;
 
