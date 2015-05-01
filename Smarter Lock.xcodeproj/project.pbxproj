@@ -133,7 +133,7 @@
 		402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */ = {
 			isa = PBXGroup;
 			children = (
-				40585B311AE870F1009D5C51 /* Packet */,
+				40585B311AE870F1009D5C51 /* Common */,
 				E89198F51AE078E5009048E5 /* QR */,
 				402F64B21AE0540400B6FAC3 /* AppDelegate.h */,
 				402F64B31AE0540400B6FAC3 /* AppDelegate.m */,
@@ -184,7 +184,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		40585B311AE870F1009D5C51 /* Packet */ = {
+		40585B311AE870F1009D5C51 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				E84168CA1AE8A38800BB1897 /* Packet.h */,
@@ -195,8 +195,8 @@
 				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
 				E84168D61AE8B65E00BB1897 /* PacketAssembler.h */,
 			);
-			name = Packet;
-			path = ../Packet;
+			name = Common;
+			path = ../Common;
 			sourceTree = "<group>";
 		};
 		E8608DBB1AF3391900CF2D9A /* Webcam Publisher */ = {
