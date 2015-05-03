@@ -46,45 +46,47 @@ void randSeq(char* out) {
 
 VideoFramePacket* vfp = nullptr;
 
-void unlock(Packet* up, struct bufferevent* bev) {
+void unlock(Packet* up, CommunicationTask* ct) {
 	CommandPacket accept = CommandPacket(Type::ACCEPT);
 	accept.sequenceNumber = up->sequenceNumber;
 	
-	TCPServer::SendPacket(&accept, bev);
+	TCPServer::SendPacket(&accept, ct->sockfd_);
+	TCPServer::CloseConnection(ct->sockfd_);
 }
 
-void passcode(Packet* up, struct bufferevent* bev) {
+void passcode(Packet* up, CommunicationTask* ct) {
 	char seq[17];
 	seq[16] = '\0';
 	randSeq(seq);
 	PasscodePacket pc = PasscodePacket(seq, 233333);
 	pc.sequenceNumber = up->sequenceNumber;
-	TCPServer::SendPacket(&pc, bev);
+	TCPServer::SendPacket(&pc, ct->sockfd_);
+	TCPServer::CloseConnection(ct->sockfd_);
 }
 
-std::map<struct bufferevent*, uint32_t> monitorMap = std::map<struct bufferevent*, uint32_t>();
+struct clientinfo {
+	uint32_t seqno;
+	int sockfd;
+};
 
-void startMonitor(Packet* up, struct bufferevent* bev) {
-//	CommandPacket accept = CommandPacket(Type::ACCEPT);
-//	accept.sequenceNumber = up->sequenceNumber;
-//	
-//	TCPServer::SendPacket(&accept, outbuf);
-	
-	monitorMap[bev] = up->sequenceNumber;
-//	if (vfp) {
-//		vfp->sequenceNumber = up->sequenceNumber;
-//		TCPServer::SendPacket(vfp, outbuf);
-//	}
+std::map<int, struct clientinfo> monitorMap = std::map<int, struct clientinfo>();
+
+void startMonitor(Packet* up, CommunicationTask* ct) {
+	int key = ct->addr_ + (up->sequenceNumber << 19);
+	monitorMap[key] = {up->sequenceNumber, ct->sockfd_};
 }
 
 
-void stopMonitor(Packet* up, struct bufferevent* bev) {
+void stopMonitor(Packet* up, CommunicationTask* ct) {
 	CommandPacket accept = CommandPacket(Type::ACCEPT);
 	accept.sequenceNumber = up->sequenceNumber;
 	
-	TCPServer::SendPacket(&accept, bev);
+	TCPServer::SendPacket(&accept, ct->sockfd_);
 	
-	monitorMap.erase(bev);
+	int key = ct->addr_ + (up->sequenceNumber << 19);
+	struct clientinfo ci = monitorMap[key];
+	monitorMap.erase(key);
+	TCPServer::CloseConnection(ci.sockfd);
 }
 
 void* startServer(void* sth) {
@@ -93,7 +95,7 @@ void* startServer(void* sth) {
 	TCPServer::RegisterCallback(Type::REQUEST_MONITOR, startMonitor);
 	TCPServer::RegisterCallback(Type::STOP_MONITOR, stopMonitor);
 	
-	TCPServer::Run(2333);
+	TCPServer::Run(2333, 10);
 	return nullptr;
 }
 
@@ -120,11 +122,11 @@ int main(int argc, const char * argv[]) {
 			break;
 		}
 		
-		if (frame.cols > 800) {
-			float scale = 800.0 / frame.cols;
+		if (frame.cols > 400) {
+			float scale = 400.0 / frame.cols;
 			int newrows = (int)(scale*frame.rows);
 			cv::Mat small;
-			cv::resize(frame, small, cvSize(800, newrows));
+			cv::resize(frame, small, cvSize(400, newrows));
 			
 			frame = small;
 		}
@@ -139,23 +141,21 @@ int main(int argc, const char * argv[]) {
 		
 		vfp = new VideoFramePacket(outbuf.data(), outbuf.size());
 //		
-		for (auto i = monitorMap.begin(); i != monitorMap.end(); i++) {
-			struct bufferevent* bev = i->first;
-			uint32_t seq = i->second;
+		for (auto i = monitorMap.begin(); i != monitorMap.end();) {
+			int sock = i->first;
+			struct clientinfo ci = i->second;
 			
-			vfp->sequenceNumber = seq;
-			TCPServer::SendPacket(vfp, bev);
+			vfp->sequenceNumber = ci.seqno;
+			if (!TCPServer::SendPacket(vfp, ci.sockfd)) {
+				monitorMap.erase(i++);
+				TCPServer::CloseConnection(ci.sockfd);
+			} else
+				++i;
+			
 		}
 		
-//		bool sendSucceed = comm.sendPacket((struct sockaddr*)&destaddr, destaddrlen, *vfp);
-//		
-//		if (!sendSucceed)
-//			perror("error");
-		
-//		std::cout << outbuf.size() << "\n";
-		
 		cv::imshow("", frame);
-		cv::waitKey(10);
+		cv::waitKey(100);
 		
 		outbuf.clear();
 	}

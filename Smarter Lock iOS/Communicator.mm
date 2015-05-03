@@ -125,7 +125,8 @@ static NSTimeInterval DefaultTimeout = 20;
 }
 
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel {
-	pl->sequenceNumber = curSeq;
+	if (!pl->sequenceNumber)
+		pl->sequenceNumber = curSeq;
 	
 	size_t totalLen;
 	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
@@ -180,8 +181,8 @@ static NSTimeInterval DefaultTimeout = 20;
 				if (p!=nil)
 					delete p;
 				
-				[targets removeObjectForKey:[NSNumber numberWithInt:seq]];
-				[selectors removeObjectForKey:[NSNumber numberWithInt:seq]];
+//				[targets removeObjectForKey:[NSNumber numberWithInt:seq]];
+//				[selectors removeObjectForKey:[NSNumber numberWithInt:seq]];
 				
 				[readbuf replaceBytesInRange:NSMakeRange(0, packetLen) withBytes:NULL length:0]; // remove from buffer
 			} else if (packetLen < 0) { // error occurs

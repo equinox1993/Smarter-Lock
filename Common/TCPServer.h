@@ -14,43 +14,33 @@
 #include <pthread.h>
 #include <stdint.h>
 
-#include <event2/listener.h>
-#include <event2/bufferevent.h>
-#include <event2/buffer.h>
-
-//#include <map>
-
+#include "ThreadPool.h"
 #include "Packet.h"
 
-typedef void (*TCPCallbackFunction)(Packet*, struct bufferevent*);
+
+class CommunicationTask : public ThreadPool::Task {
+	public:
+	
+	CommunicationTask(ThreadPool::thread_task_fn fn, int sockfd, int addr, int port)
+		: sockfd_(sockfd), addr_(addr), port_(port), ThreadPool::Task(fn) {}
+	
+	int sockfd_, addr_, port_;
+};
+
+
+typedef void (*TCPCallbackFunction)(Packet*, CommunicationTask*);  // don't store Communication Task ref
 
 class TCPServer {
 	public:
-	static bool Run(uint16_t port);
+	static bool Run(uint16_t port, uint32_t maxThreadCount);
 	static bool IsRunning();
 	static void RegisterCallback(uint32_t type, TCPCallbackFunction cb);
-	static void SendPacket(Packet* packet, struct bufferevent* target);
-//	static uint32_t threadCount();
-	
-//	virtual ~TCPServer();
+	static bool SendPacket(Packet* packet, int sock);
+	static void CloseConnection(int sock);
 	
 	private:
-//	static uint16_t _port;
+	static ThreadPool* pool;
 	static bool running;
-//	static std::vector<uint8_t> readbuf;
-	
-//	static std::map<uint32_t, TCPCallbackFunction> callbackMap;
-//	static uint32_t _threadCount;
-//	static uint32_t _maxThreadCount;
-	
-//	static pthread_t* _threadIds;
-//	static pthread_mutex_t _globalLock;
-
-	static void read_cb(struct bufferevent *bev, void *ctx);
-	static void event_cb(struct bufferevent *bev, short events, void *ctx);
-	static void accept_conn_cb(struct evconnlistener *listener,
-    	evutil_socket_t fd, struct sockaddr *address, int socklen,
-    	void *ctx);
 };
 
 #endif /* defined(__Smarter_Lock__TCPServer__) */
