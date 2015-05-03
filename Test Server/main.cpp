@@ -155,7 +155,7 @@ int main(int argc, const char * argv[]) {
 		}
 		
 		cv::imshow("", frame);
-		cv::waitKey(100);
+		cv::waitKey(75);
 		
 		outbuf.clear();
 	}

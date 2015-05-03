@@ -6,8 +6,6 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-// dep: libevent
-
 #ifndef __Smarter_Lock__TCPServer__
 #define __Smarter_Lock__TCPServer__
 

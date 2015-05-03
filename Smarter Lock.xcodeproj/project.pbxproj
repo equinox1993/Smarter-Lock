@@ -44,7 +44,6 @@
 		E891990D1AE078E5009048E5 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = E89199031AE078E5009048E5 /* split.c */; };
 		E891990E1AE078E5009048E5 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */; };
 		E8FB2BA31AF5A2F00024DCAA /* TCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85D3A3E1AF58C750091D03B /* TCPServer.cpp */; };
-		E8FB2BA41AF5A8C60024DCAA /* libevent_core-2.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB2BA11AF5A18C0024DCAA /* libevent_core-2.0.5.dylib */; };
 		E8FB2BA81AF60CE30024DCAA /* ThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8FB2BA51AF601530024DCAA /* ThreadPool.cpp */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +103,7 @@
 		E85D3A3F1AF58C750091D03B /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
 		E85EE39C1AF0877400966C1A /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		E85EE39D1AF0877400966C1A /* SettingsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsController.mm; sourceTree = "<group>"; };
-		E8608DCB1AF33CF800CF2D9A /* Test Webcam Publisher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Webcam Publisher"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8608DCB1AF33CF800CF2D9A /* Test Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Server"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8608DCD1AF33CF800CF2D9A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = ../../../../../../../usr/local/lib/libopencv_core.dylib; sourceTree = "<group>"; };
 		E8608DD81AF3435700CF2D9A /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../../usr/local/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };
@@ -130,7 +129,6 @@
 		E89199041AE078E5009048E5 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		E89199051AE078E5009048E5 /* UIImage+MDQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MDQRCode.h"; sourceTree = "<group>"; };
 		E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MDQRCode.m"; sourceTree = "<group>"; };
-		E8FB2BA11AF5A18C0024DCAA /* libevent_core-2.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libevent_core-2.0.5.dylib"; path = "/usr/local/lib/libevent_core-2.0.5.dylib"; sourceTree = "<absolute>"; };
 		E8FB2BA51AF601530024DCAA /* ThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadPool.cpp; sourceTree = "<group>"; };
 		E8FB2BA61AF601530024DCAA /* ThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,7 +152,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FB2BA41AF5A8C60024DCAA /* libevent_core-2.0.5.dylib in Frameworks */,
 				E8608DE91AF3929B00CF2D9A /* libopencv_imgproc.2.4.8.dylib in Frameworks */,
 				E8608DD71AF3432000CF2D9A /* libopencv_core.dylib in Frameworks */,
 				E8608DD91AF3435700CF2D9A /* libopencv_highgui.dylib in Frameworks */,
@@ -181,7 +178,7 @@
 			children = (
 				402F64AB1AE0540400B6FAC3 /* Smarter Lock.app */,
 				402F64C71AE0540400B6FAC3 /* Smarter LockTests.xctest */,
-				E8608DCB1AF33CF800CF2D9A /* Test Webcam Publisher */,
+				E8608DCB1AF33CF800CF2D9A /* Test Server */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,7 +261,6 @@
 		E8608DCC1AF33CF800CF2D9A /* Test Server */ = {
 			isa = PBXGroup;
 			children = (
-				E8FB2BA11AF5A18C0024DCAA /* libevent_core-2.0.5.dylib */,
 				E8608DE71AF3926F00CF2D9A /* libopencv_imgproc.2.4.8.dylib */,
 				E8608DD81AF3435700CF2D9A /* libopencv_highgui.dylib */,
 				E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */,
@@ -357,7 +353,7 @@
 			);
 			name = "Test Server";
 			productName = "Test Webcam Publisher";
-			productReference = E8608DCB1AF33CF800CF2D9A /* Test Webcam Publisher */;
+			productReference = E8608DCB1AF33CF800CF2D9A /* Test Server */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
