@@ -106,7 +106,7 @@ static NSTimeInterval DefaultTimeout = 20;
 	[self close];
 }
 
--(void)writeCString:(const u_int8_t *)str length: (unsigned int)len {
+-(void)writeCString:(const u_int8_t *)str length: (size_t)len {
     [self connect];
     [ostream write:str maxLength:len];
 	[self touch];
@@ -118,16 +118,16 @@ static NSTimeInterval DefaultTimeout = 20;
 //}
 
 -(void)writePacket:(Packet*)pl {
-	int totalLen;
+	size_t totalLen;
 	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
     [self writeCString: packetBytes length: totalLen];
-	delete packetBytes;
+	delete[] packetBytes;
 }
 
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel {
 	pl->sequenceNumber = curSeq;
 	
-	int totalLen;
+	size_t totalLen;
 	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
 	
 	[self connect];
@@ -138,7 +138,7 @@ static NSTimeInterval DefaultTimeout = 20;
 	curSeq++;
 	[self touch];
 	
-	delete packetBytes;
+	delete[] packetBytes;
 }
 
 -(void)connKillTimerThread:(id)info {

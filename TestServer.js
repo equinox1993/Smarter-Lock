@@ -1,12 +1,12 @@
 var net = require('net');
 
-PACKET_HEAD_LENGTH = 16
+PACKET_HEAD_LENGTH = 16;
 
-PACKET_OFFSET_SIGN = 0
-PACKET_OFFSET_TYPE = 4
-PACKET_OFFSET_SEQNUM = 8
-PACKET_OFFSET_PLEN = 12
-PACKET_OFFSET_PAYLOAD = 16
+PACKET_OFFSET_SIGN = 0;
+PACKET_OFFSET_TYPE = 4;
+PACKET_OFFSET_SEQNUM = 8;
+PACKET_OFFSET_PLEN = 12;
+PACKET_OFFSET_PAYLOAD = 16;
 
 function randSeq() {
     var set = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -14,7 +14,7 @@ function randSeq() {
     for (var i = 0; i < 16; i++) {
         var rand = Math.floor(Math.random() * set.length);
         str += set[rand];
-    };
+    }
 
     return str;
 }

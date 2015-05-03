@@ -23,6 +23,18 @@
 		E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */; };
 		E84168D71AE8B65E00BB1897 /* PacketAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */; };
 		E85EE39E1AF0877400966C1A /* SettingsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E85EE39D1AF0877400966C1A /* SettingsController.mm */; };
+		E8608DCE1AF33CF800CF2D9A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8608DCD1AF33CF800CF2D9A /* main.cpp */; };
+		E8608DD71AF3432000CF2D9A /* libopencv_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */; };
+		E8608DD91AF3435700CF2D9A /* libopencv_highgui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8608DD81AF3435700CF2D9A /* libopencv_highgui.dylib */; };
+		E8608DDB1AF3437A00CF2D9A /* libopencv_video.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8608DDA1AF3437A00CF2D9A /* libopencv_video.dylib */; };
+		E8608DDE1AF34B1D00CF2D9A /* VideoFramePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */; };
+		E8608DDF1AF34B1D00CF2D9A /* VideoFramePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */; };
+		E8608DE21AF3534400CF2D9A /* UDPCommunicator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */; };
+		E8608DE31AF3534400CF2D9A /* UDPCommunicator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */; };
+		E8608DE41AF390DC00CF2D9A /* PacketAssembler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */; };
+		E8608DE51AF390F300CF2D9A /* CommandPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */; };
+		E8608DE61AF390F300CF2D9A /* PasscodePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */; };
+		E8608DE91AF3929B00CF2D9A /* libopencv_imgproc.2.4.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8608DE71AF3926F00CF2D9A /* libopencv_imgproc.2.4.8.dylib */; };
 		E89199071AE078E5009048E5 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F71AE078E5009048E5 /* bitstream.c */; };
 		E89199081AE078E5009048E5 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198F91AE078E5009048E5 /* mask.c */; };
 		E89199091AE078E5009048E5 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = E89198FB1AE078E5009048E5 /* qrencode.c */; };
@@ -31,6 +43,8 @@
 		E891990C1AE078E5009048E5 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = E89199011AE078E5009048E5 /* rscode.c */; };
 		E891990D1AE078E5009048E5 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = E89199031AE078E5009048E5 /* split.c */; };
 		E891990E1AE078E5009048E5 /* UIImage+MDQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */; };
+		E8FB2BA31AF5A2F00024DCAA /* TCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85D3A3E1AF58C750091D03B /* TCPServer.cpp */; };
+		E8FB2BA41AF5A8C60024DCAA /* libevent_core-2.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB2BA11AF5A18C0024DCAA /* libevent_core-2.0.5.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +56,18 @@
 			remoteInfo = "Smarter Lock";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E8608DC91AF33CF800CF2D9A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		402F64AB1AE0540400B6FAC3 /* Smarter Lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smarter Lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,8 +99,20 @@
 		E84168D01AE8A64B00BB1897 /* PasscodePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasscodePacket.h; sourceTree = "<group>"; };
 		E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketAssembler.cpp; sourceTree = "<group>"; };
 		E84168D61AE8B65E00BB1897 /* PacketAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketAssembler.h; sourceTree = "<group>"; };
+		E85D3A3E1AF58C750091D03B /* TCPServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TCPServer.cpp; sourceTree = "<group>"; };
+		E85D3A3F1AF58C750091D03B /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
 		E85EE39C1AF0877400966C1A /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		E85EE39D1AF0877400966C1A /* SettingsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SettingsController.mm; sourceTree = "<group>"; };
+		E8608DCB1AF33CF800CF2D9A /* Test Webcam Publisher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Test Webcam Publisher"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8608DCD1AF33CF800CF2D9A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = ../../../../../../../usr/local/lib/libopencv_core.dylib; sourceTree = "<group>"; };
+		E8608DD81AF3435700CF2D9A /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../../usr/local/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };
+		E8608DDA1AF3437A00CF2D9A /* libopencv_video.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.dylib; path = ../../../../../../../usr/local/lib/libopencv_video.dylib; sourceTree = "<group>"; };
+		E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoFramePacket.cpp; sourceTree = "<group>"; };
+		E8608DDD1AF34B1D00CF2D9A /* VideoFramePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFramePacket.h; sourceTree = "<group>"; };
+		E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UDPCommunicator.cpp; sourceTree = "<group>"; };
+		E8608DE11AF3534400CF2D9A /* UDPCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPCommunicator.h; sourceTree = "<group>"; };
+		E8608DE71AF3926F00CF2D9A /* libopencv_imgproc.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.2.4.8.dylib; path = /usr/local/Cellar/opencv/2.4.8.2/lib/libopencv_imgproc.2.4.8.dylib; sourceTree = "<absolute>"; };
 		E89198F71AE078E5009048E5 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
 		E89198F81AE078E5009048E5 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
 		E89198F91AE078E5009048E5 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
@@ -91,6 +129,7 @@
 		E89199041AE078E5009048E5 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		E89199051AE078E5009048E5 /* UIImage+MDQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MDQRCode.h"; sourceTree = "<group>"; };
 		E89199061AE078E5009048E5 /* UIImage+MDQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MDQRCode.m"; sourceTree = "<group>"; };
+		E8FB2BA11AF5A18C0024DCAA /* libevent_core-2.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libevent_core-2.0.5.dylib"; path = "/usr/local/lib/libevent_core-2.0.5.dylib"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,15 +147,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8608DC81AF33CF800CF2D9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FB2BA41AF5A8C60024DCAA /* libevent_core-2.0.5.dylib in Frameworks */,
+				E8608DE91AF3929B00CF2D9A /* libopencv_imgproc.2.4.8.dylib in Frameworks */,
+				E8608DD71AF3432000CF2D9A /* libopencv_core.dylib in Frameworks */,
+				E8608DD91AF3435700CF2D9A /* libopencv_highgui.dylib in Frameworks */,
+				E8608DDB1AF3437A00CF2D9A /* libopencv_video.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		402F64A21AE0540400B6FAC3 = {
 			isa = PBXGroup;
 			children = (
-				E8608DBB1AF3391900CF2D9A /* Webcam Publisher */,
+				40585B311AE870F1009D5C51 /* Common */,
 				402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */,
 				402F64CA1AE0540400B6FAC3 /* Smarter LockTests */,
+				E8608DCC1AF33CF800CF2D9A /* Test Server */,
 				402F64AC1AE0540400B6FAC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +178,7 @@
 			children = (
 				402F64AB1AE0540400B6FAC3 /* Smarter Lock.app */,
 				402F64C71AE0540400B6FAC3 /* Smarter LockTests.xctest */,
+				E8608DCB1AF33CF800CF2D9A /* Test Webcam Publisher */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,7 +186,6 @@
 		402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */ = {
 			isa = PBXGroup;
 			children = (
-				40585B311AE870F1009D5C51 /* Common */,
 				E89198F51AE078E5009048E5 /* QR */,
 				402F64B21AE0540400B6FAC3 /* AppDelegate.h */,
 				402F64B31AE0540400B6FAC3 /* AppDelegate.m */,
@@ -194,16 +246,27 @@
 				E84168D01AE8A64B00BB1897 /* PasscodePacket.h */,
 				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
 				E84168D61AE8B65E00BB1897 /* PacketAssembler.h */,
+				E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */,
+				E8608DDD1AF34B1D00CF2D9A /* VideoFramePacket.h */,
+				E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */,
+				E8608DE11AF3534400CF2D9A /* UDPCommunicator.h */,
+				E85D3A3E1AF58C750091D03B /* TCPServer.cpp */,
+				E85D3A3F1AF58C750091D03B /* TCPServer.h */,
 			);
-			name = Common;
-			path = ../Common;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		E8608DBB1AF3391900CF2D9A /* Webcam Publisher */ = {
+		E8608DCC1AF33CF800CF2D9A /* Test Server */ = {
 			isa = PBXGroup;
 			children = (
+				E8FB2BA11AF5A18C0024DCAA /* libevent_core-2.0.5.dylib */,
+				E8608DE71AF3926F00CF2D9A /* libopencv_imgproc.2.4.8.dylib */,
+				E8608DD81AF3435700CF2D9A /* libopencv_highgui.dylib */,
+				E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */,
+				E8608DDA1AF3437A00CF2D9A /* libopencv_video.dylib */,
+				E8608DCD1AF33CF800CF2D9A /* main.cpp */,
 			);
-			path = "Webcam Publisher";
+			path = "Test Server";
 			sourceTree = "<group>";
 		};
 		E89198F51AE078E5009048E5 /* QR */ = {
@@ -275,6 +338,23 @@
 			productReference = 402F64C71AE0540400B6FAC3 /* Smarter LockTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E8608DCA1AF33CF800CF2D9A /* Test Server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8608DCF1AF33CF800CF2D9A /* Build configuration list for PBXNativeTarget "Test Server" */;
+			buildPhases = (
+				E8608DC71AF33CF800CF2D9A /* Sources */,
+				E8608DC81AF33CF800CF2D9A /* Frameworks */,
+				E8608DC91AF33CF800CF2D9A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Test Server";
+			productName = "Test Webcam Publisher";
+			productReference = E8608DCB1AF33CF800CF2D9A /* Test Webcam Publisher */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -291,6 +371,9 @@
 					402F64C61AE0540400B6FAC3 = {
 						CreatedOnToolsVersion = 6.3;
 						TestTargetID = 402F64AA1AE0540400B6FAC3;
+					};
+					E8608DCA1AF33CF800CF2D9A = {
+						CreatedOnToolsVersion = 6.3;
 					};
 				};
 			};
@@ -309,6 +392,7 @@
 			targets = (
 				402F64AA1AE0540400B6FAC3 /* Smarter Lock */,
 				402F64C61AE0540400B6FAC3 /* Smarter LockTests */,
+				E8608DCA1AF33CF800CF2D9A /* Test Server */,
 			);
 		};
 /* End PBXProject section */
@@ -341,6 +425,7 @@
 				E891990E1AE078E5009048E5 /* UIImage+MDQRCode.m in Sources */,
 				40585B2D1AE86180009D5C51 /* Communicator.mm in Sources */,
 				402F64BA1AE0540400B6FAC3 /* SecondViewController.mm in Sources */,
+				E8608DDE1AF34B1D00CF2D9A /* VideoFramePacket.cpp in Sources */,
 				E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */,
 				E85EE39E1AF0877400966C1A /* SettingsController.mm in Sources */,
 				E891990B1AE078E5009048E5 /* qrspec.c in Sources */,
@@ -349,6 +434,7 @@
 				402F64B41AE0540400B6FAC3 /* AppDelegate.m in Sources */,
 				E89199081AE078E5009048E5 /* mask.c in Sources */,
 				E82837D81AF1E00E00F22F2F /* MonitorController.mm in Sources */,
+				E8608DE21AF3534400CF2D9A /* UDPCommunicator.cpp in Sources */,
 				E89199091AE078E5009048E5 /* qrencode.c in Sources */,
 				E84168D71AE8B65E00BB1897 /* PacketAssembler.cpp in Sources */,
 				E84168CE1AE8A40700BB1897 /* CommandPacket.cpp in Sources */,
@@ -366,6 +452,20 @@
 			files = (
 				40585B391AE87CA0009D5C51 /* CommunicatorTest.mm in Sources */,
 				402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8608DC71AF33CF800CF2D9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8608DE51AF390F300CF2D9A /* CommandPacket.cpp in Sources */,
+				E8608DE61AF390F300CF2D9A /* PasscodePacket.cpp in Sources */,
+				E8608DE41AF390DC00CF2D9A /* PacketAssembler.cpp in Sources */,
+				E8608DE31AF3534400CF2D9A /* UDPCommunicator.cpp in Sources */,
+				E8FB2BA31AF5A2F00024DCAA /* TCPServer.cpp in Sources */,
+				E8608DCE1AF33CF800CF2D9A /* main.cpp in Sources */,
+				E8608DDF1AF34B1D00CF2D9A /* VideoFramePacket.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +535,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/lib/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -473,6 +578,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/lib/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -487,7 +597,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Smarter Lock/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Smarter Lock iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -500,7 +610,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "Smarter Lock/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Smarter Lock iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -541,6 +651,57 @@
 			};
 			name = Release;
 		};
+		E8608DD01AF33CF800CF2D9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Test",
+					Webcam,
+					Publisher,
+					/usr/local/Cellar/opencv/2.4.8.2/lib,
+					/usr/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E8608DD11AF33CF800CF2D9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Test",
+					Webcam,
+					Publisher,
+					/usr/local/Cellar/opencv/2.4.8.2/lib,
+					/usr/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -567,6 +728,15 @@
 			buildConfigurations = (
 				402F64D51AE0540400B6FAC3 /* Debug */,
 				402F64D61AE0540400B6FAC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8608DCF1AF33CF800CF2D9A /* Build configuration list for PBXNativeTarget "Test Server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8608DD01AF33CF800CF2D9A /* Debug */,
+				E8608DD11AF33CF800CF2D9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

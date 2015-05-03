@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Communicator.h"
+//#import "UDPCommunicator.h"
 
 @interface MonitorController : UIViewController {
 	Communicator* comm;
+//	UDPCommunicator* ucomm;
+//	
+//	struct sockaddr_in serveraddr;
+//	socklen_t serveraddrlen;
 }
 
 @property (nonatomic) IBOutlet UIImageView* imageView;

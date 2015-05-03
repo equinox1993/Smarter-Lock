@@ -48,7 +48,7 @@
 
 //-(void)writeString:(NSString*)str;
 -(void)writePacket:(Packet*)pl;
--(void)writeCString:(const u_int8_t*)str length:(unsigned int)len;
+-(void)writeCString:(const u_int8_t*)str length:(size_t)len;
 
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel;
 // callback:

@@ -22,7 +22,7 @@
     +----------+
  
  	Total head length = 4 * 4 = 16
-    Total packet length = Total head length + PLEN
+    Total packet length = align4(Total head length + PLEN)
  
  */
 
@@ -63,7 +63,8 @@ enum Type {
 	REQUEST_MONITOR = 11,
 	STOP_MONITOR = 12,
 	
-	PASSCODE = 16
+	PASSCODE = 16,
+	VIDEO_FRAME = 17
 };
 // TODO: add case to PacketAssembler::Disassemble when adding new payload type.
 

@@ -11,8 +11,18 @@
 
 #include "CommandPacket.h"
 #include "PasscodePacket.h"
+#include "VideoFramePacket.h"
 
-int32_t PacketAssembler::GetLength(const uint8_t* input, uint32_t maxLen) {
+uint32_t pad4(uint32_t in) {
+	uint32_t roundDown = in / 4 * 4;
+	
+	if (in % 4 == 0)
+		return roundDown;
+	else return roundDown + 1;
+}
+
+
+int32_t PacketAssembler::GetLength(const uint8_t* input, size_t maxLen) {
 	if (maxLen < PACKET_HEAD_LENGTH)
 		return 0;
 	
@@ -30,18 +40,18 @@ int32_t PacketAssembler::GetLength(const uint8_t* input, uint32_t maxLen) {
 	uint32_t len = PACKET_HEAD_LENGTH + ntohl(nplen);
 	
 	if (len <= maxLen)
-		return len;
+		return pad4(len);
 	else
 		return 0;
 }
 
-uint8_t* PacketAssembler::Assemble(const Packet* pl, int& totalLength) {
+uint8_t* PacketAssembler::Assemble(const Packet* pl, size_t& totalLength) {
 	uint32_t plen = pl->length();
 	
     uint32_t nptype = htonl(pl->type());
 	uint32_t npseq = htonl(pl->sequenceNumber);
 	
-	totalLength = PACKET_HEAD_LENGTH+plen;
+	totalLength = pad4(PACKET_HEAD_LENGTH+plen);
 	
 	uint8_t* packet = new uint8_t[totalLength];
 	memcpy(packet+PACKET_OFFSET_SIGN, &PACKET_SIGNATURE, 4);
@@ -60,14 +70,14 @@ uint8_t* PacketAssembler::Assemble(const Packet* pl, int& totalLength) {
 		
 		memcpy(packet+PACKET_OFFSET_PAYLOAD, pserialized, plen);
 		
-		delete pserialized;
+		delete[] pserialized;
 	}
 	
 	return packet;
 }
 
 uint8_t* PacketAssembler::Assemble(const Packet* pl) {
-	int tlen;
+	size_t tlen;
 	
 	return Assemble(pl, tlen);
 }
@@ -99,14 +109,12 @@ Packet* PacketAssembler::Disassemble(const uint8_t* input) {
 	int plen;
 	const uint8_t* pldata = GetPayloadData(input, plen);
 
-    Packet* ret = nullptr;
 	switch (ptype) {
 		case Type::PASSCODE:
-            ret = PasscodePacket::ParsePacket(pldata, pseq);
-            break;
+            return PasscodePacket::ParsePacket(pldata, pseq);
+		case Type::VIDEO_FRAME:
+			return new VideoFramePacket(pldata, plen, pseq);
 		default:
-			ret = new CommandPacket(ptype, pseq);
+			return new CommandPacket(ptype, pseq);
 	}
-    
-    return ret;
 }
