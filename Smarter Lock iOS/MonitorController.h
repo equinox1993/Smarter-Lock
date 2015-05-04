@@ -17,6 +17,8 @@
 //	struct sockaddr_in serveraddr;
 //	socklen_t serveraddrlen;
 	uint32_t monSeq;
+	
+	uint64_t videoKey;
 }
 
 @property (nonatomic) IBOutlet UIImageView* imageView;

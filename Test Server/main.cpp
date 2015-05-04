@@ -20,6 +20,7 @@
 #include "CommandPacket.h"
 #include "PasscodePacket.h"
 #include "VideoFramePacket.h"
+#include "SimplePacket.h"
 
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
@@ -78,18 +79,26 @@ void passcode(Packet* up, CommunicationTask* ct) {
 	TCPServer::CloseConnection(ct->sockfd_);
 }
 
-// -- end actions
-
 struct clientinfo {
 	uint32_t seqno;
 	int sockfd;
+	uint64_t vidkey;
 };
 
 std::map<int, struct clientinfo> monitorMap = std::map<int, struct clientinfo>();
 
 void startMonitor(Packet* up, CommunicationTask* ct) {
 	int key = ct->addr_ + (up->sequenceNumber << 19);
-	monitorMap[key] = {up->sequenceNumber, ct->sockfd_};
+	
+	uint64_t vidKey =
+  		(((uint64_t) rand() <<  0) & 0x00000000FFFFFFFFull) |
+  		(((uint64_t) rand() << 32) & 0xFFFFFFFF00000000ull);
+	
+	SimplePacket sp = SimplePacket((uint8_t*)&vidKey, 8, Type::VIDEO_KEY, up->sequenceNumber);
+	
+	TCPServer::SendPacket(&sp, ct->sockfd_, true);
+	
+	monitorMap[key] = {up->sequenceNumber, ct->sockfd_, vidKey};
 }
 
 
@@ -119,6 +128,8 @@ void* startServer(void* sth) {
 	}
 	return nullptr;
 }
+
+// -- end actions
 
 
 int main(int argc, const char * argv[]) {
@@ -158,13 +169,13 @@ int main(int argc, const char * argv[]) {
 			std::vector<uchar> outbuf = std::vector<uchar>();
 			cv::imencode(".jpg", frame, outbuf);
 			
-			VideoFramePacket vfp = VideoFramePacket(outbuf.data(), outbuf.size());
-			//
+			
 			for (auto i = monitorMap.begin(); i != monitorMap.end();) {
-				int sock = i->first;
 				struct clientinfo ci = i->second;
 				
+				VideoFramePacket vfp = VideoFramePacket(outbuf.data(), outbuf.size());
 				vfp.sequenceNumber = ci.seqno;
+				vfp.crypt(ci.vidkey);
 				if (!TCPServer::SendPacket(&vfp, ci.sockfd)) {
 					monitorMap.erase(i++);
 					TCPServer::CloseConnection(ci.sockfd);

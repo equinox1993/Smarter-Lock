@@ -12,6 +12,7 @@
 #include "CommandPacket.h"
 #include "PasscodePacket.h"
 #include "VideoFramePacket.h"
+#include "SimplePacket.h"
 
 CryptoFn encryptor = nullptr;
 CryptoFn decryptor = nullptr;
@@ -22,7 +23,7 @@ uint32_t pad4(uint32_t in) {
 	
 	if (in % 4 == 0)
 		return roundDown;
-	else return roundDown + 1;
+	else return roundDown + 4;
 }
 void PacketAssembler::SetEncryptor(CryptoFn fn) {
 	encryptor = fn;
@@ -169,6 +170,8 @@ Packet* PacketAssembler::Disassemble(const uint8_t* input, bool needEncryption) 
             return PasscodePacket::ParsePacket(pldata, pseq);
 		case Type::VIDEO_FRAME:
 			return new VideoFramePacket(pldata, plen, pseq);
+		case Type::VIDEO_KEY:
+			return new SimplePacket(pldata, plen, Type::VIDEO_KEY, pseq);
 		default:
 			return new CommandPacket(ptype, pseq);
 	}

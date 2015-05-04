@@ -9,6 +9,9 @@
 #import "MonitorController.h"
 #import "CommandPacket.h"
 #import "VideoFramePacket.h"
+#import "SimplePacket.h"
+
+//#include <cstring>
 
 @implementation MonitorController
 
@@ -39,20 +42,34 @@
 
 -(void)getImage:(NSValue*)pkptr {
 	Packet* pk = (Packet*)[pkptr pointerValue];
-	if (!pk || (pk->type() != Type::VIDEO_FRAME && pk->type() != Type::ACCEPT)) {
-		UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle: @"Can't monitor the environment"
+	
+	if (!pk)
+		return;
+	
+	switch (pk->type()) {
+  		case Type::VIDEO_KEY: {
+			SimplePacket* sp = (SimplePacket*)pk;
+			memcpy(&videoKey, sp->payload, 8);
+			break;
+		}
+		case Type::VIDEO_FRAME: {
+			VideoFramePacket* vfp = (VideoFramePacket*)pk;
+			vfp->crypt(videoKey);
+			NSData* imgData = [NSData dataWithBytes: vfp->data() length: vfp->length()];
+			UIImage* img = [UIImage imageWithData: imgData];
+			[self.imageView setImage: img];
+			break;
+		}
+		case Type::ACCEPT: {
+			break;
+		}
+  		default: {
+			UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle: @"Can't monitor the environment"
                                                           message: @"Wrong packet responded"
                                                          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [myAlert show];
-		return;
-	}
-	
-	if (pk->type() == Type::VIDEO_FRAME) {
-		// start
-		VideoFramePacket* vfp = (VideoFramePacket*)pk;
-		NSData* imgData = [NSData dataWithBytes: vfp->data() length: vfp->length()];
-		UIImage* img = [UIImage imageWithData: imgData];
-		[self.imageView setImage: img];
+        	[myAlert show];
+			break;
+		}
 	}
 }
 

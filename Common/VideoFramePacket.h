@@ -11,10 +11,6 @@
 
 #include "Packet.h"
 
-/*
-	payload = data
-*/
-
 class VideoFramePacket : public Packet {
 	public:
 	
@@ -25,12 +21,13 @@ class VideoFramePacket : public Packet {
 	
 	virtual int serialize(uint8_t* output) const;
 	
+	virtual void crypt(uint64_t key);
+	
 	VideoFramePacket(const uint8_t* data = nullptr, uint32_t dataLength = 0, uint32_t seq = 0);
 	
 	virtual ~VideoFramePacket();
 	
 	private:
-	
 	uint32_t _dataLength;
 	uint8_t* _data;
 };
