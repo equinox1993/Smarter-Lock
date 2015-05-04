@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #include "PacketAssembler.h"
 
+#include <openssl/rsa.h>
+
 @interface Communicator : NSObject<NSStreamDelegate> {
     @private
     NSInputStream* istream;
@@ -43,9 +45,10 @@
 +(NSString*)defaultHost;
 +(unsigned int)defaultPort;
 
++(void)setRSA:(RSA*)rsa;
+
 -(id)init;
 -(id)initWithHost:(NSString*)host port:(unsigned int)port;
-
 //-(void)writeString:(NSString*)str;
 -(void)writePacket:(Packet*)pl;
 -(void)writeCString:(const u_int8_t*)str length:(size_t)len;

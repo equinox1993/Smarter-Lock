@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "Communicator.h"
+//#import "Communicator.h"
 //#import "Packet.h"
 
 @interface CommunicatorTest : XCTestCase

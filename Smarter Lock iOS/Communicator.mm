@@ -18,10 +18,31 @@ static unsigned int DefaultPort = 2333;
 static Communicator* DefaultComm = nil;
 static NSTimeInterval DefaultTimeout = 20;
 
+static RSA* rsa;
+
 +(void)setDefaultHost:(NSString*)h {DefaultHost = h;}
 +(void)setDefaultPort:(unsigned int)p {DefaultPort = p;}
 +(NSString*)defaultHost {return DefaultHost;}
 +(unsigned int)defaultPort {return DefaultPort;}
+
+int Encrypt(int flen, const uint8_t* from, uint8_t* to) {
+	if (!rsa)
+		return -1;
+	return RSA_public_encrypt(flen, from, to, rsa, RSA_PKCS1_PADDING);
+}
+int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
+	if (!rsa)
+		return -1;
+	return RSA_public_decrypt(flen, from, to, rsa, RSA_PKCS1_PADDING);
+}
+
+
++(void)setRSA:(RSA *)r {
+	rsa = r;
+	
+	PacketAssembler::SetEncryptor(Encrypt);
+	PacketAssembler::SetDecryptor(Decrypt);
+}
 
 +(Communicator*)defaultCommunicator {
 	if (DefaultComm)
@@ -56,7 +77,7 @@ static NSTimeInterval DefaultTimeout = 20;
 	
 //    [ostream write:(const uint8_t *)[@"Hello World 233!\n" UTF8String] maxLength:128];
 //    [ostream close];
-    
+	
     return self;
 }
 
@@ -119,7 +140,7 @@ static NSTimeInterval DefaultTimeout = 20;
 
 -(void)writePacket:(Packet*)pl {
 	size_t totalLen;
-	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
+	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
     [self writeCString: packetBytes length: totalLen];
 	delete[] packetBytes;
 }
@@ -129,7 +150,7 @@ static NSTimeInterval DefaultTimeout = 20;
 		pl->sequenceNumber = curSeq;
 	
 	size_t totalLen;
-	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen);
+	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
 	
 	[self connect];
 	

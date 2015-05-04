@@ -12,6 +12,8 @@
 #include <pthread.h>
 #include <stdint.h>
 
+#include <openssl/rsa.h>
+
 #include "ThreadPool.h"
 #include "Packet.h"
 
@@ -30,15 +32,19 @@ typedef void (*TCPCallbackFunction)(Packet*, CommunicationTask*);  // don't stor
 
 class TCPServer {
 	public:
-	static bool Run(uint16_t port, uint32_t maxThreadCount);
+	static bool Run(uint16_t port, uint32_t maxThreadCount, RSA* rsa = nullptr); // rsa: private rsa
 	static bool IsRunning();
 	static void RegisterCallback(uint32_t type, TCPCallbackFunction cb);
-	static bool SendPacket(Packet* packet, int sock);
+	static bool SendPacket(Packet* packet, int sock, bool crypt = false);
 	static void CloseConnection(int sock);
 	
 	private:
+	static RSA* rsa;
 	static ThreadPool* pool;
 	static bool running;
+	
+	static int Encrypt(int flen, const uint8_t* from, uint8_t* to);
+	static int Decrypt(int flen, const uint8_t* from, uint8_t* to);
 };
 
 #endif /* defined(__Smarter_Lock__TCPServer__) */

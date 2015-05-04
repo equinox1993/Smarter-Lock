@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include <pthread.h>
+#include <unistd.h>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -20,17 +21,30 @@
 #include "PasscodePacket.h"
 #include "VideoFramePacket.h"
 
+#include <openssl/pem.h>
+#include <openssl/rsa.h>
+
 //#include "UDPCommunicator.h"
 #include "TCPServer.h"
 
-void idk(cv::Mat &mat) {
-	uchar* data = mat.data;
-	for (int i = 0; i < mat.rows; i++) {
-		for (int j = 0; j < mat.cols; j++) {
-			data[mat.step * i + j*3 + 0] = 0;
-			data[mat.step * i + j*3 + 1] = 0;
-		}
+#define RSA_FILE "./private.pem"
+
+RSA* rsaFromFile(const char* filename, bool pub) {
+	FILE* fp = fopen(filename, "rb");
+	
+	if (!fp) {
+		fprintf(stderr, "Unable to open RSA file.");
+		return nullptr;
 	}
+	
+	RSA* rsa = RSA_new(); //?!?!
+	
+	if (pub)
+		rsa = PEM_read_RSA_PUBKEY(fp, &rsa, NULL, NULL);
+	else
+		rsa = PEM_read_RSAPrivateKey(fp, &rsa, NULL, NULL);
+	
+	return rsa;
 }
 
 void randSeq(char* out) {
@@ -44,13 +58,13 @@ void randSeq(char* out) {
     }
 }
 
-VideoFramePacket* vfp = nullptr;
+// -- actions
 
 void unlock(Packet* up, CommunicationTask* ct) {
 	CommandPacket accept = CommandPacket(Type::ACCEPT);
 	accept.sequenceNumber = up->sequenceNumber;
 	
-	TCPServer::SendPacket(&accept, ct->sockfd_);
+	TCPServer::SendPacket(&accept, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
 }
 
@@ -60,9 +74,11 @@ void passcode(Packet* up, CommunicationTask* ct) {
 	randSeq(seq);
 	PasscodePacket pc = PasscodePacket(seq, 233333);
 	pc.sequenceNumber = up->sequenceNumber;
-	TCPServer::SendPacket(&pc, ct->sockfd_);
+	TCPServer::SendPacket(&pc, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
 }
+
+// -- end actions
 
 struct clientinfo {
 	uint32_t seqno;
@@ -81,7 +97,7 @@ void stopMonitor(Packet* up, CommunicationTask* ct) {
 	CommandPacket accept = CommandPacket(Type::ACCEPT);
 	accept.sequenceNumber = up->sequenceNumber;
 	
-	TCPServer::SendPacket(&accept, ct->sockfd_);
+	TCPServer::SendPacket(&accept, ct->sockfd_, true);
 	
 	int key = ct->addr_ + (up->sequenceNumber << 19);
 	struct clientinfo ci = monitorMap[key];
@@ -90,12 +106,17 @@ void stopMonitor(Packet* up, CommunicationTask* ct) {
 }
 
 void* startServer(void* sth) {
+	RSA* rsa = rsaFromFile(RSA_FILE, false);
+
 	TCPServer::RegisterCallback(Type::UNLOCK, unlock);
 	TCPServer::RegisterCallback(Type::REQUEST_PASSCODE, passcode);
 	TCPServer::RegisterCallback(Type::REQUEST_MONITOR, startMonitor);
 	TCPServer::RegisterCallback(Type::STOP_MONITOR, stopMonitor);
 	
-	TCPServer::Run(2333, 10);
+	while (!TCPServer::Run(2333, 10, rsa)) {
+		fprintf(stderr, "Failed to start server. wait 5 secs then retry.\n");
+		sleep(5);
+	}
 	return nullptr;
 }
 
@@ -133,31 +154,31 @@ int main(int argc, const char * argv[]) {
 		
 //		idk(frame);
 		
-		std::vector<uchar> outbuf = std::vector<uchar>();
-		cv::imencode(".jpg", frame, outbuf);
-		
-		if (vfp)
-			delete vfp;
-		
-		vfp = new VideoFramePacket(outbuf.data(), outbuf.size());
-//		
-		for (auto i = monitorMap.begin(); i != monitorMap.end();) {
-			int sock = i->first;
-			struct clientinfo ci = i->second;
+		if (TCPServer::IsRunning()) {
+			std::vector<uchar> outbuf = std::vector<uchar>();
+			cv::imencode(".jpg", frame, outbuf);
 			
-			vfp->sequenceNumber = ci.seqno;
-			if (!TCPServer::SendPacket(vfp, ci.sockfd)) {
-				monitorMap.erase(i++);
-				TCPServer::CloseConnection(ci.sockfd);
-			} else
-				++i;
+			VideoFramePacket vfp = VideoFramePacket(outbuf.data(), outbuf.size());
+			//
+			for (auto i = monitorMap.begin(); i != monitorMap.end();) {
+				int sock = i->first;
+				struct clientinfo ci = i->second;
+				
+				vfp.sequenceNumber = ci.seqno;
+				if (!TCPServer::SendPacket(&vfp, ci.sockfd)) {
+					monitorMap.erase(i++);
+					TCPServer::CloseConnection(ci.sockfd);
+				} else
+					++i;
+				
+			}
+			outbuf.clear();
 			
 		}
 		
 		cv::imshow("", frame);
 		cv::waitKey(75);
 		
-		outbuf.clear();
 	}
 	
 

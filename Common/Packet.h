@@ -8,9 +8,11 @@
 
 /*
     Numbers are all big-endian
+	
+	Non-encrypted packet:
  
  	+----------+
-	|   SIGN   |  -> packet signature for error detection (4 bytes)
+	|   SIGN   |  -> PACKET_SIGNATURE for error detection (4 bytes)
     +----------+
     |   TYPE   |  -> type of payload (4 bytes)
 	+----------+
@@ -24,6 +26,22 @@
  	Total head length = 4 * 4 = 16
     Total packet length = align4(Total head length + PLEN)
  
+ 	RSA-encrypted packet:
+	
+	+----------+
+	|   SIGN   |  -> PACKET_SIGNATURE_ENCRYPTED (4 bytes)
+	+----------+
+	|   ELEN   |  -> len of encrypted packet (4 bytes)
+	+----------+
+	|   SIGN   |
+	|   TYPE   |  -> (encrypted data) the non-encrypted packet
+	|  SEQNUM  |
+	|   ....   |
+	+----------+
+	
+	packets can have their own sub-encryption (hybrid encryption).
+	
+	** ELEN < RSA_size(RSA) **
  */
 
 #ifndef __Smarter_Lock__Packet__
@@ -32,8 +50,11 @@
 #include <stdint.h>
 #include <arpa/inet.h>
 
-#define PACKET_HEAD_LENGTH 16
+#define PACKET_ENCRYPTED_HEAD_LENGTH 8
+#define PACKET_OFFSET_EPAYLOAD 8
+#define PACKET_OFFSET_ELEN 4
 
+#define PACKET_HEAD_LENGTH 16
 #define PACKET_OFFSET_SIGN 0
 #define PACKET_OFFSET_TYPE 4
 #define PACKET_OFFSET_SEQNUM 8
@@ -41,6 +62,7 @@
 #define PACKET_OFFSET_PAYLOAD 16
 
 static uint32_t PACKET_SIGNATURE = htonl(0xC5E48101); // CSE 481 L =_=, big endian
+static uint32_t PACKET_SIGNATURE_ENCRYPTED = htonl(0xC5E48102);
 
 class Packet {
 	public:

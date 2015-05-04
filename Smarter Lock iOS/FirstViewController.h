@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Communicator.h"
 
 @interface FirstViewController : UIViewController
 

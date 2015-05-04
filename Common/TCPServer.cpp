@@ -31,10 +31,22 @@
 std::map<uint32_t, TCPCallbackFunction> callbackMap = std::map<uint32_t, TCPCallbackFunction>();
 bool TCPServer::running = false;
 ThreadPool* TCPServer::pool = nullptr;
+RSA* TCPServer::rsa = nullptr;
 
-bool TCPServer::SendPacket(Packet* packet, int sock) {
+int TCPServer::Encrypt(int flen, const uint8_t* from, uint8_t* to) {
+	if (!rsa)
+		return -1;
+	return RSA_private_encrypt(flen, from, to, rsa, RSA_PKCS1_PADDING);
+}
+int TCPServer::Decrypt(int flen, const uint8_t* from, uint8_t* to) {
+	if (!rsa)
+		return -1;
+	return RSA_private_decrypt(flen, from, to, rsa, RSA_PKCS1_PADDING);
+}
+
+bool TCPServer::SendPacket(Packet* packet, int sock, bool crypt) {
 	size_t tl;
-	const uint8_t* pkbuf = PacketAssembler::Assemble(packet, tl);
+	const uint8_t* pkbuf = PacketAssembler::Assemble(packet, tl, crypt);
 	
 	if (send(sock, pkbuf, tl, MSG_NOSIGNAL) < 0) {
 		perror("not sent");
@@ -64,7 +76,10 @@ void communicate(ThreadPool::Task* t) {
 	int32_t testlen = PacketAssembler::GetLength(readbuf, n);
 	
 	if (testlen > 0) { // full packet
-		Packet* packet = PacketAssembler::Disassemble(readbuf);
+		Packet* packet = PacketAssembler::Disassemble(readbuf, true);
+		
+		if (!packet)
+			return;
 		
 		uint32_t type = packet->type();
 		if (callbackMap.count(type) != 0) {
@@ -79,11 +94,16 @@ void communicate(ThreadPool::Task* t) {
 	}
 }
 
-bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount) {
+bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount, RSA* r) {
 	if (IsRunning()) {
 		fprintf(stderr, "Server already running");
 		return false;
 	}
+	
+	rsa = r;
+	
+	PacketAssembler::SetEncryptor(Encrypt);
+	PacketAssembler::SetDecryptor(Decrypt);
 	
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd < 0) {
