@@ -83,7 +83,20 @@
     return true;
 }
 
-
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo: (void *) contextInfo {
+	NSString* title = @"Image saved into the album";
+	NSString* msg = @"The image is successfully saved into the album";
+	
+	if (error) {
+		title = @"Failed to save image into the album";
+		msg = @"Failed to save image into the album";
+	}
+	
+	UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle: title
+                                                          message: msg
+                                                         delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [myAlert show];
+}
 
 // Actions
 -(IBAction)refreshQR:(id)sender {
@@ -96,6 +109,11 @@
     [comm writePacket:unlockPacket target:self withSelector:@selector(unlockReceivePacket:)];
     
     delete unlockPacket;
+}
+
+-(IBAction)saveImage:(id)sender {
+	UIImage* img = self.imageView.image;
+	UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 @end

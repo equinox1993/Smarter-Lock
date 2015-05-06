@@ -18,6 +18,7 @@
 
 -(IBAction)refreshQR:(id)sender;
 -(IBAction)unlock:(id)sender;
+-(IBAction)saveImage:(id)sender;
 
 @end
 

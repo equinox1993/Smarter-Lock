@@ -95,57 +95,69 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1c-zB-vnJ">
                                 <rect key="frame" x="86" y="8" width="428" height="428"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="height" multiplier="1:1" id="0bJ-jV-Lfe"/>
+                                    <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="height" multiplier="1:1" id="akd-Tk-grU"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEj-Ni-jY4">
-                                <rect key="frame" x="276" y="504" width="48" height="30"/>
-                                <state key="normal" title="Unlock">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="unlock:" destination="8rJ-Kc-sve" eventType="touchDown" id="Q9L-KV-Kkz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v14-VM-8na">
-                                <rect key="frame" x="273" y="477" width="53" height="30"/>
-                                <state key="normal" title="Refresh">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="refreshQR:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KSc-q3-fcm"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wo4-TR-bCD">
-                                <rect key="frame" x="86" y="444" width="428" height="39"/>
+                                <rect key="frame" x="86" y="444" width="428" height="74"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Expire in:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrd-Q4-ufi">
-                                        <rect key="frame" x="100" y="8" width="78" height="23"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v14-VM-8na">
+                                        <rect key="frame" x="0.0" y="36" width="53" height="30"/>
+                                        <state key="normal" title="Refresh">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="refreshQR:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="KSc-q3-fcm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wi-nZ-Bgq">
+                                        <rect key="frame" x="174" y="36" width="81" height="30"/>
+                                        <state key="normal" title="Save Image">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveImage:" destination="8rJ-Kc-sve" eventType="touchDown" id="m5Z-eR-3dq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEj-Ni-jY4">
+                                        <rect key="frame" x="380" y="36" width="48" height="30"/>
+                                        <state key="normal" title="Unlock">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="unlock:" destination="8rJ-Kc-sve" eventType="touchDown" id="Q9L-KV-Kkz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="EXPIRATION_DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1Q-XA-cO5">
+                                        <rect key="frame" x="280" y="10" width="148" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EXPIRATION_DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1Q-XA-cO5">
-                                        <rect key="frame" x="178" y="10" width="148" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Expire in:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrd-Q4-ufi">
+                                        <rect key="frame" x="0.0" y="8" width="78" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="9Wi-nZ-Bgq" secondAttribute="centerX" id="KH8-bJ-asP"/>
+                                    <constraint firstItem="Rrd-Q4-ufi" firstAttribute="leading" secondItem="wo4-TR-bCD" secondAttribute="leading" id="ZHt-We-Omq"/>
+                                    <constraint firstAttribute="trailing" secondItem="C1Q-XA-cO5" secondAttribute="trailing" id="p6K-z4-HKx"/>
+                                    <constraint firstItem="NEj-Ni-jY4" firstAttribute="trailing" secondItem="wo4-TR-bCD" secondAttribute="trailing" id="vgw-wW-k6a"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="v14-VM-8na" firstAttribute="top" secondItem="wo4-TR-bCD" secondAttribute="bottom" constant="-6" id="1xj-Rx-oeD"/>
-                            <constraint firstAttribute="centerX" secondItem="NEj-Ni-jY4" secondAttribute="centerX" id="7a0-Sh-krK"/>
-                            <constraint firstAttribute="centerX" secondItem="wo4-TR-bCD" secondAttribute="centerX" id="D8K-Ah-74j"/>
-                            <constraint firstItem="NEj-Ni-jY4" firstAttribute="top" secondItem="v14-VM-8na" secondAttribute="bottom" constant="-3" id="DZL-6Q-M63"/>
-                            <constraint firstAttribute="centerX" secondItem="v14-VM-8na" secondAttribute="centerX" id="K0M-Uo-bS7"/>
-                            <constraint firstItem="wo4-TR-bCD" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="8" id="MxQ-TE-SKz"/>
-                            <constraint firstAttribute="centerY" secondItem="J1c-zB-vnJ" secondAttribute="centerY" multiplier="1.2" id="lYb-Vy-AzY"/>
-                            <constraint firstAttribute="centerX" secondItem="J1c-zB-vnJ" secondAttribute="centerX" id="n5K-PL-dEl"/>
-                            <constraint firstAttribute="width" secondItem="J1c-zB-vnJ" secondAttribute="width" multiplier="1.4:1" id="slv-Xu-FSH"/>
+                            <constraint firstAttribute="centerX" secondItem="wo4-TR-bCD" secondAttribute="centerX" id="4Jt-er-0Qf"/>
+                            <constraint firstAttribute="centerX" secondItem="J1c-zB-vnJ" secondAttribute="centerX" id="5Px-Sl-OeT"/>
+                            <constraint firstItem="wo4-TR-bCD" firstAttribute="top" secondItem="J1c-zB-vnJ" secondAttribute="bottom" constant="8" id="NNw-eC-Azv"/>
+                            <constraint firstAttribute="centerY" secondItem="J1c-zB-vnJ" secondAttribute="centerY" multiplier="1.2" id="hei-zP-HGy"/>
+                            <constraint firstItem="J1c-zB-vnJ" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" multiplier="0.75" id="j3N-uq-b7s"/>
+                            <constraint firstItem="J1c-zB-vnJ" firstAttribute="width" secondItem="wo4-TR-bCD" secondAttribute="width" id="nZX-rO-Jbp"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Unlock" image="Unlock-50" id="cPa-gy-q4n"/>
