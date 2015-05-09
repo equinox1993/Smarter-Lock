@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-#import "CommandPacket.h"
+#include "CommandPacket.h"
 #include <cstring>
 
 int CommandPacket::serialize(uint8_t* output) const {
