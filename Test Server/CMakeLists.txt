@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
 
-message(${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules)
-
-# list(APPEND
-#     CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules"
-# )
-
 project(Server)
+
+option(NO_GUI "No gui for server." OFF)
+
+if(NO_GUI)
+    add_definitions(-DNO_GUI)
+endif(NO_GUI)
 add_definitions("-std=c++11")
 
 file(GLOB Packets_CPP

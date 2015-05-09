@@ -96,6 +96,8 @@ void startMonitor(Packet* up, CommunicationTask* ct) {
 	
 	SimplePacket sp = SimplePacket((uint8_t*)&vidKey, 8, Type::VIDEO_KEY, up->sequenceNumber);
 	
+	printf("Start streaming for fd %d, seqNum %d, video key %d.\n", ct->sockfd_, up->sequenceNumber, vidKey);
+	
 	TCPServer::SendPacket(&sp, ct->sockfd_, true);
 	
 	monitorMap[key] = {up->sequenceNumber, ct->sockfd_, vidKey};
@@ -110,8 +112,11 @@ void stopMonitor(Packet* up, CommunicationTask* ct) {
 	
 	int key = ct->addr_ + (up->sequenceNumber << 19);
 	struct clientinfo ci = monitorMap[key];
-	monitorMap.erase(key);
+	
+	printf("Stop streaming for fd %d.\n", ci.sockfd);
 	TCPServer::CloseConnection(ci.sockfd);
+
+	monitorMap.erase(key);
 }
 
 void* startServer(void* sth) {
@@ -187,7 +192,9 @@ int main(int argc, const char * argv[]) {
 			
 		}
 		
+		#ifndef NO_GUI
 		cv::imshow("", frame);
+		#endif
 		cv::waitKey(75);
 		
 	}
