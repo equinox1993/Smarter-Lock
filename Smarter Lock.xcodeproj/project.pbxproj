@@ -204,6 +204,7 @@
 		E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UDPCommunicator.cpp; sourceTree = "<group>"; };
 		E8608DE11AF3534400CF2D9A /* UDPCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPCommunicator.h; sourceTree = "<group>"; };
 		E8608DE71AF3926F00CF2D9A /* libopencv_imgproc.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.2.4.8.dylib; path = /usr/local/Cellar/opencv/2.4.8.2/lib/libopencv_imgproc.2.4.8.dylib; sourceTree = "<absolute>"; };
+		E86A80401AFDC9270069E7CE /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		E89198F71AE078E5009048E5 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
 		E89198F81AE078E5009048E5 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
 		E89198F91AE078E5009048E5 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
@@ -460,6 +461,7 @@
 				E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */,
 				E8608DDA1AF3437A00CF2D9A /* libopencv_video.dylib */,
 				E8608DCD1AF33CF800CF2D9A /* main.cpp */,
+				E86A80401AFDC9270069E7CE /* CMakeLists.txt */,
 			);
 			path = "Test Server";
 			sourceTree = "<group>";
