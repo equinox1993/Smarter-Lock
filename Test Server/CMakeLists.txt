@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Server)
 
-add_executable(main.cpp)
+add_executable(Server main.cpp)
 
 find_package(OpenCV)
 target_link_libraries(Server ${OpenCV_LIBRARIES})
