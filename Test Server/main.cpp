@@ -17,10 +17,10 @@
 
 #include <map>
 
-#include "CommandPacket.h"
-#include "PasscodePacket.h"
-#include "VideoFramePacket.h"
-#include "SimplePacket.h"
+#include "../Common/CommandPacket.h"
+#include "../Common/PasscodePacket.h"
+#include "../Common/VideoFramePacket.h"
+#include "../Common/SimplePacket.h"
 
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
