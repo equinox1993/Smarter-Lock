@@ -26,7 +26,7 @@
 #include <openssl/rsa.h>
 
 //#include "UDPCommunicator.h"
-#include "TCPServer.h"
+#include "../Common/TCPServer.h"
 
 #define RSA_FILE "./private.pem"
 
