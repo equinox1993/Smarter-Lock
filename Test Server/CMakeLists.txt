@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(Server)
+add_definitions("-std=c++11")
 
 add_executable(Server main.cpp)
 
