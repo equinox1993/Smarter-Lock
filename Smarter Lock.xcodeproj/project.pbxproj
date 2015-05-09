@@ -100,15 +100,15 @@
 		40585B3E1AF2CB40009D5C51 /* Authenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authenticator.m; sourceTree = "<group>"; };
 		E82837D61AF1E00E00F22F2F /* MonitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorController.h; sourceTree = "<group>"; };
 		E82837D71AF1E00E00F22F2F /* MonitorController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonitorController.mm; sourceTree = "<group>"; };
-		E84168CA1AE8A38800BB1897 /* Packet.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Packet.h; sourceTree = "<group>"; };
-		E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandPacket.cpp; sourceTree = "<group>"; };
-		E84168CD1AE8A40700BB1897 /* CommandPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandPacket.h; sourceTree = "<group>"; };
-		E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PasscodePacket.cpp; sourceTree = "<group>"; };
-		E84168D01AE8A64B00BB1897 /* PasscodePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasscodePacket.h; sourceTree = "<group>"; };
-		E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacketAssembler.cpp; sourceTree = "<group>"; };
-		E84168D61AE8B65E00BB1897 /* PacketAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketAssembler.h; sourceTree = "<group>"; };
-		E84F82791AF70EED00638336 /* SimplePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePacket.cpp; sourceTree = "<group>"; };
-		E84F827A1AF70EED00638336 /* SimplePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePacket.h; sourceTree = "<group>"; };
+		E84168CA1AE8A38800BB1897 /* Packet.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Packet.h; path = ../Packet.h; sourceTree = "<group>"; };
+		E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CommandPacket.cpp; path = ../CommandPacket.cpp; sourceTree = "<group>"; };
+		E84168CD1AE8A40700BB1897 /* CommandPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandPacket.h; path = ../CommandPacket.h; sourceTree = "<group>"; };
+		E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PasscodePacket.cpp; path = ../PasscodePacket.cpp; sourceTree = "<group>"; };
+		E84168D01AE8A64B00BB1897 /* PasscodePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodePacket.h; path = ../PasscodePacket.h; sourceTree = "<group>"; };
+		E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PacketAssembler.cpp; path = ../PacketAssembler.cpp; sourceTree = "<group>"; };
+		E84168D61AE8B65E00BB1897 /* PacketAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PacketAssembler.h; path = ../PacketAssembler.h; sourceTree = "<group>"; };
+		E84F82791AF70EED00638336 /* SimplePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimplePacket.cpp; path = ../SimplePacket.cpp; sourceTree = "<group>"; };
+		E84F827A1AF70EED00638336 /* SimplePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplePacket.h; path = ../SimplePacket.h; sourceTree = "<group>"; };
 		E85BCF8F1AF6D93A007AFB83 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		E85BCF921AF6D961007AFB83 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E85BCF941AF6D961007AFB83 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 		E8608DD61AF3432000CF2D9A /* libopencv_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.dylib; path = ../../../../../../../usr/local/lib/libopencv_core.dylib; sourceTree = "<group>"; };
 		E8608DD81AF3435700CF2D9A /* libopencv_highgui.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.dylib; path = ../../../../../../../usr/local/lib/libopencv_highgui.dylib; sourceTree = "<group>"; };
 		E8608DDA1AF3437A00CF2D9A /* libopencv_video.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.dylib; path = ../../../../../../../usr/local/lib/libopencv_video.dylib; sourceTree = "<group>"; };
-		E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoFramePacket.cpp; sourceTree = "<group>"; };
-		E8608DDD1AF34B1D00CF2D9A /* VideoFramePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFramePacket.h; sourceTree = "<group>"; };
+		E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VideoFramePacket.cpp; path = ../VideoFramePacket.cpp; sourceTree = "<group>"; };
+		E8608DDD1AF34B1D00CF2D9A /* VideoFramePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoFramePacket.h; path = ../VideoFramePacket.h; sourceTree = "<group>"; };
 		E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UDPCommunicator.cpp; sourceTree = "<group>"; };
 		E8608DE11AF3534400CF2D9A /* UDPCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPCommunicator.h; sourceTree = "<group>"; };
 		E8608DE71AF3926F00CF2D9A /* libopencv_imgproc.2.4.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.2.4.8.dylib; path = /usr/local/Cellar/opencv/2.4.8.2/lib/libopencv_imgproc.2.4.8.dylib; sourceTree = "<absolute>"; };
@@ -338,23 +338,13 @@
 		40585B311AE870F1009D5C51 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E84168CA1AE8A38800BB1897 /* Packet.h */,
-				E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */,
-				E84168CD1AE8A40700BB1897 /* CommandPacket.h */,
-				E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */,
-				E84168D01AE8A64B00BB1897 /* PasscodePacket.h */,
-				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
-				E84168D61AE8B65E00BB1897 /* PacketAssembler.h */,
-				E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */,
-				E8608DDD1AF34B1D00CF2D9A /* VideoFramePacket.h */,
+				E86A80411AFDCE6D0069E7CE /* Packets */,
 				E8608DE01AF3534400CF2D9A /* UDPCommunicator.cpp */,
 				E8608DE11AF3534400CF2D9A /* UDPCommunicator.h */,
 				E85D3A3E1AF58C750091D03B /* TCPServer.cpp */,
 				E85D3A3F1AF58C750091D03B /* TCPServer.h */,
 				E8FB2BA51AF601530024DCAA /* ThreadPool.cpp */,
 				E8FB2BA61AF601530024DCAA /* ThreadPool.h */,
-				E84F82791AF70EED00638336 /* SimplePacket.cpp */,
-				E84F827A1AF70EED00638336 /* SimplePacket.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -464,6 +454,24 @@
 				E86A80401AFDC9270069E7CE /* CMakeLists.txt */,
 			);
 			path = "Test Server";
+			sourceTree = "<group>";
+		};
+		E86A80411AFDCE6D0069E7CE /* Packets */ = {
+			isa = PBXGroup;
+			children = (
+				E84F82791AF70EED00638336 /* SimplePacket.cpp */,
+				E84F827A1AF70EED00638336 /* SimplePacket.h */,
+				E84168CA1AE8A38800BB1897 /* Packet.h */,
+				E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */,
+				E84168CD1AE8A40700BB1897 /* CommandPacket.h */,
+				E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */,
+				E84168D01AE8A64B00BB1897 /* PasscodePacket.h */,
+				E84168D51AE8B65E00BB1897 /* PacketAssembler.cpp */,
+				E84168D61AE8B65E00BB1897 /* PacketAssembler.h */,
+				E8608DDC1AF34B1D00CF2D9A /* VideoFramePacket.cpp */,
+				E8608DDD1AF34B1D00CF2D9A /* VideoFramePacket.h */,
+			);
+			path = Packets;
 			sourceTree = "<group>";
 		};
 		E89198F51AE078E5009048E5 /* QR */ = {
