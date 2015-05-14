@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include <sys/signal.h>
 #include <pthread.h>
 #include <unistd.h>
 
@@ -146,19 +147,25 @@ void* startServer(void* sth) {
 }
 
 void sigHandler(int signo) {
-	if (signo == SIGKILL || signo == SIGSTOP) {
+//	if (signo == SIGKILL || signo == SIGSTOP) {
 		printf("Received signal... Doing cleanups...");
 		
 		delete io;
 		TCPServer::Kill();
 		exit(0);
-	}
+//	}
 }
 
 // -- end actions
 
 
 int main(int argc, const char * argv[]) {
+	if (signal(SIGKILL, sigHandler) == SIG_ERR)
+		printf("Can't catch SIGKILL\n");
+	
+	if (signal(SIGSTOP, sigHandler) == SIG_ERR)
+		printf("Can't catch SIGSTOP\n");
+
 	pthread_t serverThreadId;
 	pthread_create(&serverThreadId, nullptr, startServer, nullptr);
 	
