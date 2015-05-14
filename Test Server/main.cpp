@@ -73,6 +73,7 @@ void unlock(Packet* up, CommunicationTask* ct) {
 	TCPServer::SendPacket(&accept, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
 	
+	printf("Door unlocked");
 	io->write("27", true);
 	sleep(1);
 	io->write("27", false);
