@@ -148,10 +148,11 @@ void* startServer(void* sth) {
 
 void sigHandler(int signo) {
 //	if (signo == SIGKILL || signo == SIGSTOP) {
-		printf("Received signal... Doing cleanups...");
+		printf("Received signal... Doing cleanups...\n");
 		
 		delete io;
 		TCPServer::Kill();
+		printf("Done\n");
 		exit(0);
 //	}
 }
