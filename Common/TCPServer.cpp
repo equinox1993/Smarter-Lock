@@ -32,6 +32,7 @@ std::map<uint32_t, TCPCallbackFunction> callbackMap = std::map<uint32_t, TCPCall
 bool TCPServer::running = false;
 ThreadPool* TCPServer::pool = nullptr;
 RSA* TCPServer::rsa = nullptr;
+int TCPServer::sockfd;
 
 int TCPServer::Encrypt(int flen, const uint8_t* from, uint8_t* to) {
 	if (!rsa)
@@ -105,7 +106,7 @@ bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount, RSA* r) {
 	PacketAssembler::SetEncryptor(Encrypt);
 	PacketAssembler::SetDecryptor(Decrypt);
 	
-	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (sockfd < 0) {
 		perror("Failed to create socket");
 		return false;
@@ -142,6 +143,10 @@ bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount, RSA* r) {
 	}
 	
 //	delete pool;
+}
+
+void TCPServer::Kill() {
+	close(sockfd);
 }
 
 void TCPServer::CloseConnection(int sock) {

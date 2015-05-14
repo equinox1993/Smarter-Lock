@@ -30,6 +30,8 @@
 
 #define RSA_FILE "./private.pem"
 
+#include "../Common/GPIO.h"
+
 RSA* rsaFromFile(const char* filename, bool pub) {
 	FILE* fp = fopen(filename, "rb");
 	
@@ -61,12 +63,18 @@ void randSeq(char* out) {
 
 // -- actions
 
+GPIO* io;
+
 void unlock(Packet* up, CommunicationTask* ct) {
 	CommandPacket accept = CommandPacket(Type::ACCEPT);
 	accept.sequenceNumber = up->sequenceNumber;
 	
 	TCPServer::SendPacket(&accept, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
+	
+	io->write("27", true);
+	sleep(1);
+	io->write("27", false);
 }
 
 void passcode(Packet* up, CommunicationTask* ct) {
@@ -131,7 +139,20 @@ void* startServer(void* sth) {
 		fprintf(stderr, "Failed to start server. wait 5 secs then retry.\n");
 		sleep(5);
 	}
+	
+	io = new GPIO();
+	io->setup("27", GPIO::Direction::OUT);
 	return nullptr;
+}
+
+void sigHandler(int signo) {
+	if (signo == SIGKILL || signo == SIGSTOP) {
+		printf("Received signal... Doing cleanups...");
+		
+		delete io;
+		TCPServer::Kill();
+		exit(0);
+	}
 }
 
 // -- end actions
@@ -156,7 +177,10 @@ int main(int argc, const char * argv[]) {
 		cap >> frame;
 		if(frame.empty()){
 			std::cerr<<"frame is empty"<<std::endl;
-			break;
+			
+			sleep(1);
+			
+			continue;
 		}
 		
 		if (frame.cols > 400) {

@@ -33,12 +33,14 @@ typedef void (*TCPCallbackFunction)(Packet*, CommunicationTask*);  // don't stor
 class TCPServer {
 	public:
 	static bool Run(uint16_t port, uint32_t maxThreadCount, RSA* rsa = nullptr); // rsa: private rsa
+	static void Kill();
 	static bool IsRunning();
 	static void RegisterCallback(uint32_t type, TCPCallbackFunction cb);
 	static bool SendPacket(Packet* packet, int sock, bool crypt = false);
 	static void CloseConnection(int sock);
 	
 	private:
+	static int sockfd;
 	static RSA* rsa;
 	static ThreadPool* pool;
 	static bool running;
