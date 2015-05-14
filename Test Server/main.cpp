@@ -73,7 +73,7 @@ void unlock(Packet* up, CommunicationTask* ct) {
 	TCPServer::SendPacket(&accept, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
 	
-	printf("Door unlocked");
+	printf("Door unlocked\n");
 	io->write("27", true);
 	sleep(1);
 	io->write("27", false);
@@ -137,13 +137,13 @@ void* startServer(void* sth) {
 	TCPServer::RegisterCallback(Type::REQUEST_MONITOR, startMonitor);
 	TCPServer::RegisterCallback(Type::STOP_MONITOR, stopMonitor);
 	
+	io = new GPIO();
+	io->setup("27", GPIO::Direction::OUT);
+	
 	while (!TCPServer::Run(2333, 10, rsa)) {
 		fprintf(stderr, "Failed to start server. wait 5 secs then retry.\n");
 		sleep(5);
 	}
-	
-	io = new GPIO();
-	io->setup("27", GPIO::Direction::OUT);
 	return nullptr;
 }
 
