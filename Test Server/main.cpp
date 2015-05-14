@@ -160,11 +160,14 @@ void sigHandler(int signo) {
 
 
 int main(int argc, const char * argv[]) {
-	if (signal(SIGKILL, sigHandler) == SIG_ERR)
-		printf("Can't catch SIGKILL\n");
-	
-	if (signal(SIGSTOP, sigHandler) == SIG_ERR)
-		printf("Can't catch SIGSTOP\n");
+	if (signal(SIGINT, sigHandler) == SIG_ERR)
+		printf("Can't catch SIGINT\n");
+//	
+//	if (signal(SIGKILL, sigHandler) == SIG_ERR)
+//		printf("Can't catch SIGKILL\n");
+//	
+//	if (signal(SIGSTOP, sigHandler) == SIG_ERR)
+//		printf("Can't catch SIGSTOP\n");
 
 	pthread_t serverThreadId;
 	pthread_create(&serverThreadId, nullptr, startServer, nullptr);
@@ -175,7 +178,7 @@ int main(int argc, const char * argv[]) {
 	if (!cap.isOpened()) {
 		std::cerr << "***Could not initialize capturing...***\n";
 		std::cerr << "Current parameter's value: \n";
-		return -1;
+//		return -1;
 	}
 	
 	cv::Mat frame;
