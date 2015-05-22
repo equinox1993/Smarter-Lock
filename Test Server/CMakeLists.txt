@@ -19,7 +19,7 @@ file(GLOB COMMON_CPP
     "../Common/*.cpp"
 )
 
-add_executable(Server main.cpp Helpers.cpp ServerHeads.cpp ${Packets_CPP} ${COMMON_CPP})
+add_executable(Server main.cpp Helpers.cpp ServerThreads.cpp ${Packets_CPP} ${COMMON_CPP})
 
 find_package(OpenCV 2 REQUIRED)
 if(OpenCV_FOUND)
