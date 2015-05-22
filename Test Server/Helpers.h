@@ -9,6 +9,7 @@
 #ifndef __Smarter_Lock__Helpers__
 #define __Smarter_Lock__Helpers__
 
+#include <stdint.h>
 #include <openssl/rsa.h>
 
 class Helpers {
