@@ -24,6 +24,7 @@
 void sigHandler(int signo) {
 //	if (signo == SIGKILL || signo == SIGSTOP) {
 	ServerThreads::cleanup();
+	exit(0);
 //	}
 }
 
