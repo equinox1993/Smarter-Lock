@@ -1,6 +1,2 @@
-Makefile
-cmake_install.cmake
-CMakeFiles/*
-CMakeCache.txt
-Server
+build/*
 config.ini

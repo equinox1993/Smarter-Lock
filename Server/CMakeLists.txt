@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(Server)
 
-#list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMakeModules")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/CMakeModules")
 
 option(NO_GUI "No gui for server." OFF)
 
@@ -11,15 +11,26 @@ if(NO_GUI)
 endif(NO_GUI)
 add_definitions("-std=c++11")
 
-file(GLOB Packets_CPP
-    "../Common/Packets/*.cpp"
-)
-
-file(GLOB COMMON_CPP
+file(GLOB_RECURSE COMMON_CPP
     "../Common/*.cpp"
 )
 
-add_executable(Server main.cpp Helpers.cpp ServerThreads.cpp CameraLoop.cpp ${Packets_CPP} ${COMMON_CPP})
+file(GLOB SERVER_CPP
+    "./*.cpp"
+)
+
+add_executable(Server ${SERVER_CPP} ${COMMON_CPP})
+
+find_package(Iconv)
+if(ICONV_FOUND)
+    include_directories(${ICONV_INCLUDE_DIR})
+    target_link_libraries(Server ${ICONV_LIBRARIES})
+else(ICONV_FOUND)
+    add_definitions(-DNO_ICONV=1)
+endif(ICONV_FOUND)
+
+include_directories(${CMAKE_SOURCE_DIR}/../zxing/core/src)
+target_link_libraries(Server ${CMAKE_SOURCE_DIR}/../zxing/build/libzxing.a)
 
 find_package(OpenCV 2 REQUIRED)
 if(OpenCV_FOUND)
