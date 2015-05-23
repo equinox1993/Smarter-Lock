@@ -26,6 +26,13 @@
 		E84F827C1AF714CA00638336 /* SimplePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84F82791AF70EED00638336 /* SimplePacket.cpp */; };
 		E851928F1B0462450016BCCD /* GPIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E851928D1B0462450016BCCD /* GPIO.cpp */; };
 		E856C5BD1B10549300C6A1B7 /* CameraLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E856C5BB1B10549300C6A1B7 /* CameraLoop.cpp */; };
+		E856C7421B106AE100C6A1B7 /* libzxing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E856C7411B106AE100C6A1B7 /* libzxing.a */; };
+		E856C74F1B1072F500C6A1B7 /* ZxingBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E856C74D1B1072F500C6A1B7 /* ZxingBridge.cpp */; };
+		E856C7511B1087FF00C6A1B7 /* ZxingBridgeTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = E856C7501B1087FF00C6A1B7 /* ZxingBridgeTest.mm */; };
+		E856C7521B10884100C6A1B7 /* ZxingBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E856C74D1B1072F500C6A1B7 /* ZxingBridge.cpp */; };
+		E856C7531B108A2C00C6A1B7 /* libzxing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E856C7411B106AE100C6A1B7 /* libzxing.a */; };
+		E856C7551B108A4800C6A1B7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E856C7541B108A4800C6A1B7 /* libiconv.dylib */; };
+		E856C7561B108ADA00C6A1B7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E856C7541B108A4800C6A1B7 /* libiconv.dylib */; };
 		E85BCFDF1AF6D961007AFB83 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E85BCF921AF6D961007AFB83 /* LICENSE */; };
 		E85BCFE31AF6EE82007AFB83 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E85BCFE21AF6EE82007AFB83 /* libssl.dylib */; };
 		E85BCFE51AF6F284007AFB83 /* private.pem in Resources */ = {isa = PBXBuildFile; fileRef = E85BCFE41AF6F284007AFB83 /* private.pem */; };
@@ -117,6 +124,12 @@
 		E851928E1B0462450016BCCD /* GPIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPIO.h; sourceTree = "<group>"; };
 		E856C5BB1B10549300C6A1B7 /* CameraLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraLoop.cpp; sourceTree = "<group>"; };
 		E856C5BC1B10549300C6A1B7 /* CameraLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraLoop.h; sourceTree = "<group>"; };
+		E856C5BE1B10611600C6A1B7 /* libqrencode.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libqrencode.3.dylib; path = ../../../../../../usr/local/Cellar/qrencode/3.4.4/lib/libqrencode.3.dylib; sourceTree = "<group>"; };
+		E856C7411B106AE100C6A1B7 /* libzxing.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzxing.a; path = zxing/build/libzxing.a; sourceTree = "<group>"; };
+		E856C74D1B1072F500C6A1B7 /* ZxingBridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZxingBridge.cpp; sourceTree = "<group>"; };
+		E856C74E1B1072F500C6A1B7 /* ZxingBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZxingBridge.h; sourceTree = "<group>"; };
+		E856C7501B1087FF00C6A1B7 /* ZxingBridgeTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZxingBridgeTest.mm; sourceTree = "<group>"; };
+		E856C7541B108A4800C6A1B7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		E85BCF8F1AF6D93A007AFB83 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		E85BCF921AF6D961007AFB83 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E85BCF941AF6D961007AFB83 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -251,6 +264,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E856C7551B108A4800C6A1B7 /* libiconv.dylib in Frameworks */,
+				E856C7531B108A2C00C6A1B7 /* libzxing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,11 +273,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E856C7421B106AE100C6A1B7 /* libzxing.a in Frameworks */,
 				E85BCFE91AF6F3CA007AFB83 /* libcrypto.dylib in Frameworks */,
 				E85BCFE31AF6EE82007AFB83 /* libssl.dylib in Frameworks */,
 				E8608DE91AF3929B00CF2D9A /* libopencv_imgproc.2.4.8.dylib in Frameworks */,
 				E8608DD71AF3432000CF2D9A /* libopencv_core.dylib in Frameworks */,
 				E8608DD91AF3435700CF2D9A /* libopencv_highgui.dylib in Frameworks */,
+				E856C7561B108ADA00C6A1B7 /* libiconv.dylib in Frameworks */,
 				E8608DDB1AF3437A00CF2D9A /* libopencv_video.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +290,9 @@
 		402F64A21AE0540400B6FAC3 = {
 			isa = PBXGroup;
 			children = (
+				E856C7541B108A4800C6A1B7 /* libiconv.dylib */,
+				E856C7411B106AE100C6A1B7 /* libzxing.a */,
+				E856C5BE1B10611600C6A1B7 /* libqrencode.3.dylib */,
 				E85BCF911AF6D961007AFB83 /* openssl-includes */,
 				40585B311AE870F1009D5C51 /* Common */,
 				402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */,
@@ -335,6 +355,7 @@
 				402F64CD1AE0540400B6FAC3 /* Smarter_LockTests.m */,
 				402F64CB1AE0540400B6FAC3 /* Supporting Files */,
 				40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */,
+				E856C7501B1087FF00C6A1B7 /* ZxingBridgeTest.mm */,
 			);
 			path = "Smarter LockTests";
 			sourceTree = "<group>";
@@ -472,6 +493,8 @@
 				E86F7D521B0F2BF100BE8FB6 /* ServerThreads.h */,
 				E856C5BB1B10549300C6A1B7 /* CameraLoop.cpp */,
 				E856C5BC1B10549300C6A1B7 /* CameraLoop.h */,
+				E856C74D1B1072F500C6A1B7 /* ZxingBridge.cpp */,
+				E856C74E1B1072F500C6A1B7 /* ZxingBridge.h */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -679,7 +702,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				40585B391AE87CA0009D5C51 /* CommunicatorTest.mm in Sources */,
+				E856C7521B10884100C6A1B7 /* ZxingBridge.cpp in Sources */,
 				402F64CE1AE0540400B6FAC3 /* Smarter_LockTests.m in Sources */,
+				E856C7511B1087FF00C6A1B7 /* ZxingBridgeTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +717,7 @@
 				E8608DE61AF390F300CF2D9A /* PasscodePacket.cpp in Sources */,
 				E8608DE41AF390DC00CF2D9A /* PacketAssembler.cpp in Sources */,
 				E851928F1B0462450016BCCD /* GPIO.cpp in Sources */,
+				E856C74F1B1072F500C6A1B7 /* ZxingBridge.cpp in Sources */,
 				E8608DE31AF3534400CF2D9A /* UDPCommunicator.cpp in Sources */,
 				E84F827C1AF714CA00638336 /* SimplePacket.cpp in Sources */,
 				E86F7D501B0F2AB700BE8FB6 /* Helpers.cpp in Sources */,
@@ -899,8 +925,22 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/lib/include,
+					zxing/core/src,
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "Smarter LockTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/zxing/build",
+					"$(PROJECT_DIR)/Smarter",
+					Lock,
+					iOS,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smarter Lock.app/Smarter Lock";
 			};
@@ -914,8 +954,22 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/lib/include,
+					zxing/core/src,
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "Smarter LockTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/zxing/build",
+					"$(PROJECT_DIR)/Smarter",
+					Lock,
+					iOS,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Smarter Lock.app/Smarter Lock";
 			};
@@ -934,6 +988,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
+					zxing/core/src,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -942,6 +997,8 @@
 					Publisher,
 					/usr/local/Cellar/opencv/2.4.8.2/lib,
 					/usr/local/lib,
+					/usr/local/Cellar/qrencode/3.4.4/lib,
+					"$(PROJECT_DIR)/zxing/build",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -957,6 +1014,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
+					zxing/core/src,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,6 +1023,8 @@
 					Publisher,
 					/usr/local/Cellar/opencv/2.4.8.2/lib,
 					/usr/local/lib,
+					/usr/local/Cellar/qrencode/3.4.4/lib,
+					"$(PROJECT_DIR)/zxing/build",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";

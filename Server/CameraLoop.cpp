@@ -17,6 +17,10 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/video/tracking.hpp>
 
+#include <zxing/ReaderException.h>
+
+#include "ZxingBridge.h"
+
 cv::VideoCapture* cap = nullptr;
 
 void openCamera(int width, int height) {
@@ -43,21 +47,19 @@ void closeCamera() {
 	cap = nullptr;
 }
 
+void abrtHandler(int signum) {
+	std::cout<<"Aborted. No QR?"<<std::endl;
+}
+
 void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
+	if (signal(SIGABRT, abrtHandler) == SIG_ERR)
+		printf("Can't handle abrt\n");
 
 	cv::Mat frame;
 	
+	openCamera(width, height);
+	
 	while(1){
-		if (ServerThreads::countMonitors() == 0) {
-			if (cap)
-				closeCamera();
-			
-			sleep(1);
-			continue;
-		}
-		
-		if (!cap)
-			openCamera(width, height);
 		
 		(*cap) >> frame;
 		
@@ -68,15 +70,59 @@ void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
 			
 			continue;
 		}
-
-//		idk(frame);
 		
 		ServerThreads::broadcastVideoFrame(frame);
 	
         if (gui)
             cv::imshow("", frame);
 		
-        cv::waitKey(wait);
-		
+        int key = cv::waitKey(wait) % 256;
+		if (key == ' ') {
+			try {
+				std::string code = ZxingBridge::decode(frame);
+				std::cout<<"Decoded: "<<code<<std::endl;
+			} catch (const ZxingBridge::ReaderException& e) {
+				std::cout<<"No code detected."<<std::endl;
+			}
+			
+		}
 	}
 }
+
+// FORM 1
+//
+//void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
+//	cv::Mat frame;
+//	
+//	while(1){
+//		if (ServerThreads::countMonitors() == 0) {
+//			if (cap)
+//				closeCamera();
+//			
+//			sleep(1);
+//			continue;
+//		}
+//		
+//		if (!cap)
+//			openCamera(width, height);
+//		
+//		(*cap) >> frame;
+//		
+//		if(frame.empty()){
+//			std::cerr<<"frame is empty"<<std::endl;
+//			
+//			sleep(1);
+//			
+//			continue;
+//		}
+//
+////		idk(frame);
+//		
+//		ServerThreads::broadcastVideoFrame(frame);
+//	
+//        if (gui)
+//            cv::imshow("", frame);
+//		
+//        cv::waitKey(wait);
+//	}
+//}
