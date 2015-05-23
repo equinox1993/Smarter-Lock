@@ -78,7 +78,7 @@ int main(int argc, const char * argv[]) {
 	uint32_t numThreads = atoi(ini.GetValue("server", "threads", stringize(SERVER_DEFAULT_NUM_THREADS)));
 	
 	int width = atoi(ini.GetValue("camera", "width", stringize(CAM_DEFAULT_WIDTH)));
-	int height = atoi(ini.GetValue("camera", "width", stringize(CAM_DEFAULT_HEIGHT)));
+	int height = atoi(ini.GetValue("camera", "height", stringize(CAM_DEFAULT_HEIGHT)));
 	uint32_t wait = atoi(ini.GetValue("camera", "wait", stringize(CAM_WAIT)));
 	
 	const char* unlockPin = ini.GetValue("gpio", "unlock", GPIO_DEFAULT_UNLOCK);
