@@ -13,23 +13,20 @@
 #define SERVER_DEFAULT_NUM_THREADS  10
 #define CAM_DEFAULT_WIDTH           400
 #define CAM_DEFAULT_HEIGHT          300
+#define CAM_WAIT					75
 #define GPIO_DEFAULT_UNLOCK         "27"
 
 #include <iostream>
 
 #include <sys/signal.h>
 #include <pthread.h>
-#include <unistd.h>
 
 #include <cstdlib>
 #include <cstring>
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/video/tracking.hpp>
-
 #include "Helpers.h"
 #include "ServerThreads.h"
+#include "CameraLoop.h"
 
 static const char HELP_STRING[] =
 	"Usage: server [OPTION]...\n"
@@ -39,6 +36,7 @@ static const char HELP_STRING[] =
 	"\t--help               Show this help\n"
 	"\t--width=WIDTH        Set webcam width\n"
 	"\t--height=HEIGHT      Set webcam height\n"
+	"\t--wait=TIME			Wait TIME msec each cam loop\n"
 	"\t--nogui              No OpenCV WebCam window\n"
 	"\t--port=PORT          Set the PORT to listen\n"
 	"\t--threads=NUM        Set NUM of threads\n"
@@ -46,11 +44,12 @@ static const char HELP_STRING[] =
 	"\n"
 	"Default:\n"
 	"gui,\n"
-	"port=" stringize(SERVER_DEFAULT_PORT) ",\n"
-	"#threads=" stringize(SERVER_DEFAULT_NUM_THREADS) ",\n"
-	"width=" stringize(CAM_DEFAULT_WIDTH) ",\n"
-	"height=" stringize(CAM_DEFAULT_HEIGHT) ",\n"
+	"port=" stringize(SERVER_DEFAULT_PORT) "\n"
+	"#threads=" stringize(SERVER_DEFAULT_NUM_THREADS) "\n"
+	"width=" stringize(CAM_DEFAULT_WIDTH) "\n"
+	"height=" stringize(CAM_DEFAULT_HEIGHT) "\n"
 	"unlock-pin=" GPIO_DEFAULT_UNLOCK "\n"
+	"wait=" stringize(CAM_WAIT) "\n"
 	;
 
 void sigHandler(int signo) {
@@ -58,44 +57,6 @@ void sigHandler(int signo) {
 	ServerThreads::cleanup();
 	printf("Done\n");
 	exit(0);
-}
-
-void cameraLoop(int width, int height, bool gui) {
-	cv::VideoCapture cap;
-	
-	cap.open(0);
-	
-	if (!cap.isOpened()) {
-		std::cerr << "***Could not initialize capturing...***\n";
-		std::cerr << "Current parameter's value: \n";
-//		return -1;
-	}
-	
-	cap.set(CV_CAP_PROP_FRAME_WIDTH, width);
-	cap.set(CV_CAP_PROP_FRAME_HEIGHT, height);
-	
-	cv::Mat frame;
-	
-	while(1){
-		cap >> frame;
-		if(frame.empty()){
-			std::cerr<<"frame is empty"<<std::endl;
-			
-			sleep(1);
-			
-			continue;
-		}
-
-//		idk(frame);
-		
-		ServerThreads::broadcastVideoFrame(frame);
-	
-        if (gui)
-            cv::imshow("", frame);
-		
-        cv::waitKey(75);
-		
-	}
 }
 
 int main(int argc, const char * argv[]) {
@@ -107,6 +68,8 @@ int main(int argc, const char * argv[]) {
 	
 	int width = CAM_DEFAULT_WIDTH;
 	int height = CAM_DEFAULT_HEIGHT;
+	
+	uint32_t wait = CAM_WAIT;
 	
 	const char gpioDefaultUnlock[] = GPIO_DEFAULT_UNLOCK;
 	const char* unlockPin = gpioDefaultUnlock;
@@ -129,6 +92,8 @@ int main(int argc, const char * argv[]) {
 			height = atoi(arg+9);
 		} else if (strncmp(arg, "--unlock-pin=", 13) == 0 && strlen(arg) > 13) {
 			unlockPin = arg+13;
+		} else if (strncmp(arg, "--wait=", 7) == 0 && strlen(arg) > 7) {
+			wait = atoi(arg+7);
 		} else {
 			printf("Error: unknown argument \"%s\".\n", arg);
 			exit(2);
@@ -145,7 +110,7 @@ int main(int argc, const char * argv[]) {
 	pthread_t serverThreadId;
 	pthread_create(&serverThreadId, nullptr, ServerThreads::startServer, nullptr);
 	
-	cameraLoop(width, height, gui);
+	CameraLoop::loop(width, height, gui, wait);
 	
     return 1;
 }
