@@ -1,0 +1,4 @@
+#!/bin/bash
+
+modprobe bcm2835-v4l2
+./Server --nogui --width=300 --height=450
