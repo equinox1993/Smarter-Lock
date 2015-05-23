@@ -6,7 +6,8 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-#define stringize(x) #x
+#define str_helper(x) #x
+#define stringize(x) str_helper(x)
 
 #define SERVER_DEFAULT_PORT         2333
 #define SERVER_DEFAULT_NUM_THREADS  10
@@ -70,8 +71,8 @@ void cameraLoop(int width, int height, bool gui) {
 //		return -1;
 	}
 	
-	cap.set(CV_CAP_PROP_FRAME_WIDTH, 400);
-	cap.set(CV_CAP_PROP_FRAME_HEIGHT, 300);
+	cap.set(CV_CAP_PROP_FRAME_WIDTH, width);
+	cap.set(CV_CAP_PROP_FRAME_HEIGHT, height);
 	
 	cv::Mat frame;
 	
@@ -88,11 +89,11 @@ void cameraLoop(int width, int height, bool gui) {
 //		idk(frame);
 		
 		ServerThreads::broadcastVideoFrame(frame);
+	
+        if (gui)
+            cv::imshow("", frame);
 		
-		#ifndef NO_GUI
-		cv::imshow("", frame);
-		#endif
-		cv::waitKey(75);
+        cv::waitKey(75);
 		
 	}
 }
