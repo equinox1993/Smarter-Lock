@@ -21,7 +21,9 @@ struct clientinfo {
 
 class ServerThreads {
 public:
-//	static void init(std::map<int, struct clientinfo>* monitorMap);
+	static uint16_t port;
+	static uint32_t numThreads;
+	static const char* gpioUnlock;
 	static void* startServer(void* sth);
 	static void broadcastVideoFrame(cv::Mat frame);
 	static void cleanup();

@@ -114,7 +114,6 @@
 		E84F827A1AF70EED00638336 /* SimplePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplePacket.h; path = ../SimplePacket.h; sourceTree = "<group>"; };
 		E851928D1B0462450016BCCD /* GPIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GPIO.cpp; sourceTree = "<group>"; };
 		E851928E1B0462450016BCCD /* GPIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPIO.h; sourceTree = "<group>"; };
-		E85192901B046C500016BCCD /* TestGPIO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestGPIO.cpp; sourceTree = "<group>"; };
 		E85BCF8F1AF6D93A007AFB83 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
 		E85BCF921AF6D961007AFB83 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E85BCF941AF6D961007AFB83 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -275,7 +274,7 @@
 				40585B311AE870F1009D5C51 /* Common */,
 				402F64AD1AE0540400B6FAC3 /* Smarter Lock iOS */,
 				402F64CA1AE0540400B6FAC3 /* Smarter LockTests */,
-				E8608DCC1AF33CF800CF2D9A /* Test Server */,
+				E8608DCC1AF33CF800CF2D9A /* Server */,
 				402F64AC1AE0540400B6FAC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -452,7 +451,7 @@
 			path = openssl;
 			sourceTree = "<group>";
 		};
-		E8608DCC1AF33CF800CF2D9A /* Test Server */ = {
+		E8608DCC1AF33CF800CF2D9A /* Server */ = {
 			isa = PBXGroup;
 			children = (
 				E85BCFE81AF6F3CA007AFB83 /* libcrypto.dylib */,
@@ -464,13 +463,12 @@
 				E8608DDA1AF3437A00CF2D9A /* libopencv_video.dylib */,
 				E8608DCD1AF33CF800CF2D9A /* main.cpp */,
 				E86A80401AFDC9270069E7CE /* CMakeLists.txt */,
-				E85192901B046C500016BCCD /* TestGPIO.cpp */,
 				E86F7D4E1B0F2AB700BE8FB6 /* Helpers.cpp */,
 				E86F7D4F1B0F2AB700BE8FB6 /* Helpers.h */,
 				E86F7D511B0F2BF100BE8FB6 /* ServerThreads.cpp */,
 				E86F7D521B0F2BF100BE8FB6 /* ServerThreads.h */,
 			);
-			path = "Test Server";
+			path = Server;
 			sourceTree = "<group>";
 		};
 		E86A80411AFDCE6D0069E7CE /* Packets */ = {

@@ -39,9 +39,9 @@ void unlock(Packet* up, CommunicationTask* ct) {
 	TCPServer::CloseConnection(ct->sockfd_);
 	
 	printf("Door unlocked\n");
-	io->write("27", true);
+	io->write(ServerThreads::gpioUnlock, true);
 	sleep(1);
-	io->write("27", false);
+	io->write(ServerThreads::gpioUnlock, false);
 }
 
 void passcode(Packet* up, CommunicationTask* ct) {
@@ -117,19 +117,20 @@ void* ServerThreads::startServer(void* sth) {
 	TCPServer::RegisterCallback(Type::STOP_MONITOR, stopMonitor);
 	
 	io = new GPIO();
-	io->setup("27", GPIO::Direction::OUT);
+	io->setup(ServerThreads::gpioUnlock, GPIO::Direction::OUT);
 	
-	while (!TCPServer::Run(2333, 10, rsa)) {
+	while (!TCPServer::Run(port, numThreads, rsa)) {
 		fprintf(stderr, "Failed to start server. wait 5 secs then retry.\n");
 		sleep(5);
 	}
 	return nullptr;
 }
 
-void ServerThreads::cleanup() {
-	printf("Received signal... Doing cleanups...\n");
-		
+void ServerThreads::cleanup() {		
 	delete io;
 	TCPServer::Kill();
-	printf("Done\n");
 }
+
+uint16_t ServerThreads::port;
+uint32_t ServerThreads::numThreads;
+const char* ServerThreads::gpioUnlock;
