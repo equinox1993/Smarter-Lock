@@ -111,7 +111,7 @@ int main(int argc, const char * argv[]) {
 	const char gpioDefaultUnlock[] = GPIO_DEFAULT_UNLOCK;
 	const char* unlockPin = gpioDefaultUnlock;
 	
-	for (int i = 0; i < argc; i++) {
+	for (int i = 1; i < argc; i++) {
 		const char* arg = argv[i];
 		
 		if (strcmp(arg, "--help") == 0) {
@@ -119,15 +119,15 @@ int main(int argc, const char * argv[]) {
 			exit(0);
 		} else if (strcmp(arg, "--nogui") == 0) {
 			gui = false;
-		} else if (strncmp(arg, "--port=", 7) && strlen(arg) > 7) {
+		} else if (strncmp(arg, "--port=", 7) == 0 && strlen(arg) > 7) {
 			port = atoi(arg+7);
-		} else if (strncmp(arg, "--threads=", 10) && strlen(arg) > 10) {
+		} else if (strncmp(arg, "--threads=", 10) == 0 && strlen(arg) > 10) {
 			numThreads = atoi(arg+10);
-		} else if (strncmp(arg, "--width=", 8) && strlen(arg) > 8) {
+		} else if (strncmp(arg, "--width=", 8) == 0 && strlen(arg) > 8) {
 			width = atoi(arg+8);
-		} else if (strncmp(arg, "--height=", 9) && strlen(arg) > 9) {
+		} else if (strncmp(arg, "--height=", 9) == 0 && strlen(arg) > 9) {
 			height = atoi(arg+9);
-		} else if (strncmp(arg, "--unlock-pin=", 13) && strlen(arg) > 13) {
+		} else if (strncmp(arg, "--unlock-pin=", 13) == 0 && strlen(arg) > 13) {
 			unlockPin = arg+13;
 		} else {
 			printf("Error: unknown argument \"%s\".\n", arg);

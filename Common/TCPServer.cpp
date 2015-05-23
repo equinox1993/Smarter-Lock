@@ -96,6 +96,7 @@ void communicate(ThreadPool::Task* t) {
 }
 
 bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount, RSA* r) {
+	printf("Server running on port %d, #threads=%d\n", port, maxThreadCount);
 	if (IsRunning()) {
 		fprintf(stderr, "Server already running");
 		return false;
