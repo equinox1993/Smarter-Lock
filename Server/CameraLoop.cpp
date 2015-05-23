@@ -47,14 +47,7 @@ void closeCamera() {
 	cap = nullptr;
 }
 
-void abrtHandler(int signum) {
-	std::cout<<"Aborted. No QR?"<<std::endl;
-}
-
 void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
-	if (signal(SIGABRT, abrtHandler) == SIG_ERR)
-		printf("Can't handle abrt\n");
-
 	cv::Mat frame;
 	
 	openCamera(width, height);

@@ -21,6 +21,7 @@ struct clientinfo {
 
 class ServerThreads {
 public:
+	static const char* rsaFile;
 	static uint16_t port;
 	static uint32_t numThreads;
 	static const char* gpioUnlock;

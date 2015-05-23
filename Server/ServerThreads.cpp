@@ -6,8 +6,6 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
-#define RSA_FILE "./private.pem"
-
 #include "ServerThreads.h"
 
 #include "Helpers.h"
@@ -113,7 +111,7 @@ uint32_t ServerThreads::countMonitors() {
 }
 
 void* ServerThreads::startServer(void* sth) {
-	RSA* rsa = Helpers::rsaFromFile(RSA_FILE, false);
+	RSA* rsa = Helpers::rsaFromFile(rsaFile, false);
 
 	TCPServer::RegisterCallback(Type::UNLOCK, unlock);
 	TCPServer::RegisterCallback(Type::REQUEST_PASSCODE, passcode);
@@ -138,3 +136,4 @@ void ServerThreads::cleanup() {
 uint16_t ServerThreads::port;
 uint32_t ServerThreads::numThreads;
 const char* ServerThreads::gpioUnlock;
+const char* ServerThreads::rsaFile;
