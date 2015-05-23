@@ -16,7 +16,7 @@ RSA* Helpers::rsaFromFile(const char* filename, bool pub) {
 	FILE* fp = fopen(filename, "rb");
 	
 	if (!fp) {
-		fprintf(stderr, "Unable to open RSA file.");
+		fprintf(stderr, "Unable to open RSA file.\n");
 		return nullptr;
 	}
 	
