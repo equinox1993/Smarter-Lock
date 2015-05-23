@@ -108,6 +108,10 @@ void ServerThreads::broadcastVideoFrame(cv::Mat frame) {
 	}
 }
 
+uint32_t ServerThreads::countMonitors() {
+	return monitorMap.size();
+}
+
 void* ServerThreads::startServer(void* sth) {
 	RSA* rsa = Helpers::rsaFromFile(RSA_FILE, false);
 

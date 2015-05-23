@@ -17,25 +17,50 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/video/tracking.hpp>
 
+cv::VideoCapture* cap = nullptr;
 
-void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
-	cv::VideoCapture cap;
+void openCamera(int width, int height) {
+	if (cap)
+		return;
 	
-	cap.open(0);
+	cap = new cv::VideoCapture();
+	cap->open(0);
 	
-	if (!cap.isOpened()) {
+	if (!cap->isOpened()) {
 		std::cerr << "***Could not initialize capturing...***\n";
 		std::cerr << "Current parameter's value: \n";
-//		return -1;
+		
+		return;
 	}
 	
-	cap.set(CV_CAP_PROP_FRAME_WIDTH, width);
-	cap.set(CV_CAP_PROP_FRAME_HEIGHT, height);
-	
+	cap->set(CV_CAP_PROP_FRAME_WIDTH, width);
+	cap->set(CV_CAP_PROP_FRAME_HEIGHT, height);
+}
+
+void closeCamera() {
+	cap->release();
+	delete cap;
+	cap = nullptr;
+}
+
+void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
+
 	cv::Mat frame;
 	
 	while(1){
-		cap >> frame;
+		if (ServerThreads::countMonitors() == 0) {
+			if (cap)
+				closeCamera();
+			
+			sleep(1);
+			continue;
+		}
+		
+		if (!cap)
+			openCamera(width, height);
+		
+		(*cap) >> frame;
+		
 		if(frame.empty()){
 			std::cerr<<"frame is empty"<<std::endl;
 			
