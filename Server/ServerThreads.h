@@ -27,6 +27,8 @@ public:
 	static const char* gpioUnlock;
 	static void* startServer(void* sth);
 	static void broadcastVideoFrame(cv::Mat frame);
+	static void unlockDoor();
+	static bool unlockWithPasscode(const char* psc);
 	static uint32_t countMonitors();
 	static void cleanup();
 };

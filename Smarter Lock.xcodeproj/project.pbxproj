@@ -27,6 +27,7 @@
 		E851928F1B0462450016BCCD /* GPIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E851928D1B0462450016BCCD /* GPIO.cpp */; };
 		E854E3A71B1117BD008B95D3 /* ConvertUTF.c in Sources */ = {isa = PBXBuildFile; fileRef = E854E3A21B1117BD008B95D3 /* ConvertUTF.c */; };
 		E854E3A81B1117BD008B95D3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E854E3A41B1117BD008B95D3 /* README.md */; };
+		E854E3B01B112CA0008B95D3 /* REPL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E854E3AE1B112CA0008B95D3 /* REPL.cpp */; };
 		E856C5BD1B10549300C6A1B7 /* CameraLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E856C5BB1B10549300C6A1B7 /* CameraLoop.cpp */; };
 		E856C7421B106AE100C6A1B7 /* libzxing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E856C7411B106AE100C6A1B7 /* libzxing.a */; };
 		E856C74F1B1072F500C6A1B7 /* ZxingBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E856C74D1B1072F500C6A1B7 /* ZxingBridge.cpp */; };
@@ -129,6 +130,8 @@
 		E854E3A41B1117BD008B95D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E854E3A51B1117BD008B95D3 /* SimpleIni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleIni.h; sourceTree = "<group>"; };
 		E854E3AA1B111817008B95D3 /* config_default.ini */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config_default.ini; sourceTree = "<group>"; };
+		E854E3AE1B112CA0008B95D3 /* REPL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = REPL.cpp; sourceTree = "<group>"; };
+		E854E3AF1B112CA0008B95D3 /* REPL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REPL.h; sourceTree = "<group>"; };
 		E856C5BB1B10549300C6A1B7 /* CameraLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraLoop.cpp; sourceTree = "<group>"; };
 		E856C5BC1B10549300C6A1B7 /* CameraLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraLoop.h; sourceTree = "<group>"; };
 		E856C5BE1B10611600C6A1B7 /* libqrencode.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libqrencode.3.dylib; path = ../../../../../../usr/local/Cellar/qrencode/3.4.4/lib/libqrencode.3.dylib; sourceTree = "<group>"; };
@@ -515,6 +518,8 @@
 				E856C74D1B1072F500C6A1B7 /* ZxingBridge.cpp */,
 				E856C74E1B1072F500C6A1B7 /* ZxingBridge.h */,
 				E854E3AA1B111817008B95D3 /* config_default.ini */,
+				E854E3AE1B112CA0008B95D3 /* REPL.cpp */,
+				E854E3AF1B112CA0008B95D3 /* REPL.h */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				E8608DE61AF390F300CF2D9A /* PasscodePacket.cpp in Sources */,
 				E8608DE41AF390DC00CF2D9A /* PacketAssembler.cpp in Sources */,
 				E851928F1B0462450016BCCD /* GPIO.cpp in Sources */,
+				E854E3B01B112CA0008B95D3 /* REPL.cpp in Sources */,
 				E856C74F1B1072F500C6A1B7 /* ZxingBridge.cpp in Sources */,
 				E854E3A81B1117BD008B95D3 /* README.md in Sources */,
 				E8608DE31AF3534400CF2D9A /* UDPCommunicator.cpp in Sources */,

@@ -23,12 +23,12 @@
 
 cv::VideoCapture* cap = nullptr;
 
-void openCamera(int width, int height) {
+void openCamera(int dev, int width, int height) {
 	if (cap)
 		return;
 	
 	cap = new cv::VideoCapture();
-	cap->open(0);
+	cap->open(dev);
 	
 	if (!cap->isOpened()) {
 		std::cerr << "***Could not initialize capturing...***\n";
@@ -47,12 +47,22 @@ void closeCamera() {
 	cap = nullptr;
 }
 
-void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
+void CameraLoop::loop(int device, int width, int height, bool gui, uint32_t wait) {
+	decQrWait = 0;
+	
 	cv::Mat frame;
 	
-	openCamera(width, height);
-	
 	while(1){
+		if (ServerThreads::countMonitors() == 0 && decQrWait <= 0) {
+			if (cap)
+				closeCamera();
+			
+			sleep(1);
+			continue;
+		}
+		
+		if (!cap)
+			openCamera(device, width, height);
 		
 		(*cap) >> frame;
 		
@@ -64,40 +74,40 @@ void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
 			continue;
 		}
 		
+		if (decQrWait > 0) {
+			try {
+				std::string code = ZxingBridge::decode(frame);
+				std::cout<<"Decoded: "<<code<<std::endl;
+				decQrWait = 0; // detected
+				
+				if (ServerThreads::unlockWithPasscode(code.c_str()))
+					std::cout<<"Door unlocked\n";
+				else
+					std::cout<<"Wrong passcode\n";
+			} catch (const ZxingBridge::ReaderException& e) {
+				// no qr detected
+				decQrWait--;
+			}
+		}
+
+//		idk(frame);
+		
 		ServerThreads::broadcastVideoFrame(frame);
 	
         if (gui)
             cv::imshow("", frame);
 		
-        int key = cv::waitKey(wait) % 256;
-		if (key == ' ') {
-			try {
-				std::string code = ZxingBridge::decode(frame);
-				std::cout<<"Decoded: "<<code<<std::endl;
-			} catch (const ZxingBridge::ReaderException& e) {
-				std::cout<<"No code detected."<<std::endl;
-			}
-			
-		}
+        cv::waitKey(wait);
 	}
 }
 
-// FORM 1
-//
-//void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
+
+//void CameraLoop::loop(int device, int width, int height, bool gui, uint32_t wait) {
 //	cv::Mat frame;
 //	
+//	openCamera(device, width, height);
+//	
 //	while(1){
-//		if (ServerThreads::countMonitors() == 0) {
-//			if (cap)
-//				closeCamera();
-//			
-//			sleep(1);
-//			continue;
-//		}
-//		
-//		if (!cap)
-//			openCamera(width, height);
 //		
 //		(*cap) >> frame;
 //		
@@ -108,14 +118,33 @@ void CameraLoop::loop(int width, int height, bool gui, uint32_t wait) {
 //			
 //			continue;
 //		}
-//
-////		idk(frame);
 //		
 //		ServerThreads::broadcastVideoFrame(frame);
 //	
 //        if (gui)
 //            cv::imshow("", frame);
 //		
-//        cv::waitKey(wait);
+//        int key = cv::waitKey(wait) % 256;
+//		if (key == ' ') {
+//			try {
+//				std::string code = ZxingBridge::decode(frame);
+//				std::cout<<"Decoded: "<<code<<std::endl;
+//			} catch (const ZxingBridge::ReaderException& e) {
+//				std::cout<<"No code detected."<<std::endl;
+//			}
+//			
+//		}
 //	}
 //}
+
+bool CameraLoop::gui;
+int CameraLoop::width;
+int CameraLoop::height;
+int CameraLoop::device;
+uint32_t CameraLoop::wait;
+int CameraLoop::decQrWait;
+
+void* CameraLoop::startLoop(void* sth) {
+	loop(device, width, height, gui, wait);
+	return nullptr;
+}

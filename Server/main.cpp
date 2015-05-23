@@ -14,6 +14,7 @@
 #define CAM_DEFAULT_WIDTH           400
 #define CAM_DEFAULT_HEIGHT          300
 #define CAM_WAIT					75
+#define CAM_DEV						0
 #define GPIO_DEFAULT_UNLOCK         "27"
 #define SAFETY_DEFAULT_RSA_FILE     "./private.pem"
 #define SAFETY_DEFAULT_PASSWD		""
@@ -33,11 +34,12 @@
 #include "Helpers.h"
 #include "ServerThreads.h"
 #include "CameraLoop.h"
+#include "REPL.h"
 
 
 #include "../simpleini/SimpleIni.h"
 
-static const char HELP_STRING[] =
+const char HELP_STRING[] =
 	"Usage: server [OPTION]...\n"
 	"Run the Smarter Lock server\n"
 	"\n"
@@ -57,11 +59,16 @@ static const char HELP_STRING[] =
 	"passwd=" SAFETY_DEFAULT_PASSWD "\n"
 	;
 
-void sigHandler(int signo) {
-	printf("Received signal... Doing cleanups...\n");
+void cleanup() {
+	printf("Doing cleanups...\n");
 	ServerThreads::cleanup();
 	printf("Done\n");
 	exit(0);
+}
+
+void sigHandler(int signo) {
+	printf("Received signal %d...\n", signo);
+	cleanup();
 }
 
 int main(int argc, const char * argv[]) {
@@ -80,6 +87,7 @@ int main(int argc, const char * argv[]) {
 	int width = atoi(ini.GetValue("camera", "width", stringize(CAM_DEFAULT_WIDTH)));
 	int height = atoi(ini.GetValue("camera", "height", stringize(CAM_DEFAULT_HEIGHT)));
 	uint32_t wait = atoi(ini.GetValue("camera", "wait", stringize(CAM_WAIT)));
+	int dev = atoi(ini.GetValue("camera", "device", stringize(CAM_DEV)));
 	
 	const char* unlockPin = ini.GetValue("gpio", "unlock", GPIO_DEFAULT_UNLOCK);
 	
@@ -107,11 +115,16 @@ int main(int argc, const char * argv[]) {
 
 	if (signal(SIGINT, sigHandler) == SIG_ERR)
 		std::cerr<<"Can't catch SIGINT\n";
-
+	
 	pthread_t serverThreadId;
 	pthread_create(&serverThreadId, nullptr, ServerThreads::startServer, nullptr);
 	
-	CameraLoop::loop(width, height, gui, wait);
+	REPL::cleanupFn = cleanup;
+	REPL::password = passwd;
+	pthread_t replThreadId;
+	pthread_create(&replThreadId, nullptr, REPL::startLoop, nullptr);
+	
+	CameraLoop::loop(dev, width, height, gui, wait);
 	
     return 1;
 }

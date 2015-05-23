@@ -28,6 +28,24 @@
 std::map<int, struct clientinfo> monitorMap;
 
 static GPIO* io;
+static std::string curPasscode;
+
+void ServerThreads::unlockDoor() {
+	io->write(ServerThreads::gpioUnlock, true);
+	sleep(1);
+	io->write(ServerThreads::gpioUnlock, false);
+}
+
+bool ServerThreads::unlockWithPasscode(const char* psc) {
+	if (curPasscode == psc) {
+		unlockDoor();
+		return true;
+	}
+	
+	return false;
+}
+
+// actions
 
 void unlock(Packet* up, CommunicationTask* ct) {
 	CommandPacket accept = CommandPacket(Type::ACCEPT);
@@ -36,16 +54,16 @@ void unlock(Packet* up, CommunicationTask* ct) {
 	TCPServer::SendPacket(&accept, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
 	
+	ServerThreads::unlockDoor();
+	
 	printf("Door unlocked\n");
-	io->write(ServerThreads::gpioUnlock, true);
-	sleep(1);
-	io->write(ServerThreads::gpioUnlock, false);
 }
 
 void passcode(Packet* up, CommunicationTask* ct) {
 	char seq[17];
 	seq[16] = '\0';
 	Helpers::randSeq(seq);
+	curPasscode = seq;
 	PasscodePacket pc = PasscodePacket(seq, 233333);
 	pc.sequenceNumber = up->sequenceNumber;
 	TCPServer::SendPacket(&pc, ct->sockfd_, true);

@@ -13,7 +13,15 @@
 
 class CameraLoop {
 public:
-	static void loop(int width, int height, bool gui, uint32_t wait);
+	static int width, height, device;
+	static bool gui;
+	static uint32_t wait;
+	
+	static int decQrWait;
+	
+	static void* startLoop(void* sth);
+	
+	static void loop(int device, int width, int height, bool gui, uint32_t wait);
 };
 
 #endif /* defined(__Smarter_Lock__CameraLoop__) */
