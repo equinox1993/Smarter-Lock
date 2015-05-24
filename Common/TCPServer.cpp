@@ -18,7 +18,7 @@
 #include <cstring>
 
 #include "TCPServer.h"
-#include "PacketAssembler.h"
+#include "Packets/PacketAssembler.h"
 
 #if defined(__APPLE__) || defined(__MACH__)
 # ifndef MSG_NOSIGNAL

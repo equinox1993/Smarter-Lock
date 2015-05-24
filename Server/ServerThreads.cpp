@@ -10,10 +10,10 @@
 
 #include "Helpers.h"
 
-#include "../Common/CommandPacket.h"
-#include "../Common/PasscodePacket.h"
-#include "../Common/VideoFramePacket.h"
-#include "../Common/SimplePacket.h"
+#include "../Common/Packets/CommandPacket.h"
+#include "../Common/Packets/PasscodePacket.h"
+#include "../Common/Packets/VideoFramePacket.h"
+#include "../Common/Packets/SimplePacket.h"
 
 //#include "UDPCommunicator.h"
 #include "../Common/TCPServer.h"

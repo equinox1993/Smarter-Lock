@@ -7,7 +7,7 @@
 //
 
 #include "UDPCommunicator.h"
-#include "PacketAssembler.h"
+#include "Packets/PacketAssembler.h"
 
 #define RECV_BUFSIZE 65000
 

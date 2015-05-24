@@ -15,7 +15,7 @@
 #include <openssl/rsa.h>
 
 #include "ThreadPool.h"
-#include "Packet.h"
+#include "Packets/Packet.h"
 
 
 class CommunicationTask : public ThreadPool::Task {

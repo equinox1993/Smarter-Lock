@@ -9,7 +9,7 @@
 #ifndef __Smarter_Lock__UDPCommunicator__
 #define __Smarter_Lock__UDPCommunicator__
 
-#include "Packet.h"
+#include "Packets/Packet.h"
 #include <sys/socket.h>
 
 class UDPCommunicator {
