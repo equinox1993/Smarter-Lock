@@ -7,6 +7,7 @@
 //
 
 #import "SettingsController.h"
+#import "SimplePacket.h"
 
 @implementation SettingsController
 
@@ -38,6 +39,9 @@
 	
 	[userDefaults synchronize];
 	
+	NSData* data = comm.token;
+	SimplePacket sp((const uint8_t*)[data bytes], [data length], Type::DEVICE_TOKEN);
+	[[Communicator defaultCommunicator] writePacket: &sp target:nil withSelector:nil];
 }
 
 @end

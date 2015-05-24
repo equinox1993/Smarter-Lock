@@ -63,6 +63,8 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 	
 	readbuf = nil;
 	
+	lastPacketToSend = nil;
+	
 	self.timeout = DefaultTimeout;
 	curSeq = 1;
 	targets = [[NSMutableDictionary alloc] init];
@@ -127,23 +129,20 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 	[self close];
 }
 
--(void)writeCString:(const u_int8_t *)str length: (size_t)len {
-    [self connect];
-    [ostream write:str maxLength:len];
-	[self touch];
-//    [self close];
-}
-
-//-(void)writeString:(NSString*)str {
-//    [self writeCString:(const u_int8_t*)[str UTF8String] length:[str length]];
+//-(void)writeCString:(const u_int8_t *)str length: (size_t)len {
+//    [self connect];
+//    [ostream write:str maxLength:len];
+//	[self touch];
+////    [self close];
 //}
-
--(void)writePacket:(Packet*)pl {
-	size_t totalLen;
-	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
-    [self writeCString: packetBytes length: totalLen];
-	delete[] packetBytes;
-}
+//
+//
+//-(void)writePacket:(Packet*)pl {
+//	size_t totalLen;
+//	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
+//    [self writeCString: packetBytes length: totalLen];
+//	delete[] packetBytes;
+//}
 
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel {
 	if (!pl->sequenceNumber)
@@ -154,13 +153,23 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 	
 	[self connect];
 	
-    [ostream write:packetBytes maxLength:totalLen];
-	[targets setObject:target forKey:[NSNumber numberWithInt:curSeq]];
-	[selectors setObject:NSStringFromSelector(sel) forKey:[NSNumber numberWithInt:curSeq]];
-	curSeq++;
-	[self touch];
+	if ([ostream hasSpaceAvailable]) {
+		[ostream write:packetBytes maxLength:totalLen];
+		[self touch];
+	} else { // delay
+		lastPacketToSend = packetBytes;
+		lastPacketTotalLen = totalLen;
+	}
 	
-	delete[] packetBytes;
+//    [ostream write:packetBytes maxLength:totalLen];
+	if (target != nil) {
+		[targets setObject:target forKey:[NSNumber numberWithInt:curSeq]];
+		[selectors setObject:NSStringFromSelector(sel) forKey:[NSNumber numberWithInt:curSeq]];
+	}
+	curSeq++;
+//	[self touch];
+	
+//	delete[] packetBytes;
 }
 
 -(void)connKillTimerThread:(id)info {
@@ -218,6 +227,16 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 		
 		case NSStreamEventErrorOccurred: {
 			[self close];
+		} break;
+		
+		case NSStreamEventHasSpaceAvailable: {
+			if (aStream == ostream && lastPacketToSend) {
+					[ostream write:lastPacketToSend maxLength:lastPacketTotalLen];
+//					[self touch];
+				
+					delete [] lastPacketToSend;
+					lastPacketToSend = nil;
+			}
 		} break;
 	}
 	

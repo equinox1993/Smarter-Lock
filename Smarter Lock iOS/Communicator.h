@@ -31,8 +31,12 @@
 	NSTimer* connKiller;
 	
 	Boolean connected;
+	
+	const uint8_t* lastPacketToSend;
+	size_t lastPacketTotalLen;
 }
 
+@property (retain) NSData* token;
 @property (retain) id tag;
 @property (retain) NSString* host;
 @property int port;
@@ -50,8 +54,8 @@
 -(id)init;
 -(id)initWithHost:(NSString*)host port:(unsigned int)port;
 //-(void)writeString:(NSString*)str;
--(void)writePacket:(Packet*)pl;
--(void)writeCString:(const u_int8_t*)str length:(size_t)len;
+//-(void)writePacket:(Packet*)pl;
+//-(void)writeCString:(const u_int8_t*)str length:(size_t)len;
 
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel;
 // callback:

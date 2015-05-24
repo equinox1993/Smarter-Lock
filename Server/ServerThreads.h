@@ -10,7 +10,6 @@
 #define __Smarter_Lock__ServerThreads__
 
 #include <stdint.h>
-#include <map>
 #include <opencv2/core/core.hpp>
 
 struct clientinfo {

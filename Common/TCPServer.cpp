@@ -113,6 +113,12 @@ bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount, RSA* r) {
 		return false;
 	}
 	
+	int enable = 1;
+	if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0) {
+    	perror("setsockopt(SO_REUSEADDR) failed");
+		return false;
+	}
+	
 	struct sockaddr_in serv_addr;
 	bzero(&serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;

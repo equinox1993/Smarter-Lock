@@ -95,7 +95,9 @@ enum Type {
 	
 	PASSCODE = 16,
 	VIDEO_FRAME = 17,
-	VIDEO_KEY = 18
+	VIDEO_KEY = 18,
+	
+	DEVICE_TOKEN = 21
 };
 // TODO: add case to PacketAssembler::Disassemble when adding new payload type.
 

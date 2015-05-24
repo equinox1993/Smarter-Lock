@@ -172,6 +172,8 @@ Packet* PacketAssembler::Disassemble(const uint8_t* input, bool needEncryption) 
 			return new VideoFramePacket(pldata, plen, pseq);
 		case Type::VIDEO_KEY:
 			return new SimplePacket(pldata, plen, Type::VIDEO_KEY, pseq);
+		case Type::DEVICE_TOKEN:
+			return new SimplePacket(pldata, plen, Type::DEVICE_TOKEN, pseq);
 		default:
 			return new CommandPacket(ptype, pseq);
 	}

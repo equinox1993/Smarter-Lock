@@ -23,4 +23,12 @@ uint32_t SimplePacket::type() const {
 }
 
 SimplePacket::SimplePacket(const uint8_t* pl, uint32_t l, uint32_t t, uint32_t seqNum)
-	: payload(pl), payloadLength(l), packetType(t){ sequenceNumber = seqNum; }
+	: payloadLength(l), packetType(t){
+		sequenceNumber = seqNum;
+		payload = new uint8_t[l];
+		memcpy(payload, pl, l);
+}
+
+SimplePacket::~SimplePacket() {
+	delete [] payload;
+}
