@@ -1,4 +1,3 @@
-var ref = require('ref');
 var net = require('net');
 
 const RSA_FILE = './apnserver_private.pem';
