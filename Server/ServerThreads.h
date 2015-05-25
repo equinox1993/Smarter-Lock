@@ -9,6 +9,8 @@
 #ifndef __Smarter_Lock__ServerThreads__
 #define __Smarter_Lock__ServerThreads__
 
+#include <set>
+
 #include <stdint.h>
 #include <opencv2/core/core.hpp>
 
@@ -30,6 +32,7 @@ public:
 	static bool unlockWithPasscode(const char* psc);
 	static uint32_t countMonitors();
 	static void cleanup();
+	static std::set<std::string> devices;
 };
 
 #endif /* defined(__Smarter_Lock__ServerThreads__) */

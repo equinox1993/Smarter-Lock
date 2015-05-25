@@ -11,27 +11,8 @@
 #import "Authenticator.h"
 
 #include "SimplePacket.h"
-#include <openssl/rsa.h>
-#include <openssl/pem.h>
 
-RSA* rsaFromFile(const char* filename, bool pub) {
-	FILE* fp = fopen(filename, "rb");
-	
-	if (!fp) {
-		fprintf(stderr, "Unable to open RSA file.");
-		return nullptr;
-	}
-	
-	RSA* rsa = RSA_new(); //?!?!
-	
-	if (pub)
-		rsa = PEM_read_RSA_PUBKEY(fp, &rsa, NULL, NULL);
-	else
-		rsa = PEM_read_RSAPrivateKey(fp, &rsa, NULL, NULL);
-	
-	return rsa;
-}
-
+#include "../Common/RSAHelper.inl"
 
 @interface AppDelegate ()
 
@@ -133,6 +114,13 @@ RSA* rsaFromFile(const char* filename, bool pub) {
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	NSLog(@"Received notification.");
+	UITabBarController *tabBarController = (UITabBarController*)self.window.rootViewController;
+	
+	tabBarController.selectedIndex = 2;
 }
 
 @end

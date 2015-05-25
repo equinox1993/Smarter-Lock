@@ -67,6 +67,13 @@ int32_t PacketAssembler::GetLength(const uint8_t* input, size_t maxLen) {
 }
 
 uint8_t* PacketAssembler::Assemble(const Packet* pl, size_t& totalLength, bool encrypt) {
+	if (encrypt)
+		return PacketAssembler::Assemble(pl, totalLength, encryptor, true);
+	else
+		return PacketAssembler::Assemble(pl, totalLength, nullptr, false);
+}
+
+uint8_t* PacketAssembler::Assemble(const Packet* pl, size_t& totalLength, CryptoFn encryptor, bool encrypt) {
 	uint32_t plen = pl->length();
 	
     uint32_t nptype = htonl(pl->type());
@@ -94,10 +101,11 @@ uint8_t* PacketAssembler::Assemble(const Packet* pl, size_t& totalLength, bool e
 		delete[] pserialized;
 	}
 	
-	if (encrypt) {
+	if (encryptor && encrypt) {
 		uint8_t* outbuf = new uint8_t[CRYPTO_OUTPUT_BUFFER_LEN];
 		memcpy(outbuf+PACKET_OFFSET_SIGN, &PACKET_SIGNATURE_ENCRYPTED, 4);
-		int outlen = encryptor(totalLength, packet, outbuf+PACKET_OFFSET_EPAYLOAD);
+		int tl = totalLength;
+		int outlen = encryptor(tl, packet, outbuf+PACKET_OFFSET_EPAYLOAD);
 		
 		delete packet;
 		
@@ -131,6 +139,10 @@ const uint8_t* GetPayloadData(const uint8_t* packetdata, int& plen) {
 }
 
 Packet* PacketAssembler::Disassemble(const uint8_t* input, bool needEncryption) {
+	return Disassemble(input, decryptor, needEncryption);
+}
+
+Packet* PacketAssembler::Disassemble(const uint8_t* input, CryptoFn decryptor, bool needEncryption) {
 	uint32_t npsign;
 	memcpy(&npsign, input+PACKET_OFFSET_SIGN, 4);
 	

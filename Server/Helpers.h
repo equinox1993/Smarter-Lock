@@ -14,7 +14,6 @@
 
 class Helpers {
 public:
-	static RSA* rsaFromFile(const char* filename, bool pub);
 	static void randSeq(char* out);
 	static uint64_t rand64();
 };

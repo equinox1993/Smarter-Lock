@@ -18,6 +18,9 @@
 #define GPIO_DEFAULT_UNLOCK         "27"
 #define SAFETY_DEFAULT_RSA_FILE     "./private.pem"
 #define SAFETY_DEFAULT_PASSWD		""
+#define APN_DEFAULT_HOST			"localhost"
+#define APN_DEFAULT_PORT			2303
+#define APN_DEFAULT_RSA_FILE		"./apnserver_public.pem"
 
 #define KWARN  "\x1b[33m"
 #define KERR   "\x1b[31m"
@@ -35,7 +38,9 @@
 #include "ServerThreads.h"
 #include "CameraLoop.h"
 #include "REPL.h"
+#include "APNClient.h"
 
+#include "../Common/RSAHelper.inl"
 
 #include "../simpleini/SimpleIni.h"
 
@@ -57,6 +62,9 @@ const char HELP_STRING[] =
 	"wait=" stringize(CAM_WAIT) "\n"
 	"rsa=" SAFETY_DEFAULT_RSA_FILE "\n"
 	"passwd=" SAFETY_DEFAULT_PASSWD "\n"
+	"apn_host=" APN_DEFAULT_HOST "\n"
+	"apn_port=" stringize(APN_DEFAULT_PORT) "\n"
+	"apn_rsa=" APN_DEFAULT_RSA_FILE "\n"
 	;
 
 void cleanup() {
@@ -118,6 +126,12 @@ int main(int argc, const char * argv[]) {
 	
 	pthread_t serverThreadId;
 	pthread_create(&serverThreadId, nullptr, ServerThreads::startServer, nullptr);
+	
+	const char* apnRsaFile = ini.GetValue("apn", "pem", APN_DEFAULT_RSA_FILE);
+	
+	APNClient::DefaultClient.host = ini.GetValue("apn", "host", APN_DEFAULT_HOST);
+	APNClient::DefaultClient.port = atoi(ini.GetValue("apn", "port", stringize(APN_DEFAULT_PORT)));
+	APNClient::DefaultClient.rsa = rsaFromFile(apnRsaFile, true);
 	
 	REPL::cleanupFn = cleanup;
 	REPL::password = passwd;

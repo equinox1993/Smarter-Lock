@@ -10,13 +10,16 @@
 #ifndef __Smarter_Lock__PacketAssembler__
 #define __Smarter_Lock__PacketAssembler__
 
+#include <functional>
+
 #include "Packet.h"
 
 #define CRYPTO_OUTPUT_BUFFER_LEN 1024
 
 // param: input length, input, output
 // return: #bytes in output, -1 = fail
-typedef int (*CryptoFn)(int, const uint8_t*, uint8_t*);
+//typedef int (*CryptoFn)(int, const uint8_t*, uint8_t*);
+typedef std::function<int(int, const uint8_t*, uint8_t*)> CryptoFn;
 
 class PacketAssembler {
 	public:
@@ -26,7 +29,9 @@ class PacketAssembler {
 	 // !!! returned pointers need to be DELETED by yourself !!!
 	static uint8_t* Assemble(const Packet* packet, bool encrypt = false);
 	static uint8_t* Assemble(const Packet* packet, size_t& totalLength, bool encrypt = false);
+	static uint8_t* Assemble(const Packet* packet, size_t& totalLength, CryptoFn encryptor, bool encrypt);
 	static Packet* Disassemble(const uint8_t* input, bool needEncryption = false);
+	static Packet* Disassemble(const uint8_t* input, CryptoFn decryptor, bool needEncryption = false);
 	
 	static void SetEncryptor(CryptoFn enc);
 	static void SetDecryptor(CryptoFn dec);

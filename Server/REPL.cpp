@@ -10,6 +10,7 @@
 
 #include "ServerThreads.h"
 #include "CameraLoop.h"
+#include "APNClient.h"
 
 #include <sstream>
 #include <iostream>
@@ -24,6 +25,7 @@ const char HELP_STRING[] =
 	"Commands:\n"
 	"\tunlock PSW    Unlock using the password PSW\n"
 	"\tqrdec LOOPS   Open camera and decode QR for LOOPS*CAM_WAIT msecs\n"
+	"\tring          Ring the doorbell (Send notification to clients).\n"
 	"\thelp          Show this help\n"
 	"\tquit          Quit server\n"
 	;
@@ -71,6 +73,21 @@ void exec(const string& cmd, const vector<string>& args) {
 		CameraLoop::decQrWait = wait;
 		
 		cout << "Will detect QR code for "<<wait<<" loops.\n";
+	} else if (cmd == "ring") {
+		if (!APNClient::DefaultClient.connect()) {
+			cout<<"Failed to connect to APN server."<<endl;
+			return;
+		}
+		
+		cout << "Sending notifications to devices...\nTokens:\n";
+		for (auto it = ServerThreads::devices.begin(); it != ServerThreads::devices.end(); it++) {
+			string token = *it;
+			
+			cout << token << endl;
+			APNClient::DefaultClient.notify(token);
+		}
+		
+		cout << "Done\n";
 	} else {
 		cout<<"Unknown command "<<cmd<<".\n\n"<<HELP_STRING;
 	}

@@ -27,6 +27,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	
 	CommandPacket pk = CommandPacket(Type::REQUEST_MONITOR);
 	[comm writePacket:&pk target:self withSelector:@selector(getImage:)];
 	
