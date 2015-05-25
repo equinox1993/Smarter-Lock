@@ -15,6 +15,8 @@
 #include <sys/fcntl.h>
 #include <netdb.h>
 #include <functional>
+#include <cstring>
+#include <strings.h>
 
 #include "../Common/RSAHelper.inl"
 #include "../Common/Packets/SimplePacket.h"
@@ -105,7 +107,7 @@ bool APNClient::connect() {
 void APNClient::close() {
 	::close(_sockfd);
 	
-	_sockfd = NULL;
+	_sockfd = 0;
 }
 
 bool APNClient::notify(const std::string& token) {

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 CSE481. All rights reserved.
 //
 
+#include <cstring>
 #include <string>
 #include <iostream>
 
