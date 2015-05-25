@@ -22,7 +22,7 @@
 
 #if defined(__APPLE__) || defined(__MACH__)
 # ifndef MSG_NOSIGNAL
-#   define MSG_NOSIGNAL SO_NOSIGPIPE
+#   define MSG_NOSIGNAL 0
 # endif
 #endif
 
@@ -112,6 +112,15 @@ bool TCPServer::Run(uint16_t port, uint32_t maxThreadCount, RSA* r) {
 		perror("Failed to create socket");
 		return false;
 	}
+	
+	
+	#ifdef SO_NOSIGPIPE
+	int enb = 1;
+	if (setsockopt(sockfd, SOL_SOCKET, SO_NOSIGPIPE, &enb, sizeof(int)) < 0) {
+    	perror("setsockopt(SO_NOSIGPIPE) failed");
+		return false;
+	}
+	#endif
 	
 	int enable = 1;
 	if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0) {

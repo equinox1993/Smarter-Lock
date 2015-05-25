@@ -26,7 +26,7 @@
 
 #if defined(__APPLE__) || defined(__MACH__)
 # ifndef MSG_NOSIGNAL
-#   define MSG_NOSIGNAL SO_NOSIGPIPE
+#   define MSG_NOSIGNAL 0
 # endif
 #endif
 
@@ -52,6 +52,15 @@ APNClient::~APNClient() {
 
 bool APNClient::connect() {
 	_sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	
+	#ifdef SO_NOSIGPIPE
+	int enb = 1;
+	if (setsockopt(_sockfd, SOL_SOCKET, SO_NOSIGPIPE, &enb, sizeof(int)) < 0) {
+    	perror("setsockopt(SO_NOSIGPIPE) failed");
+		return false;
+	}
+	#endif
+	
 	int arg = fcntl(_sockfd, F_GETFL, NULL);
 	arg |= O_NONBLOCK;
 	fcntl(_sockfd, F_SETFL, arg);
