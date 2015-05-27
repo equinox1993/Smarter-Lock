@@ -7,7 +7,7 @@
 //
 
 #include <unistd.h>
-#include "../Common/GPIO.h"
+#include "Common/GPIO.h"
 
 int main(int argc, const char * argv[]) {
 	GPIO io;
