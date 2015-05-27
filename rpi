@@ -1,0 +1,39 @@
+#/bin/bash
+
+CHOICE=$(whiptail --title "Smarter Lock Raspberry Pi Config Tool" --menu "Please choose an option" 15 70 7 \
+    "Run Server" "Run the server." \
+    "Run APNS" "Run the APN server." \
+    "Install Deps" "Install cmake, opencv, openssl, nodejs, npm." \
+    "Link Pi Config" "Create soft link for config_pi.ini." \
+    "Build Server" "Build the server." \
+    "Build APNS" "Build the APN server." \
+3>&1 1>&2 2>&3)
+
+case "$CHOICE" in
+
+"Run Server")
+    sudo ./Server/piserver
+    ;;
+
+"Run APNS")
+    cd apns
+    npm start
+    ;;
+"Install Deps")
+    sudo apt-get update
+    sudo apt-get install cmake libopencv-dev libssl-dev nodejs npm
+    ;;
+"Link Pi Config")
+    ln -s ./Server/config_pi.ini ./Server/config.ini
+    ;;
+"Build Server")
+    cd Server
+    ./build_server
+    ;;
+"Build APNS")
+    cd apns
+    npm install
+    cd cppglue
+    ./buildlib
+    ;;
+esac
