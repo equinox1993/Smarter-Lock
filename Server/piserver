@@ -1,4 +1,5 @@
 #!/bin/bash
 
+cd `dirname "$0"`
 modprobe bcm2835-v4l2
 ./build/Server --nogui
