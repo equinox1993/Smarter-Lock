@@ -26,7 +26,7 @@ uint32_t PasscodePacket::type() const {
     return Type::PASSCODE;
 }
 
-PasscodePacket::PasscodePacket(const char* psc, uint64_t dt, uint32_t seqNum) {
+PasscodePacket::PasscodePacket(const char* psc, time_t dt, uint32_t seqNum) {
 	passcode = psc;
 	date = dt;
 	sequenceNumber = seqNum;

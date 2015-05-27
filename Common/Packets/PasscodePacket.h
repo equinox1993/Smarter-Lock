@@ -26,7 +26,7 @@ class PasscodePacket : public Packet {
 	std::string passcode; // to retain reference
 	uint64_t date;
 	
-	PasscodePacket(const char* passcode, uint64_t date, uint32_t seqNum = 0);
+	PasscodePacket(const char* passcode, time_t date, uint32_t seqNum = 0);
 	
 	virtual int serialize(uint8_t* output) const;
 	virtual uint32_t length() const;

@@ -25,6 +25,7 @@ public:
 	static const char* rsaFile;
 	static uint16_t port;
 	static uint32_t numThreads;
+	static uint32_t qrexp;
 	static const char* gpioUnlock;
 	static void* startServer(void* sth);
 	static void broadcastVideoFrame(cv::Mat frame);

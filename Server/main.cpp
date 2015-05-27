@@ -21,6 +21,7 @@
 #define APN_DEFAULT_HOST			"localhost"
 #define APN_DEFAULT_PORT			2303
 #define APN_DEFAULT_RSA_FILE		"./apnserver_public.pem"
+#define MISC_DEFAULT_QR_EXP			7200
 
 #define KWARN  "\x1b[33m"
 #define KERR   "\x1b[31m"
@@ -65,6 +66,7 @@ const char HELP_STRING[] =
 	"apn_host=" APN_DEFAULT_HOST "\n"
 	"apn_port=" stringize(APN_DEFAULT_PORT) "\n"
 	"apn_rsa=" APN_DEFAULT_RSA_FILE "\n"
+	"qr_expire=" stringize(MISC_DEFAULT_QR_EXP) "\n"
 	;
 
 void cleanup() {
@@ -102,6 +104,8 @@ int main(int argc, const char * argv[]) {
 	const char* rsapath = ini.GetValue("safety", "pem", SAFETY_DEFAULT_RSA_FILE);
 	const char* passwd = ini.GetValue("safety", "password", SAFETY_DEFAULT_PASSWD);
 	
+	uint32_t qrexp = atoi(ini.GetValue("misc", "qrexpire", stringize(MISC_DEFAULT_QR_EXP)));
+	
 	for (int i = 1; i < argc; i++) {
 		const char* arg = argv[i];
 		
@@ -116,6 +120,7 @@ int main(int argc, const char * argv[]) {
 		}
 	}
 	
+	ServerThreads::qrexp = qrexp;
 	ServerThreads::port = port;
 	ServerThreads::numThreads = numThreads;
 	ServerThreads::gpioUnlock = unlockPin;

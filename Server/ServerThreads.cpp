@@ -24,6 +24,8 @@
 
 #include "../Common/RSAHelper.inl"
 
+#include <ctime>
+
 #include <stdio.h>
 #include <unistd.h>
 
@@ -38,6 +40,25 @@ std::map<int, struct clientinfo> monitorMap;
 
 static GPIO* io;
 static std::string curPasscode;
+struct tm qrExpTime;
+
+struct tm* getNow() {
+	time_t now;
+	time(&now);
+	
+	return localtime(&now);
+}
+
+void newPasscode() {
+	char seq[17];
+	seq[16] = '\0';
+	Helpers::randSeq(seq);
+	curPasscode = seq;
+	
+	qrExpTime = *getNow();
+
+	qrExpTime.tm_sec += ServerThreads::qrexp;
+}
 
 void ServerThreads::unlockDoor() {
 	io->write(ServerThreads::gpioUnlock, true);
@@ -46,6 +67,12 @@ void ServerThreads::unlockDoor() {
 }
 
 bool ServerThreads::unlockWithPasscode(const char* psc) {
+	auto now = *getNow();
+	
+	if (difftime(mktime(&now), mktime(&qrExpTime)) > 0) {
+		newPasscode();
+	}
+
 	if (curPasscode == psc) {
 		unlockDoor();
 		return true;
@@ -69,14 +96,21 @@ void unlock(Packet* up, CommunicationTask* ct) {
 }
 
 void passcode(Packet* up, CommunicationTask* ct) {
-	char seq[17];
-	seq[16] = '\0';
-	Helpers::randSeq(seq);
-	curPasscode = seq;
-	PasscodePacket pc = PasscodePacket(seq, 233333);
+	auto now = *getNow();
+	
+	if (curPasscode.empty() || difftime(mktime(&now), mktime(&qrExpTime)) > 0) {
+		newPasscode();
+	}
+	
+	PasscodePacket pc = PasscodePacket(curPasscode.c_str(), mktime(&qrExpTime));
 	pc.sequenceNumber = up->sequenceNumber;
 	TCPServer::SendPacket(&pc, ct->sockfd_, true);
 	TCPServer::CloseConnection(ct->sockfd_);
+}
+
+void renewPasscode(Packet* up, CommunicationTask* ct) {
+	newPasscode();
+	passcode(up, ct);
 }
 
 void startMonitor(Packet* up, CommunicationTask* ct) {
@@ -153,6 +187,7 @@ void* ServerThreads::startServer(void* sth) {
 
 	TCPServer::RegisterCallback(Type::UNLOCK, unlock);
 	TCPServer::RegisterCallback(Type::REQUEST_PASSCODE, passcode);
+	TCPServer::RegisterCallback(Type::RENEW_PASSCODE, renewPasscode);
 	TCPServer::RegisterCallback(Type::REQUEST_MONITOR, startMonitor);
 	TCPServer::RegisterCallback(Type::STOP_MONITOR, stopMonitor);
 	TCPServer::RegisterCallback(Type::DEVICE_TOKEN, newToken);
@@ -177,3 +212,4 @@ uint32_t ServerThreads::numThreads;
 const char* ServerThreads::gpioUnlock;
 const char* ServerThreads::rsaFile;
 std::set<std::string> ServerThreads::devices;
+uint32_t ServerThreads::qrexp;

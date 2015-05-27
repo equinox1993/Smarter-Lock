@@ -38,9 +38,13 @@
 }
 
 -(void)requestPasscode {
-    CommandPacket* reqPacket = new CommandPacket(Type::REQUEST_PASSCODE);
-    [comm writePacket:reqPacket target:self withSelector:@selector(receivePasscodePacket:)];
-    delete reqPacket;
+    CommandPacket reqPacket(Type::REQUEST_PASSCODE);
+    [comm writePacket:&reqPacket target:self withSelector:@selector(receivePasscodePacket:)];
+}
+
+-(void)renewPasscode {
+	CommandPacket renPacket(Type::RENEW_PASSCODE);
+    [comm writePacket:&renPacket target:self withSelector:@selector(receivePasscodePacket:)];
 }
 
 // responses
@@ -100,15 +104,13 @@
 
 // Actions
 -(IBAction)refreshQR:(id)sender {
-    [self requestPasscode];
+    [self renewPasscode];
 }
 
 -(IBAction)unlock:(id)sender {
-    CommandPacket* unlockPacket = new CommandPacket(Type::UNLOCK);
+    CommandPacket unlockPacket(Type::UNLOCK);
     
-    [comm writePacket:unlockPacket target:self withSelector:@selector(unlockReceivePacket:)];
-    
-    delete unlockPacket;
+    [comm writePacket:&unlockPacket target:self withSelector:@selector(unlockReceivePacket:)];
 }
 
 -(IBAction)saveImage:(id)sender {
