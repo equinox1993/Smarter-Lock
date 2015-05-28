@@ -1,0 +1,6 @@
+when building ui:
+
+class Ui_Form(QtGui.QWidget):
+    def __init__(self):
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
