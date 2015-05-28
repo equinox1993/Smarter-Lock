@@ -25,9 +25,12 @@ const char HELP_STRING[] =
 	"Commands:\n"
 	"\tunlock PSW    Unlock using the password PSW\n"
 	"\tqrdec LOOPS   Open camera and decode QR for LOOPS*CAM_WAIT msecs\n"
-	"\tring          Ring the doorbell (Send notification to clients).\n"
+	"\tring          Ring the doorbell (Send notification to clients)\n"
+	"\tlsdev         List all devices registered to the server\n"
 	"\thelp          Show this help\n"
 	"\tquit          Quit server\n"
+
+	"\n"
 	;
 
 // returns: command name
@@ -65,7 +68,7 @@ void exec(const string& cmd, const vector<string>& args) {
 		}
 	} else if (cmd == "qrdec") {
 		if (args.size() < 1) {
-			cout<<"qrdec: wrong arguments\n";
+			cout<<"qrdec: too few arguments\n";
 			return;
 		}
 		
@@ -88,7 +91,14 @@ void exec(const string& cmd, const vector<string>& args) {
 		}
 		
 		cout << "Done\n";
-	} else {
+	} else if (cmd == "lsdev") {
+		for (auto it = ServerThreads::devices.begin(); it != ServerThreads::devices.end(); it++) {
+			auto dev = *it;
+			cout << dev << endl;
+		}
+	}
+	
+	else {
 		cout<<"Unknown command "<<cmd<<".\n\n"<<HELP_STRING;
 	}
 }

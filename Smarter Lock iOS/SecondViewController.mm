@@ -23,8 +23,6 @@
     
 //	[self changeQR:@"Hello World 233333!"];
 	comm = [Communicator defaultCommunicator];
-    
-    [self requestPasscode];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +98,10 @@
                                                           message: msg
                                                          delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [myAlert show];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+	[self requestPasscode];
 }
 
 // Actions

@@ -42,6 +42,7 @@ static GPIO* io;
 static std::string curPasscode;
 struct tm qrExpTime;
 
+// TODO: mutex lock
 struct tm* getNow() {
 	time_t now;
 	time(&now);
