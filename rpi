@@ -1,6 +1,7 @@
 #/bin/bash
 
 CHOICE=$(whiptail --title "Smarter Lock Raspberry Pi Config Tool" --menu "Please choose an option" 15 70 7 \
+    "Run GUI & Srv" "Run the server piped with GUI's stdout." \
     "Run Server" "Run the server." \
     "Run APNS" "Run the APN server." \
     "Install Deps" "Install cmake, opencv, openssl, nodejs, npm." \
@@ -13,6 +14,10 @@ case "$CHOICE" in
 
 "Run Server")
     sudo ./Server/piserver
+    ;;
+
+"Run GUI & Srv")
+    python gui/main.py | sudo Server/piserver
     ;;
 
 "Run APNS")
