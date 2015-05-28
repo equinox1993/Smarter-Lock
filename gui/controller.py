@@ -1,6 +1,6 @@
 __author__ = 'Edwin'
 
-from PyQt5 import QtGui, QtWidgets
+from PyQt5 import QtWidgets, QtCore
 
 from ui5 import Ui_Form
 
@@ -27,6 +27,7 @@ class UiController(object):
 
     # private
     def __bind(self):
+        Ui_Form.keyPressEvent = self.make_act_key_press() # reflex
         buttons = self.form.findChildren(QtWidgets.QPushButton)
 
         for but in buttons:
@@ -56,6 +57,15 @@ class UiController(object):
 
     def act_scan(self):
         std_println("qrdec " + str(self.__qr_scan_loops))
+
+    @staticmethod
+    def make_act_key_press():
+        def key_press(self, e):
+            if e.key() == QtCore.Qt.Key_Escape:
+                std_println("quit")
+                self.close()
+
+        return key_press
 
     @staticmethod
     def act_ring():
