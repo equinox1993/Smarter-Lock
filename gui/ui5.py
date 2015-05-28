@@ -179,3 +179,7 @@ class Ui_Form(QtWidgets.QWidget):
         self.scanButton.setText(_translate("Form", "Scan QR"))
         self.ringButton.setText(_translate("Form", "Ring"))
 
+    def keyPressEvent(self, e):
+        if e.key() == QtCore.Qt.Key_Escape:
+            self.close()
+
