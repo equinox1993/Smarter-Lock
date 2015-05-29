@@ -107,8 +107,8 @@
 {
 	NSLog(@"Token: %@", deviceToken);
 	[Communicator defaultCommunicator].token = deviceToken;
-	SimplePacket sp((const uint8_t*)[deviceToken bytes], [deviceToken length], Type::DEVICE_TOKEN);
-	[[Communicator defaultCommunicator] writePacket: &sp target:nil withSelector:nil];
+	SimplePacket* sp = new SimplePacket((const uint8_t*)[deviceToken bytes], [deviceToken length], Type::DEVICE_TOKEN);
+	[[Communicator defaultCommunicator] writePacket: sp target:nil withSelector:nil];
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error

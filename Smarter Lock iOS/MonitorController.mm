@@ -29,17 +29,17 @@
 -(void)viewDidAppear:(BOOL)animated {
 	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 	
-	CommandPacket pk = CommandPacket(Type::REQUEST_MONITOR);
-	[comm writePacket:&pk target:self withSelector:@selector(getImage:)];
+	CommandPacket *pk = new CommandPacket(Type::REQUEST_MONITOR);
+	[comm writePacket:pk target:self withSelector:@selector(getImage:)];
 	
 	self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 	
-	monSeq = pk.sequenceNumber;
+	monSeq = pk->sequenceNumber;
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
-	CommandPacket pk = CommandPacket(Type::STOP_MONITOR, monSeq);
-	[comm writePacket:&pk target:self withSelector:@selector(getImage:)];
+	CommandPacket *pk = new CommandPacket(Type::STOP_MONITOR, monSeq);
+	[comm writePacket:pk target:self withSelector:@selector(getImage:)];
 }
 
 -(void)getImage:(NSValue*)pkptr {

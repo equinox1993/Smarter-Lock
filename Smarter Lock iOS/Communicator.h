@@ -11,6 +11,9 @@
 
 #include <openssl/rsa.h>
 
+#include <vector>
+#include <mutex>
+
 @interface Communicator : NSObject<NSStreamDelegate> {
     @private
     NSInputStream* istream;
@@ -32,8 +35,8 @@
 	
 	Boolean connected;
 	
-	const uint8_t* lastPacketToSend;
-	size_t lastPacketTotalLen;
+	std::vector<Packet*> packetQueue;
+	std::mutex packetQueueMutex;
 }
 
 @property (retain) NSData* token;
@@ -57,6 +60,9 @@
 //-(void)writePacket:(Packet*)pl;
 //-(void)writeCString:(const u_int8_t*)str length:(size_t)len;
 
+-(void)consumeQueue;
+-(void)blockingWritePacket:(Packet&)pl target:(id)target withSelector:(SEL)sel;
+// Communicator WILL take the ownership of pl
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel;
 // callback:
 //	receivePacket:(NSValue)packetPtr;

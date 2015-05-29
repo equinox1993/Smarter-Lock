@@ -8,7 +8,7 @@
 
 #import "Communicator.h"
 
-#define MAX_LEN 1024
+#define MAX_LEN 8192
 #define CONN_KILLER_THREAD_INTERVAL 10.0
 
 @implementation Communicator
@@ -62,8 +62,6 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
     self.port = p;
 	
 	readbuf = nil;
-	
-	lastPacketToSend = nil;
 	
 	self.timeout = DefaultTimeout;
 	curSeq = 1;
@@ -137,29 +135,60 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 //}
 //
 //
-//-(void)writePacket:(Packet*)pl {
-//	size_t totalLen;
-//	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
-//    [self writeCString: packetBytes length: totalLen];
-//	delete[] packetBytes;
-//}
+-(void)writePacket:(const Packet*)pl {
+	size_t totalLen;
+	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
+	
+	[ostream write:packetBytes maxLength:totalLen];
+	
+	delete[] packetBytes;
+	[self touch];
+}
+
+-(void)consumeQueue {
+	packetQueueMutex.lock();
+	
+	while ([ostream hasSpaceAvailable] && packetQueue.size() > 0) {
+		Packet* first = *packetQueue.begin();
+		[self writePacket: first];
+		
+		delete first;
+		packetQueue.erase(packetQueue.begin());
+	}
+	packetQueueMutex.unlock();
+	
+	[self touch];
+}
 
 -(void)writePacket:(Packet*)pl target:(id)target withSelector:(SEL)sel {
 	if (!pl->sequenceNumber)
 		pl->sequenceNumber = curSeq;
 	
+	packetQueue.push_back(pl);
+	
+	if (target != nil) {
+		[targets setObject:target forKey:[NSNumber numberWithInt:curSeq]];
+		[selectors setObject:NSStringFromSelector(sel) forKey:[NSNumber numberWithInt:curSeq]];
+	}
+	
+	curSeq++;
+	
+	[self connect];
+	[self consumeQueue];
+}
+
+-(void)blockingWritePacket:(Packet&)pl target:(id)target withSelector:(SEL)sel {
+	if (!pl.sequenceNumber)
+		pl.sequenceNumber = curSeq;
+	
 	size_t totalLen;
-	const uint8_t* packetBytes = PacketAssembler::Assemble(pl, totalLen, true);
+	const uint8_t* packetBytes = PacketAssembler::Assemble(&pl, totalLen, true);
 	
 	[self connect];
 	
-	if ([ostream hasSpaceAvailable]) {
-		[ostream write:packetBytes maxLength:totalLen];
-		[self touch];
-	} else { // delay
-		lastPacketToSend = packetBytes;
-		lastPacketTotalLen = totalLen;
-	}
+	
+	[ostream write:packetBytes maxLength:totalLen];
+	[self touch];
 	
 //    [ostream write:packetBytes maxLength:totalLen];
 	if (target != nil) {
@@ -169,7 +198,7 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 	curSeq++;
 //	[self touch];
 	
-//	delete[] packetBytes;
+	delete[] packetBytes;
 }
 
 -(void)connKillTimerThread:(id)info {
@@ -230,12 +259,8 @@ int Decrypt(int flen, const uint8_t* from, uint8_t* to) {
 		} break;
 		
 		case NSStreamEventHasSpaceAvailable: {
-			if (aStream == ostream && lastPacketToSend) {
-					[ostream write:lastPacketToSend maxLength:lastPacketTotalLen];
-//					[self touch];
-				
-					delete [] lastPacketToSend;
-					lastPacketToSend = nil;
+			if (aStream == ostream) {
+				[self consumeQueue];
 			}
 		} break;
 	}
