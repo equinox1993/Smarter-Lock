@@ -8,21 +8,20 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Form(QtWidgets.QWidget):
+class Ui_Form(QtGui.QWidget):
     def __init__(self):
-        QtWidgets.QWidget.__init__(self)
+        QtGui.QWidget.__init__(self)
         self.setupUi(self)
-
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(364, 403)
+        Form.resize(252, 320)
         Form.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(Form)
         font = QtGui.QFont()
-        font.setPointSize(46)
+        font.setPointSize(36)
         font.setBold(False)
         font.setWeight(50)
         self.label.setFont(font)
@@ -167,7 +166,7 @@ class Ui_Form(QtWidgets.QWidget):
         self.numButton_9.setText(_translate("Form", "9"))
         self.numButton_4.setText(_translate("Form", "4"))
         self.numButton_1.setText(_translate("Form", "1"))
-        self.unlockButton.setText(_translate("Form", "Unlock"))
+        self.unlockButton.setText(_translate("Form", "Open"))
         self.numButton_2.setText(_translate("Form", "2"))
         self.numButton_5.setText(_translate("Form", "5"))
         self.numButton_3.setText(_translate("Form", "3"))
@@ -176,5 +175,6 @@ class Ui_Form(QtWidgets.QWidget):
         self.numButton_8.setText(_translate("Form", "8"))
         self.numButton_7.setText(_translate("Form", "7"))
         self.clearButton.setText(_translate("Form", "Clear"))
-        self.scanButton.setText(_translate("Form", "Scan QR"))
+        self.scanButton.setText(_translate("Form", " QR"))
         self.ringButton.setText(_translate("Form", "Ring"))
+

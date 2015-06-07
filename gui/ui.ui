@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>364</width>
-    <height>403</height>
+    <width>252</width>
+    <height>320</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
-       <pointsize>46</pointsize>
+       <pointsize>36</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -96,7 +96,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Unlock</string>
+        <string>Open</string>
        </property>
       </widget>
      </item>
@@ -213,7 +213,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Scan QR</string>
+        <string> QR</string>
        </property>
       </widget>
      </item>
