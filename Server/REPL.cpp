@@ -64,6 +64,7 @@ void exec(const string& cmd, const vector<string>& args) {
 			ServerThreads::unlockDoor();
 			cout<<"Door unlocked\n";
 		} else {
+			ServerThreads::error();
 			cout<<"Incorrect password\n";
 		}
 	} else if (cmd == "qrdec") {

@@ -67,6 +67,22 @@ void ServerThreads::unlockDoor() {
 	io->write(ServerThreads::gpioUnlock, false);
 }
 
+void ServerThreads::error() {
+	io->write(ServerThreads::gpioError, true);
+	usleep(300);
+	io->write(ServerThreads::gpioError, false);
+	usleep(300);
+	
+	io->write(ServerThreads::gpioError, true);
+	usleep(300);
+	io->write(ServerThreads::gpioError, false);
+	usleep(300);
+	
+	io->write(ServerThreads::gpioError, true);
+	usleep(300);
+	io->write(ServerThreads::gpioError, false);
+}
+
 bool ServerThreads::unlockWithPasscode(const char* psc) {
 	auto now = *getNow();
 	
@@ -78,6 +94,8 @@ bool ServerThreads::unlockWithPasscode(const char* psc) {
 		unlockDoor();
 		return true;
 	}
+	
+	error();
 	
 	return false;
 }
@@ -211,6 +229,7 @@ void ServerThreads::cleanup() {
 uint16_t ServerThreads::port;
 uint32_t ServerThreads::numThreads;
 const char* ServerThreads::gpioUnlock;
+const char* ServerThreads::gpioError;
 const char* ServerThreads::rsaFile;
 std::set<std::string> ServerThreads::devices;
 uint32_t ServerThreads::qrexp;

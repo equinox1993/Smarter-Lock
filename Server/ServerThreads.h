@@ -27,9 +27,11 @@ public:
 	static uint32_t numThreads;
 	static uint32_t qrexp;
 	static const char* gpioUnlock;
+	static const char* gpioError;
 	static void* startServer(void* sth);
 	static void broadcastVideoFrame(cv::Mat frame);
 	static void unlockDoor();
+	static void error();
 	static bool unlockWithPasscode(const char* psc);
 	static uint32_t countMonitors();
 	static void cleanup();

@@ -16,6 +16,7 @@
 #define CAM_WAIT					75
 #define CAM_DEV						0
 #define GPIO_DEFAULT_UNLOCK         "27"
+#define GPIO_DEFAULT_ERROR			"17"
 #define SAFETY_DEFAULT_RSA_FILE     "./private.pem"
 #define SAFETY_DEFAULT_PASSWD		""
 #define APN_DEFAULT_HOST			"localhost"
@@ -100,6 +101,7 @@ int main(int argc, const char * argv[]) {
 	int dev = atoi(ini.GetValue("camera", "device", stringize(CAM_DEV)));
 	
 	const char* unlockPin = ini.GetValue("gpio", "unlock", GPIO_DEFAULT_UNLOCK);
+	const char* errorPin = ini.GetValue("gpio", "error", GPIO_DEFAULT_ERROR);
 	
 	const char* rsapath = ini.GetValue("safety", "pem", SAFETY_DEFAULT_RSA_FILE);
 	const char* passwd = ini.GetValue("safety", "password", SAFETY_DEFAULT_PASSWD);
@@ -124,6 +126,7 @@ int main(int argc, const char * argv[]) {
 	ServerThreads::port = port;
 	ServerThreads::numThreads = numThreads;
 	ServerThreads::gpioUnlock = unlockPin;
+	ServerThreads::gpioError = errorPin;
 	ServerThreads::rsaFile = rsapath;
 
 	if (signal(SIGINT, sigHandler) == SIG_ERR)
