@@ -69,17 +69,7 @@ void ServerThreads::unlockDoor() {
 
 void ServerThreads::error() {
 	io->write(ServerThreads::gpioError, true);
-	usleep(300);
-	io->write(ServerThreads::gpioError, false);
-	usleep(300);
-	
-	io->write(ServerThreads::gpioError, true);
-	usleep(300);
-	io->write(ServerThreads::gpioError, false);
-	usleep(300);
-	
-	io->write(ServerThreads::gpioError, true);
-	usleep(300);
+	sleep(1);
 	io->write(ServerThreads::gpioError, false);
 }
 
