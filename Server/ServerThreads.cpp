@@ -213,6 +213,7 @@ void* ServerThreads::startServer(void* sth) {
 	
 	io = new GPIO();
 	io->setup(ServerThreads::gpioUnlock, GPIO::Direction::OUT);
+	io->setup(ServerThreads::gpioError, GPIO::Direction::OUT);
 	
 	while (!TCPServer::Run(port, numThreads, rsa)) {
 		fprintf(stderr, "Failed to start server. wait 5 secs then retry.\n");
