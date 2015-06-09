@@ -21,6 +21,8 @@ class UiController(object):
         self.__password = ""
         self.__qr_scan_loops = DEF_QR_SCAN_LOOPS
 
+        self.__num_buttons = [None]*10
+
     def start(self):
         QtWidgets.QMainWindow.showFullScreen(self.form)
         #self.form.show()
@@ -32,6 +34,7 @@ class UiController(object):
 
         for but in buttons:
             if '0' <= but.text() <= '9':
+                self.__num_buttons[int(but.text())] = but
                 but.clicked.connect(self.make_act_num(but.text()))
 
         self.form.clearButton.clicked.connect(self.act_clear)
@@ -58,12 +61,15 @@ class UiController(object):
     def act_scan(self):
         std_println("qrdec " + str(self.__qr_scan_loops))
 
-    @staticmethod
-    def make_act_key_press():
+    def make_act_key_press(self):
+        ms = self
         def key_press(self, e):
             if e.key() == QtCore.Qt.Key_Escape:
                 std_println("quit")
                 self.close()
+
+            elif '0' <= e.key() <= '9':
+                ms.__num_buttons[int(e.key())].animateClick()
 
         return key_press
 
