@@ -17,11 +17,11 @@ def std_println(str):
 class UiController(object):
     def __init__(self):
         self.form = Ui_Form()
+        self.__num_buttons = [None]*10
         self.__bind()
         self.__password = ""
         self.__qr_scan_loops = DEF_QR_SCAN_LOOPS
 
-        self.__num_buttons = [None]*10
 
     def start(self):
         QtWidgets.QMainWindow.showFullScreen(self.form)
@@ -68,8 +68,20 @@ class UiController(object):
                 std_println("quit")
                 self.close()
 
-            elif '0' <= e.key() <= '9':
-                ms.__num_buttons[int(e.key())].animateClick()
+            elif e.key() == QtCore.Qt.Key_Delete:
+                ms.form.clearButton.animateClick()
+
+            elif e.key() < 256 and chr(e.key()) == 'U':
+                ms.form.unlockButton.animateClick()
+
+            elif e.key() < 256 and chr(e.key()) == 'R':
+                ms.form.ringButton.animateClick()
+
+            elif e.key() < 256 and chr(e.key()) == 'Q':
+                ms.form.scanButton.animateClick()
+
+            elif e.key() < 256 and '0' <= chr(e.key()) <= '9':
+                ms.__num_buttons[int(chr(e.key()))].animateClick()
 
         return key_press
 

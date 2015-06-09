@@ -56,7 +56,7 @@ void* BluetoothThread::startLoop(void* sth) {
             unlocked = false;
         }
         
-        sleep(1);
+        usleep(200);
     }
     
     return nullptr;

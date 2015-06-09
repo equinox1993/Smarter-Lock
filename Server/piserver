@@ -1,5 +1,7 @@
 #!/bin/bash
 
 cd `dirname "$0"`
+rmmod bcm2835-v4l2
+sleep 1
 modprobe bcm2835-v4l2
 ./build/Server --nogui
