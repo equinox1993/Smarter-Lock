@@ -7,10 +7,13 @@
 //
 
 #include "BluetoothThread.h"
+#include "ServerThreads.h"
 
 #include <string>
 #include <iostream>
 #include <stdio.h>
+
+#include <cstdlib>
 
 #include <unistd.h>
 
@@ -31,10 +34,27 @@ std::string exec(char* cmd) {
 }
 
 void* BluetoothThread::startLoop(void* sth) {
+    bool unlocked = false;
+    
     while (true) {
         auto result = exec(COMMAND MAC);
         
-        std::cout << result;
+        if (result.length() < 31) {
+            sleep(1);
+            continue;
+        }
+            
+        
+        const char* tpl_str = result.c_str()+30;
+        
+        long tpl = strtol(tpl_str, nullptr, 10);
+        
+        if (!unlocked && tpl <=0) {
+            ServerThreads::unlockDoor();
+            unlocked = true;
+        } else if (unlocked && tpl > 0) {
+            unlocked = false;
+        }
         
         sleep(1);
     }
