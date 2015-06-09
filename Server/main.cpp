@@ -41,6 +41,7 @@
 #include "CameraLoop.h"
 #include "REPL.h"
 #include "APNClient.h"
+#include "BluetoothThread.h"
 
 #include "../Common/RSAHelper.inl"
 
@@ -145,6 +146,9 @@ int main(int argc, const char * argv[]) {
 	REPL::password = passwd;
 	pthread_t replThreadId;
 	pthread_create(&replThreadId, nullptr, REPL::startLoop, nullptr);
+    
+    pthread_t btThreadId;
+    pthread_create(&btThreadId, nullptr, BluetoothThread::startLoop, nullptr);
 	
 	CameraLoop::loop(dev, width, height, gui, wait);
 	

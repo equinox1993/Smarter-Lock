@@ -18,6 +18,7 @@
 		40585B2D1AE86180009D5C51 /* Communicator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40585B2C1AE86180009D5C51 /* Communicator.mm */; };
 		40585B391AE87CA0009D5C51 /* CommunicatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */; };
 		40585B3F1AF2CB40009D5C51 /* Authenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 40585B3E1AF2CB40009D5C51 /* Authenticator.m */; };
+		405B75B51B269C7900919C3B /* BluetoothThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 405B75B31B269C7900919C3B /* BluetoothThread.cpp */; };
 		E82837D81AF1E00E00F22F2F /* MonitorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E82837D71AF1E00E00F22F2F /* MonitorController.mm */; };
 		E84168CE1AE8A40700BB1897 /* CommandPacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CC1AE8A40700BB1897 /* CommandPacket.cpp */; };
 		E84168D11AE8A64B00BB1897 /* PasscodePacket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E84168CF1AE8A64B00BB1897 /* PasscodePacket.cpp */; };
@@ -123,6 +124,8 @@
 		40585B381AE87CA0009D5C51 /* CommunicatorTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CommunicatorTest.mm; sourceTree = "<group>"; };
 		40585B3D1AF2CB40009D5C51 /* Authenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authenticator.h; sourceTree = "<group>"; };
 		40585B3E1AF2CB40009D5C51 /* Authenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authenticator.m; sourceTree = "<group>"; };
+		405B75B31B269C7900919C3B /* BluetoothThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BluetoothThread.cpp; sourceTree = "<group>"; };
+		405B75B41B269C7900919C3B /* BluetoothThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothThread.h; sourceTree = "<group>"; };
 		E82837D61AF1E00E00F22F2F /* MonitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonitorController.h; sourceTree = "<group>"; };
 		E82837D71AF1E00E00F22F2F /* MonitorController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonitorController.mm; sourceTree = "<group>"; };
 		E84168CA1AE8A38800BB1897 /* Packet.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Packet.h; sourceTree = "<group>"; };
@@ -1268,6 +1271,8 @@
 				E854E3AF1B112CA0008B95D3 /* REPL.h */,
 				E867C1691B131B6F00714F65 /* APNClient.cpp */,
 				E867C16A1B131B6F00714F65 /* APNClient.h */,
+				405B75B31B269C7900919C3B /* BluetoothThread.cpp */,
+				405B75B41B269C7900919C3B /* BluetoothThread.h */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -3285,6 +3290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8608DE51AF390F300CF2D9A /* CommandPacket.cpp in Sources */,
+				405B75B51B269C7900919C3B /* BluetoothThread.cpp in Sources */,
 				E8FB2BA81AF60CE30024DCAA /* ThreadPool.cpp in Sources */,
 				E8608DE61AF390F300CF2D9A /* PasscodePacket.cpp in Sources */,
 				E8608DE41AF390DC00CF2D9A /* PacketAssembler.cpp in Sources */,
