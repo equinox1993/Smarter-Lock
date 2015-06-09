@@ -51,18 +51,20 @@ void CameraLoop::loop(int device, int width, int height, bool gui, uint32_t wait
 	decQrWait = 0;
 	
 	cv::Mat frame;
+    
+    openCamera(device, width, height);
 	
 	while(1){
 		if (ServerThreads::countMonitors() == 0 && decQrWait <= 0) {
-			if (cap)
-				closeCamera();
-			
+//			if (cap)
+//				closeCamera();
+//			
 			sleep(1);
 			continue;
 		}
 		
-		if (!cap)
-			openCamera(device, width, height);
+//		if (!cap)
+//			openCamera(device, width, height);
 		
 		(*cap) >> frame;
 		
