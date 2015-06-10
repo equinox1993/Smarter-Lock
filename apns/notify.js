@@ -1,8 +1,8 @@
 var apn = require('apn');
 
 var options = {
-    "cert": "../aps_cert.pem",
-    "key": "../aps_key.pem",
+    "cert": "../certs/aps_cert.pem",
+    "key": "../certs/aps_key.pem",
     "gateway": "gateway.sandbox.push.apple.com",
     "port": 2195
 };

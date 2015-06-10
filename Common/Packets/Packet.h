@@ -22,7 +22,7 @@
 	+----------+
     | Payload  |  -> payload (length of PLEN)
     +----------+
- 
+ l
  	Total head length = 4 * 4 = 16
     Total packet length = align4(Total head length + PLEN)
  
